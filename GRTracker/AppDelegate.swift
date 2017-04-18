@@ -9,13 +9,42 @@
 import UIKit
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate,BMKGeneralDelegate{
 
     var window: UIWindow?
-
+    var bmkManager:BMKMapManager?
+    var tabbarController:UITabBarController!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        
+        bmkManager = BMKMapManager()
+        let ret:Bool = (bmkManager?.start("mz7LIgdjbz94yon7LdzcZUHweVb7DtZi", generalDelegate: self))!
+        if (ret != false){
+            NSLog("manager start success!")
+        }
+
+        self.window = UIWindow(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+        
+        self.tabbarController = UITabBarController()
+        
+        let monitorController = UINavigationController(rootViewController: MonitorViewController())
+        let settingController = UINavigationController(rootViewController: SettingViewController())
+        let mineController = UINavigationController(rootViewController: MineViewController())
+        
+        
+        monitorController.tabBarItem = UITabBarItem(title: "监控", image: UIImage(named:"tabbar_discover"), selectedImage: UIImage(named: "tabbar_discoverHL"))
+        settingController.tabBarItem = UITabBarItem(title: "设置", image: UIImage(named: "bio"), selectedImage: UIImage(named: "bio_red"))
+        mineController.tabBarItem = UITabBarItem(title: "我", image: UIImage(named: "users two-2"), selectedImage: UIImage(named: "users two-2_red"))
+       
+        
+        tabbarController.tabBar.tintColor = MAIN_RED
+        
+        
+        tabbarController.viewControllers = [monitorController,settingController,mineController]
+        
+        self.window?.rootViewController = tabbarController
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 
