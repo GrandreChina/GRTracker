@@ -15,11 +15,26 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,BMKDistrictSear
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.checkLogin()
         self.initUI()
         self.initMapView()
         
     }
 
+    func checkLogin(){
+        let user =  UserDefaults.standard.object(forKey: "user")
+        print("---gr--\(user)")
+        
+        if user == nil{
+            let storyBoard = UIStoryboard(name: "Login", bundle: nil)
+            let loginVC = storyBoard.instantiateViewController(withIdentifier: "nav")
+           
+            self.present(loginVC, animated: true, completion: { 
+                
+            })
+          
+        }
+    }
     func initUI(){
         self.title = "监控与跟踪"
     }

@@ -19,4 +19,7 @@
 
 #import <BaiduMapAPI_Map/BMKMapView.h>//只引入所需的单个头文件
 
-#import <JVFloatLabeledTextField/JVFloatLabeledTextField.h>b
+#import <JVFloatLabeledTextField/JVFloatLabeledTextField.h>
+
+#import "MLMSegmentManager.h"
+#import "XKeyBoard.h"
