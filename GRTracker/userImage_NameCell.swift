@@ -42,7 +42,7 @@ class userImage_NameCell: UITableViewCell {
         self.showName = UILabel(frame: CGRect(x:100,y:15,width:SCREEN_WIDTH-100-10,height:35))
         self.showName?.text = "昵称:" + "Grandre"
 //        self.showName?.font = UIFont(name: MY_FONT, size: 20)
-        self.showName?.textColor = UIColor.blue
+        self.showName?.textColor = UIColor.black
         self.addSubview(self.showName!)
         
         self.userName = UILabel(frame: CGRect(x:100,y:50,width:SCREEN_WIDTH-100-10,height:25))

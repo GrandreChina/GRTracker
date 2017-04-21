@@ -10,5 +10,7 @@ target 'GRTracker' do
     pod 'BaiduMapKit'
 
     pod 'JVFloatLabeledTextField'
+    
+    pod 'Shimmer'
 
 end

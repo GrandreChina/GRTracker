@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Shimmer.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
@@ -22,7 +27,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8CE1D5F19C0CB5E6588938BCC12083A2</key>
+		<key>3A436D4CE0C60302FE30F834B1491D98</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E534340EC494B4452CAA268DC2A5AF4A</key>
 		<dict>
 			<key>primary</key>
 			<true/>

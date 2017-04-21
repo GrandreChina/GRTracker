@@ -1,15 +1,18 @@
 PODS:
   - BaiduMapKit (3.2.1)
   - JVFloatLabeledTextField (1.1.1)
+  - Shimmer (1.0.2)
 
 DEPENDENCIES:
   - BaiduMapKit
   - JVFloatLabeledTextField
+  - Shimmer
 
 SPEC CHECKSUMS:
   BaiduMapKit: 9c748785aa3dddfc41dcb70c14b21ce32f680930
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
+  Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
 
-PODFILE CHECKSUM: 91366c40fd15b916ac80421fa8dc6ec5350d7e7c
+PODFILE CHECKSUM: a1e653ee39fce0822059ad5511c68b037d832965
 
 COCOAPODS: 1.2.0

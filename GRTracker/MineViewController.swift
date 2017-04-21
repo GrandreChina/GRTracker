@@ -8,6 +8,10 @@
 
 import UIKit
 
+
+
+    
+
 class MineViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     var tableView:UITableView!
@@ -19,6 +23,7 @@ class MineViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         self.initTableView()
     }
 
+    
     func initUI(){
         self.title = "个人信息"
         self.view.backgroundColor = UIColor.white
@@ -33,8 +38,9 @@ class MineViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
    
         self.tableView?.register( userImage_NameCell.classForCoder(),forCellReuseIdentifier: "usercell")
         self.tableView?.tableFooterView                       = UIView()
-        self.tableView?.backgroundColor                       = UIColor.darkGray
+       
         self.view.addSubview(self.tableView!)
+
         
     }
     override func didReceiveMemoryWarning() {
@@ -120,8 +126,9 @@ class MineViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             cell.imageView?.image = UIImage(named: "MoreSetting")
             break
         case (0,2):
-            let logoutButton = UIButton(frame: CGRect(x:10,y:5,width:self.view.width-20,height:cell.frame.height-10))
-            logoutButton.backgroundColor = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
+//            let logoutButton = UIButton(frame: CGRect(x:10,y:5,width:self.view.width-20,height:cell.frame.height-10))
+            let logoutButton = UIButton(frame: cell.bounds)
+            logoutButton.backgroundColor = MAIN_RED
             logoutButton.setTitle("退出", for: .normal)
             logoutButton.setTitleColor(UIColor.black, for: .normal)
             logoutButton.addTarget(self, action: #selector(self.logoutBtnTapped), for: UIControlEvents.touchUpInside)
@@ -137,6 +144,13 @@ class MineViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         let cellPosition = (row:indexPath.row,section:indexPath.section)
         switch cellPosition {
         case (0,0):
+            
+           let cellImageView =  (cell as! userImage_NameCell).logoImageView!
+           
+           cellImageView.image = UIImage(named: "login1.png")
+           cellImageView.contentMode = .scaleAspectFill
+           
+           
 //            GeneralFactory.readImageFile(  (cell  as! userImage_NameCell).logoImageView!)
             //            if let touXiang = AVUser.currentUser()["touXiangFile"] as? AVFile{
             //                print("--------1-------")

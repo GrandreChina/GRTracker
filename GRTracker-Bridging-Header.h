@@ -21,5 +21,10 @@
 
 #import <JVFloatLabeledTextField/JVFloatLabeledTextField.h>
 
+//#import <Shimmer/FBShimmeringLayer.h>
+//#import <Shimmer/FBShimmeringView.h>
+//#import <Shimmer/FBShimmering.h>
+
 #import "MLMSegmentManager.h"
 #import "XKeyBoard.h"
+
