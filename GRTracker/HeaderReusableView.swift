@@ -13,12 +13,18 @@ class HeaderReusableView: UICollectionReusableView {
     var label:UILabel!
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
 //        print("------header----color")
-        self.backgroundColor = UIColor.clear
-        
-        self.label = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height))
- 
-        label.textColor = UIColor.lightGray
-        self.addSubview(label)
         
     }
+    func initUI(){
+        self.backgroundColor = UIColor.clear
+
+        self.label = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height))
+        
+        
+        label.textColor = UIColor.lightGray
+        
+        self.addSubview(label)
+  
+    }
+
 }

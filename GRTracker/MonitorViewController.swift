@@ -12,15 +12,27 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,BMKDistrictSear
 
     var _mapView:BMKMapView!
     var districtSearch: BMKDistrictSearch!
+    var topCollectBottomView:topCollectButtomView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.checkLogin()
         self.initUI()
         self.initMapView()
+        self.initTopButtomView()
+        
+
+        
         
     }
 
+    func initTopButtomView(){
+        self.topCollectBottomView = topCollectButtomView(frame: CGRect(x: 0, y:((self.navigationController?.navigationBar.height)!+UIApplication.shared.statusBarFrame.height), width: self.view.bounds.width, height: 75))
+        
+        self.topCollectBottomView.height1 = (self.navigationController?.navigationBar.height)!+UIApplication.shared.statusBarFrame.height
+        
+        self.view.addSubview(topCollectBottomView)
+    }
     func checkLogin(){
         let user =  UserDefaults.standard.object(forKey: "user")
         print("---gr--\(user)")
@@ -37,12 +49,14 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,BMKDistrictSear
     }
     func initUI(){
         self.title = "监控与跟踪"
+        self.navigationController?.navigationBar.barTintColor = MAIN_RED
     }
     func initMapView(){
         //添加地图视图
         let topHeight = (self.navigationController?.navigationBar.frame.height)! + UIApplication.shared.statusBarFrame.height
         _mapView = BMKMapView(frame: CGRect(x: 0, y: topHeight, width: self.view.frame.width, height: self.view.frame.height - topHeight - (self.tabBarController?.tabBar.frame.height)!))
         //        _mapView?.isScrollEnabled = false
+        
         self.view.addSubview(_mapView!)
         
         // 初始化搜索服务

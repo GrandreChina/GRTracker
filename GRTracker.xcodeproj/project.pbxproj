@@ -49,6 +49,7 @@
 		B1F5C4101E9E16890065ADA2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1F5C40E1E9E16890065ADA2 /* LaunchScreen.storyboard */; };
 		B1F5C4181E9E17690065ADA2 /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = B1F5C4171E9E17690065ADA2 /* Podfile */; };
 		B1FAA7861EA8B5A700ED3A1F /* topCollectButtomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FAA7851EA8B5A700ED3A1F /* topCollectButtomView.swift */; };
+		B1FAA78A1EA9E9E000ED3A1F /* FooterCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FAA7891EA9E9E000ED3A1F /* FooterCollectionReusableView.swift */; };
 		E695C917FFDC440437C4E06E /* Pods_GRTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 675B286089734AD5DCAB6F74 /* Pods_GRTracker.framework */; };
 /* End PBXBuildFile section */
 
@@ -107,6 +108,7 @@
 		B1F5C4111E9E16890065ADA2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B1F5C4171E9E17690065ADA2 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B1FAA7851EA8B5A700ED3A1F /* topCollectButtomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = topCollectButtomView.swift; sourceTree = "<group>"; };
+		B1FAA7891EA9E9E000ED3A1F /* FooterCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterCollectionReusableView.swift; sourceTree = "<group>"; };
 		D4F516843278DABDB046284B /* Pods-GRTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GRTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-GRTracker/Pods-GRTracker.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -208,6 +210,10 @@
 		B17BD4B31EA0CDE400E6E0B9 /* V */ = {
 			isa = PBXGroup;
 			children = (
+				B1FAA7851EA8B5A700ED3A1F /* topCollectButtomView.swift */,
+				B17EF5DF1EA8948000BE2CF4 /* My1CollectionViewCell.swift */,
+				B17EF5DB1EA8782E00BE2CF4 /* HeaderReusableView.swift */,
+				B1FAA7891EA9E9E000ED3A1F /* FooterCollectionReusableView.swift */,
 			);
 			name = V;
 			sourceTree = "<group>";
@@ -223,9 +229,6 @@
 		B17EF5DA1EA8782100BE2CF4 /* V */ = {
 			isa = PBXGroup;
 			children = (
-				B17EF5DB1EA8782E00BE2CF4 /* HeaderReusableView.swift */,
-				B17EF5DF1EA8948000BE2CF4 /* My1CollectionViewCell.swift */,
-				B1FAA7851EA8B5A700ED3A1F /* topCollectButtomView.swift */,
 			);
 			name = V;
 			sourceTree = "<group>";
@@ -516,6 +519,7 @@
 				B18117B51EA5B4EC007A13A4 /* oneViewController.swift in Sources */,
 				B18117AD1EA5A22A007A13A4 /* MLMSegmentHead.m in Sources */,
 				B1F5C4061E9E16890065ADA2 /* AppDelegate.swift in Sources */,
+				B1FAA78A1EA9E9E000ED3A1F /* FooterCollectionReusableView.swift in Sources */,
 				B1FAA7861EA8B5A700ED3A1F /* topCollectButtomView.swift in Sources */,
 				B18117AF1EA5A22A007A13A4 /* MLMSegmentScroll.m in Sources */,
 				B18117B01EA5A22A007A13A4 /* UIView+EasyFrame.m in Sources */,

@@ -26,11 +26,11 @@ class My1CollectionViewCell: UICollectionViewCell {
         self.addSubview(valueLable)
         
         shimmerView = FBShimmeringView(frame: CGRect(x: 0, y: 0, width: self.bounds.width*0.5, height: self.bounds.height))
-        shimmerView.shimmeringBeginFadeDuration = 0.3
-        shimmerView.shimmeringEndFadeDuration = 0.3
+        shimmerView.shimmeringBeginFadeDuration = 0.5
+        shimmerView.shimmeringEndFadeDuration = 0.5
         shimmerView.shimmeringOpacity = 0.6
         shimmerView.shimmeringAnimationOpacity = 1
-        shimmerView.shimmeringSpeed = 55
+        shimmerView.shimmeringSpeed = 70
         shimmerView.shimmeringPauseDuration = 0
         shimmerView.shimmeringHighlightLength = 0.5
         

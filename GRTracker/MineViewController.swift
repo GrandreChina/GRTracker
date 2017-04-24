@@ -8,10 +8,6 @@
 
 import UIKit
 
-
-
-    
-
 class MineViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     var tableView:UITableView!
