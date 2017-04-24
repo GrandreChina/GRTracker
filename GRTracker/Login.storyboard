@@ -36,7 +36,7 @@
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dxR-Ff-AnS">
                                         <rect key="frame" x="20" y="375" width="374" height="37"/>
-                                        <color key="backgroundColor" red="0.93333333333333335" green="0.34509803921568627" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
+                                        <color key="backgroundColor" red="0.086274509799999996" green="0.36078431370000003" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="37" id="CNX-9N-Gkj"/>
                                         </constraints>
@@ -54,7 +54,7 @@
                                             <constraint firstAttribute="width" constant="95" id="K5n-3D-rB6"/>
                                         </constraints>
                                         <state key="normal" title="忘记密码？">
-                                            <color key="titleColor" red="0.93333333333333335" green="0.34509803921568627" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.086274509799999996" green="0.36078431370000003" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <segue destination="JPV-iQ-jtr" kind="show" id="4bJ-ww-eV8"/>
@@ -81,7 +81,7 @@
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <state key="normal" title="注册 -&gt;">
-                                            <color key="titleColor" red="0.93333333333333335" green="0.34509803921568627" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
+                                            <color key="titleColor" red="0.086274509799999996" green="0.36078431370000003" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
                                         <connections>
                                             <segue destination="aAK-Zs-Hhd" kind="show" id="Ur3-It-bg1"/>
@@ -155,7 +155,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0Bv-Or-UTE">
                                 <rect key="frame" x="20" y="512" width="374" height="44"/>
-                                <color key="backgroundColor" red="0.93333333330000001" green="0.34509803919999998" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.086274509799999996" green="0.36078431370000003" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="44" id="90Q-9t-yXO"/>
                                     <constraint firstAttribute="height" constant="44" id="Tbg-QL-0t0"/>
@@ -185,7 +185,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ch3-Ag-UeX">
                                 <rect key="frame" x="294" y="421" width="100" height="30"/>
-                                <color key="backgroundColor" red="0.93333333330000001" green="0.34509803919999998" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.086274509799999996" green="0.36078431370000003" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="ZO9-gS-hY3"/>
                                     <constraint firstAttribute="height" constant="30" id="pIr-qr-R0d"/>
@@ -201,7 +201,7 @@
                                     <constraint firstAttribute="width" constant="66" id="gis-nn-C8z"/>
                                 </constraints>
                                 <state key="normal" title="取消">
-                                    <color key="titleColor" red="0.93333333330000001" green="0.34509803919999998" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.086274509799999996" green="0.36078431370000003" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="cancleBtn:" destination="JPV-iQ-jtr" eventType="touchUpInside" id="Vhv-w2-Crx"/>
@@ -271,7 +271,7 @@
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JGF-ns-ChO">
                                 <rect key="frame" x="20" y="512" width="374" height="44"/>
-                                <color key="backgroundColor" red="0.93333333333333335" green="0.34509803921568627" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.086274509799999996" green="0.36078431370000003" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="aK0-Wz-RCe"/>
                                 </constraints>
@@ -302,7 +302,7 @@
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jSI-uv-tGS">
                                 <rect key="frame" x="294" y="421" width="100" height="30"/>
-                                <color key="backgroundColor" red="0.93333333330000001" green="0.34509803919999998" blue="0.37254901959999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="backgroundColor" red="0.086274509799999996" green="0.36078431370000003" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="5nY-fw-iQY"/>
                                 </constraints>
@@ -317,7 +317,7 @@
                                     <constraint firstAttribute="height" constant="30" id="oi2-BG-u4Q"/>
                                 </constraints>
                                 <state key="normal" title="取消">
-                                    <color key="titleColor" red="0.93333333333333335" green="0.34509803921568627" blue="0.37254901960784315" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleColor" red="0.086274509799999996" green="0.36078431370000003" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
                                 </state>
                                 <connections>
                                     <action selector="cancleBtn:" destination="aAK-Zs-Hhd" eventType="touchUpInside" id="009-EZ-zZq"/>

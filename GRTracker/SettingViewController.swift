@@ -8,76 +8,86 @@
 
 import UIKit
 
+// MARK:- LXFMenuPageControllerDelegate
+extension SettingViewController: LXFMenuPageControllerDelegate {
+    func lxf_MenuPageCurrentSubController(index: NSInteger, menuPageController: LXFMenuPageController) {
+        print("第\(index)个子控制器")
+    }
+}
 class SettingViewController: UIViewController {
 
-    var _segHead:MLMSegmentHead!
-    var _segScroll:MLMSegmentScroll!
+   
+    /// 子标题
+    lazy var subTitleArr:[String] = {
+        return ["推荐推荐", "设备1", "设备2", "设备3", "设备3"]
+    }()
     
+    /// 子控制器
+    var controllers:[UIViewController] = {
+        // 创建5个子控制器
+        var cons:[UIViewController] = [UIViewController]()
+        for _ in 0..<5 {
+            // 创建随机颜色
+            let red = CGFloat(arc4random_uniform(255))/CGFloat(255.0)
+            let green = CGFloat( arc4random_uniform(255))/CGFloat(255.0)
+            let blue = CGFloat(arc4random_uniform(255))/CGFloat(255.0)
+            let colorRun = UIColor.init(red:red, green:green, blue:blue , alpha: 1)
+            
+            let subController = UIViewController()
+            subController.view.backgroundColor = colorRun
+            cons.append(subController)
+        }
+        return cons
+    }()
+    
+    
+    
+    
+    /// 菜单分类控制器
+    lazy var lxfMenuVc: LXFMenuPageController = {
+        let pageVc = LXFMenuPageController(controllers: self.controllers, titles: self.subTitleArr, inParentController: self)
+        pageVc.delegate = self
+        self.view.addSubview(pageVc.view)
+        return pageVc
+    }()
+    
+    func initUI(){
+        self.navigationController?.navigationBar.barTintColor = MAIN_RED
+        self.title = "设置追踪器"
+    }
+    
+    func initLXFMenVC(){
+        
+        lxfMenuVc.sliderColor = MAIN_RED
+        lxfMenuVc.tipBtnNormalColor = UIColor.black
+        lxfMenuVc.tipBtnHighlightedColor = MAIN_RED
+        lxfMenuVc.headerColor = MAIN_RED.withAlphaComponent(0.2)
+        lxfMenuVc.view.backgroundColor = UIColor.white
+        lxfMenuVc.tipBtnFontSize = 15
+        
+        let topHeight = (self.navigationController?.navigationBar.frame.height)! + UIApplication.shared.statusBarFrame.height
+        lxfMenuVc.view.frame = CGRect(x: 0, y: topHeight, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - topHeight - (self.tabBarController?.tabBar.bounds.height)!)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.initUI()
-        self.initSegmentView()
+        self.initLXFMenVC()
+      
     }
+    
+    
+    /// 隐藏状态栏
+//    override var prefersStatusBarHidden: Bool {
+//        return true
+//    }
 
-    func initUI(){
-        self.title = "设置跟踪对象"
-        self.view.backgroundColor = UIColor.white
-        self.navigationController?.navigationBar.barTintColor = MAIN_RED
-    }
-    
-    func initSegmentView(){
-        let list:Array = ["设备1","设备2","设备3"]
-        
-        self._segHead = MLMSegmentHead(frame: CGRect(x:0, y:64, width:SCREEN_WIDTH,height: 40), titles: list, headStyle:MLMSegmentHeadStyle(rawValue: 0), layoutStyle: MLMSegmentLayoutStyle(rawValue: 0))
-        self._segHead.fontScale = 1.1;
-        self._segHead.backgroundColor = UIColor.white
-        self._segHead.headColor = MAIN_RED.withAlphaComponent(0.2)
-        self._segHead.showIndex = 0
-        
-        self._segScroll = MLMSegmentScroll(frame: CGRect(x:0, y:_segHead.frame.maxY , width:SCREEN_WIDTH, height:SCREEN_HEIGHT-_segHead.frame.maxY-(self.tabBarController?.tabBar.height)!), vcOrViews: self.vcArr(count: list.count))
-        self._segScroll.loadAll = true
-        self._segScroll.bounces = true
-        
 
-   
-        
-        MLMSegmentManager.associateHead(self._segHead, with: self._segScroll, contentChangeAni: false, completion: {
-            self.view.addSubview(self._segHead)
-            self.view.addSubview(self._segScroll)
-        }) { (index:NSInteger) in
-            NSLog("第%ld个视图,有什么操作?",index)
-        }
-    
-    }
-    
-    func vcArr(count:Int)->[UIViewController]{
-        var arr:Array = [UIViewController]()
-        
-            let vc = oneViewController()
-            vc._index = 1
-        
-            let vc2 = twoViewController()
-        
-            let vc3 = threeViewController()
-        arr = [vc,vc2,vc3]
-        
-        
-        return arr
-    }
+
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-            }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        
     }
-    */
+    
 
 }

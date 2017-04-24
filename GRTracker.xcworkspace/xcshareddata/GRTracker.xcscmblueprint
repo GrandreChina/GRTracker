@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "7CE72B32FFB280CBA7A33FFC3A8F3BE7A94A112F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "7CE72B32FFB280CBA7A33FFC3A8F3BE7A94A112F" : 9223372036854775807,
+    "2FC9A227833D2A4C05F127A83075783BEBD46CC7" : 9223372036854775807
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "EF78224E-CE0C-44F7-9F04-93ED38129B66",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "7CE72B32FFB280CBA7A33FFC3A8F3BE7A94A112F" : "GRTracker\/",
+    "2FC9A227833D2A4C05F127A83075783BEBD46CC7" : "..\/Documents\/LXFMenuPageController"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "GRTracker",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "GRTracker.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/LinXunFeng\/LXFMenuPageController.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2FC9A227833D2A4C05F127A83075783BEBD46CC7"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/GrandreChina\/GRTracker.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7CE72B32FFB280CBA7A33FFC3A8F3BE7A94A112F"
+    }
+  ]
+}

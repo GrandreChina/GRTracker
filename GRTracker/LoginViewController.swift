@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SVProgressHUD
 extension UIScrollView{
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.next?.touchesBegan(touches, with: event)
@@ -61,7 +61,8 @@ class LoginViewController: UIViewController,KeyBoardDlegate{
     
     @IBAction func loginBtnPressed(_ sender: UIButton) {
         
-        
+        SVProgressHUD.showSuccess(withStatus: "登录成功")
+    
         UserDefaults.standard.set("Grandre", forKey: "user")
             UserDefaults.standard.synchronize()
         self.dismiss(animated: true) { 

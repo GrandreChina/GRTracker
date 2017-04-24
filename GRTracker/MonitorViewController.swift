@@ -27,9 +27,9 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,BMKDistrictSear
     }
 
     func initTopButtomView(){
-        self.topCollectBottomView = topCollectButtomView(frame: CGRect(x: 0, y:((self.navigationController?.navigationBar.height)!+UIApplication.shared.statusBarFrame.height), width: self.view.bounds.width, height: 75))
-        
-        self.topCollectBottomView.height1 = (self.navigationController?.navigationBar.height)!+UIApplication.shared.statusBarFrame.height
+        self.topCollectBottomView = topCollectButtomView(frame: CGRect(x: 0, y:((self.navigationController?.navigationBar.bounds.height)!+UIApplication.shared.statusBarFrame.height), width: self.view.bounds.width, height: 75))
+
+        self.topCollectBottomView.height1 = (self.navigationController?.navigationBar.bounds.height)!+UIApplication.shared.statusBarFrame.height
         
         self.view.addSubview(topCollectBottomView)
     }
@@ -49,6 +49,7 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,BMKDistrictSear
     }
     func initUI(){
         self.title = "监控与跟踪"
+//        self.navigationController?.navigationBar.barTintColor = MAIN_RED
         self.navigationController?.navigationBar.barTintColor = MAIN_RED
     }
     func initMapView(){

@@ -13,4 +13,5 @@ target 'GRTracker' do
     
     pod 'Shimmer'
 
+    pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
 end

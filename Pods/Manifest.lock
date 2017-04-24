@@ -2,17 +2,29 @@ PODS:
   - BaiduMapKit (3.2.1)
   - JVFloatLabeledTextField (1.1.1)
   - Shimmer (1.0.2)
+  - SVProgressHUD (2.1.2)
 
 DEPENDENCIES:
   - BaiduMapKit
   - JVFloatLabeledTextField
   - Shimmer
+  - SVProgressHUD (from `https://github.com/SVProgressHUD/SVProgressHUD.git`)
+
+EXTERNAL SOURCES:
+  SVProgressHUD:
+    :git: https://github.com/SVProgressHUD/SVProgressHUD.git
+
+CHECKOUT OPTIONS:
+  SVProgressHUD:
+    :commit: bd3f0ab86f8f4084cf6ff09cd1d98bc76456b90b
+    :git: https://github.com/SVProgressHUD/SVProgressHUD.git
 
 SPEC CHECKSUMS:
   BaiduMapKit: 9c748785aa3dddfc41dcb70c14b21ce32f680930
   JVFloatLabeledTextField: 0e5524b097f102036214dd8279edc8ecf08b5e18
   Shimmer: c5374be1c2b0c9e292fb05b339a513cf291cac86
+  SVProgressHUD: d65371a8e4482380deddb9fe60e14e59ddb30eb3
 
-PODFILE CHECKSUM: a1e653ee39fce0822059ad5511c68b037d832965
+PODFILE CHECKSUM: eca5d8363d06633c2d504c3aad3baebe634d7fb8
 
 COCOAPODS: 1.2.0
