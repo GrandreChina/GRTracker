@@ -7,19 +7,32 @@
 //
 
 import UIKit
-
+import Alamofire
 class oneViewController: UITableViewController {
 
     var _index:NSInteger = 0
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        
+        self.alamofireGetData()
         self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "cell")
-
 
     }
 
+    func alamofireGetData(){
+        Alamofire.request("http://localhost:8080/web/gstracker/loadAll/1/25").responseJSON { response in
+//            print(response.request!)  // original URL request
+//            print(response.response!) // HTTP URL response
+//            print(response.data!)     // server data
+            print(response.result)   // result of response serialization
+            
+            if let JSON = response.result.value {
+                print("JSON: \(JSON)")
+            }
+        }
+        
+     
+    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

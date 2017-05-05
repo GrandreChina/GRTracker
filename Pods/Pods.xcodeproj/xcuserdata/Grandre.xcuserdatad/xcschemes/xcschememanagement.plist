@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>Alamofire.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>JVFloatLabeledTextField.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -19,7 +24,7 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>Shimmer.xcscheme</key>
+		<key>SwiftyJSON.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -27,22 +32,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>24B02E827F0C21EB9A85677AB252E11C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>2A4448146C785C426971111F117D773C</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>86E697549CE20469D37F82BA7ABB3364</key>
+		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B9A2703D1B7FA3B9B2154C8DC9DC7DA3</key>
+		<key>9881D3BD325654DD1819ACB184885038</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>CD5C77C2CF715BA525514708B651786B</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>F596A3C3D24F8C9F07929833463CD6A5</key>
 		<dict>
 			<key>primary</key>
 			<true/>

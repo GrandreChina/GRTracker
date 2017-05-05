@@ -61,6 +61,7 @@ class LoginViewController: UIViewController,KeyBoardDlegate{
     
     @IBAction func loginBtnPressed(_ sender: UIButton) {
         
+       SVProgressHUD.setMinimumDismissTimeInterval(2)
         SVProgressHUD.showSuccess(withStatus: "登录成功")
     
         UserDefaults.standard.set("Grandre", forKey: "user")

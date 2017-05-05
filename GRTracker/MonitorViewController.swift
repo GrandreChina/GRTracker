@@ -21,11 +21,14 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,BMKDistrictSear
         self.initMapView()
         self.initTopButtomView()
         
-
+       
         
         
     }
 
+
+
+   
     func initTopButtomView(){
         self.topCollectBottomView = topCollectButtomView(frame: CGRect(x: 0, y:((self.navigationController?.navigationBar.bounds.height)!+UIApplication.shared.statusBarFrame.height), width: self.view.bounds.width, height: 75))
 
@@ -35,7 +38,7 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,BMKDistrictSear
     }
     func checkLogin(){
         let user =  UserDefaults.standard.object(forKey: "user")
-        print("---gr--\(user)")
+ 
         
         if user == nil{
             let storyBoard = UIStoryboard(name: "Login", bundle: nil)
@@ -49,7 +52,6 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,BMKDistrictSear
     }
     func initUI(){
         self.title = "监控与跟踪"
-//        self.navigationController?.navigationBar.barTintColor = MAIN_RED
         self.navigationController?.navigationBar.barTintColor = MAIN_RED
     }
     func initMapView(){
@@ -62,6 +64,9 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,BMKDistrictSear
         
         // 初始化搜索服务
         districtSearch = BMKDistrictSearch()
+       
+        
+
 
     }
     override func viewWillAppear(_ animated: Bool) {
@@ -109,6 +114,7 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,BMKDistrictSear
         if error == BMK_SEARCH_NO_ERROR {
             print("\nname:\(result.name)\ncode:\(result.code)\ncenter latlon:\(result.center.latitude),\(result.center.longitude)");
             
+            self._mapView.removeOverlays(_mapView.overlays)
             var flag = true
             for path in result.paths {
                 let polygon = transferPathStringToPolygon(path as! String)

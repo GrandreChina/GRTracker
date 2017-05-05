@@ -30,8 +30,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,BMKGeneralDelegate{
         let monitorController = UINavigationController(rootViewController: MonitorViewController())
         let settingController = UINavigationController(rootViewController: SettingViewController())
         let mineController = UINavigationController(rootViewController: MineViewController())
-        
-        
+    
         monitorController.tabBarItem = UITabBarItem(title: "监控", image: UIImage(named:"tabbar_discover"), selectedImage: UIImage(named: "tabbar_discoverHL"))
         settingController.tabBarItem = UITabBarItem(title: "设置", image: UIImage(named: "bio"), selectedImage: UIImage(named: "bio_red"))
         mineController.tabBarItem = UITabBarItem(title: "我", image: UIImage(named: "users two-2"), selectedImage: UIImage(named: "users two-2_red"))

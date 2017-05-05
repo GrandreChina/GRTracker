@@ -11,7 +11,13 @@ target 'GRTracker' do
 
     pod 'JVFloatLabeledTextField'
     
-    pod 'Shimmer'
+    #pod 'Shimmer'
 
     pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
+    
+    pod 'Alamofire'
+    
+    
+    
+    pod 'SwiftyJSON'
 end

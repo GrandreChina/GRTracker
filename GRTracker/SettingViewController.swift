@@ -14,42 +14,18 @@ extension SettingViewController: LXFMenuPageControllerDelegate {
         print("第\(index)个子控制器")
     }
 }
+
 class SettingViewController: UIViewController {
 
-   
+    var topHeight:CGFloat!
+    var lxfMenuVc: LXFMenuPageController!
+     var controllers:[UIViewController] = [UIViewController]()
     /// 子标题
     lazy var subTitleArr:[String] = {
-        return ["推荐推荐", "设备1", "设备2", "设备3", "设备3"]
+        return ["设备列表", "轨迹", "设备信息"]
     }()
     
-    /// 子控制器
-    var controllers:[UIViewController] = {
-        // 创建5个子控制器
-        var cons:[UIViewController] = [UIViewController]()
-        for _ in 0..<5 {
-            // 创建随机颜色
-            let red = CGFloat(arc4random_uniform(255))/CGFloat(255.0)
-            let green = CGFloat( arc4random_uniform(255))/CGFloat(255.0)
-            let blue = CGFloat(arc4random_uniform(255))/CGFloat(255.0)
-            let colorRun = UIColor.init(red:red, green:green, blue:blue , alpha: 1)
-            
-            let subController = UIViewController()
-            subController.view.backgroundColor = colorRun
-            cons.append(subController)
-        }
-        return cons
-    }()
-    
-    
-    
-    
-    /// 菜单分类控制器
-    lazy var lxfMenuVc: LXFMenuPageController = {
-        let pageVc = LXFMenuPageController(controllers: self.controllers, titles: self.subTitleArr, inParentController: self)
-        pageVc.delegate = self
-        self.view.addSubview(pageVc.view)
-        return pageVc
-    }()
+
     
     func initUI(){
         self.navigationController?.navigationBar.barTintColor = MAIN_RED
@@ -57,6 +33,23 @@ class SettingViewController: UIViewController {
     }
     
     func initLXFMenVC(){
+  
+        self.topHeight = (self.navigationController?.navigationBar.frame.height)! + UIApplication.shared.statusBarFrame.height
+    
+        let oneController = oneViewController()
+        let twoController = twoViewController(Bounds: SCREEN_HEIGHT - topHeight! - (self.tabBarController?.tabBar.bounds.height)! - 40)
+        let threeController = threeViewController()
+
+    
+        self.controllers = [oneController,twoController,threeController]
+       
+
+      self.lxfMenuVc = LXFMenuPageController(controllers: self.controllers, titles: self.subTitleArr, inParentController: self)
+        self.lxfMenuVc.delegate = self
+        
+    
+       
+        lxfMenuVc.view.frame = CGRect(x: 0, y: topHeight, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - topHeight - (self.tabBarController?.tabBar.bounds.height)!)
         
         lxfMenuVc.sliderColor = MAIN_RED
         lxfMenuVc.tipBtnNormalColor = UIColor.black
@@ -65,8 +58,8 @@ class SettingViewController: UIViewController {
         lxfMenuVc.view.backgroundColor = UIColor.white
         lxfMenuVc.tipBtnFontSize = 15
         
-        let topHeight = (self.navigationController?.navigationBar.frame.height)! + UIApplication.shared.statusBarFrame.height
-        lxfMenuVc.view.frame = CGRect(x: 0, y: topHeight, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - topHeight - (self.tabBarController?.tabBar.bounds.height)!)
+        self.view.addSubview(lxfMenuVc.view)
+        
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -74,6 +67,7 @@ class SettingViewController: UIViewController {
         self.initUI()
         self.initLXFMenVC()
       
+       
     }
     
     

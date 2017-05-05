@@ -9,11 +9,13 @@
 /* Begin PBXBuildFile section */
 		B1406FEC1EA6F7E000807323 /* ResetKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1406FEB1EA6F7E000807323 /* ResetKeyViewController.swift */; };
 		B1406FF11EA7033E00807323 /* userImage_NameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1406FF01EA7033E00807323 /* userImage_NameCell.swift */; };
+		B154EBC91EBC06DE00F25E84 /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B154EBC61EBC06DE00F25E84 /* BaiduMapAPI_Base.framework */; };
+		B154EBCA1EBC06DE00F25E84 /* BaiduMapAPI_Location.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B154EBC71EBC06DE00F25E84 /* BaiduMapAPI_Location.framework */; };
+		B154EBCB1EBC06DE00F25E84 /* BaiduMapAPI_Search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B154EBC81EBC06DE00F25E84 /* BaiduMapAPI_Search.framework */; };
+		B154EBCE1EBC102E00F25E84 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B154EBCC1EBC102E00F25E84 /* libcrypto.a */; };
+		B154EBCF1EBC102E00F25E84 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B154EBCD1EBC102E00F25E84 /* libssl.a */; };
 		B17BD48D1EA04F4F00E6E0B9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BD48C1EA04F4F00E6E0B9 /* CoreLocation.framework */; };
 		B17BD4921EA050DA00E6E0B9 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BD4911EA050DA00E6E0B9 /* libsqlite3.0.tbd */; };
-		B17BD4961EA0511400E6E0B9 /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BD4931EA0511400E6E0B9 /* BaiduMapAPI_Base.framework */; };
-		B17BD4971EA0511400E6E0B9 /* BaiduMapAPI_Location.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BD4941EA0511400E6E0B9 /* BaiduMapAPI_Location.framework */; };
-		B17BD4981EA0511400E6E0B9 /* BaiduMapAPI_Search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BD4951EA0511400E6E0B9 /* BaiduMapAPI_Search.framework */; };
 		B17BD49A1EA0512500E6E0B9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BD4991EA0512500E6E0B9 /* QuartzCore.framework */; };
 		B17BD49C1EA0513900E6E0B9 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BD49B1EA0513900E6E0B9 /* OpenGLES.framework */; };
 		B17BD49E1EA0514400E6E0B9 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BD49D1EA0514400E6E0B9 /* SystemConfiguration.framework */; };
@@ -21,8 +23,6 @@
 		B17BD4A21EA0516000E6E0B9 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BD4A11EA0516000E6E0B9 /* Security.framework */; };
 		B17BD4A41EA0516B00E6E0B9 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BD4A31EA0516B00E6E0B9 /* CoreTelephony.framework */; };
 		B17BD4A61EA0517B00E6E0B9 /* libstdc++.6.0.9.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BD4A51EA0517B00E6E0B9 /* libstdc++.6.0.9.tbd */; };
-		B17BD4A91EA0569800E6E0B9 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BD4A71EA0569800E6E0B9 /* libcrypto.a */; };
-		B17BD4AA1EA0569800E6E0B9 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BD4A81EA0569800E6E0B9 /* libssl.a */; };
 		B17BD4AC1EA0CCE500E6E0B9 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17BD4AB1EA0CCE500E6E0B9 /* config.swift */; };
 		B17BD4B11EA0CDCD00E6E0B9 /* MonitorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17BD4B01EA0CDCD00E6E0B9 /* MonitorViewController.swift */; };
 		B17BD4B61EA0CE0500E6E0B9 /* MineViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17BD4B51EA0CE0500E6E0B9 /* MineViewController.swift */; };
@@ -46,20 +46,24 @@
 		B1FAA7861EA8B5A700ED3A1F /* topCollectButtomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FAA7851EA8B5A700ED3A1F /* topCollectButtomView.swift */; };
 		B1FAA78A1EA9E9E000ED3A1F /* FooterCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FAA7891EA9E9E000ED3A1F /* FooterCollectionReusableView.swift */; };
 		B1FAA7911EADAEC500ED3A1F /* LXFMenuPageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1FAA7901EADAEC500ED3A1F /* LXFMenuPageController.swift */; };
+		B1FAA7F01EB0735700ED3A1F /* gps.json in Resources */ = {isa = PBXBuildFile; fileRef = B1FAA7EF1EB0735600ED3A1F /* gps.json */; };
 		E695C917FFDC440437C4E06E /* Pods_GRTracker.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 675B286089734AD5DCAB6F74 /* Pods_GRTracker.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		450D7CE2A8317AA7A7F2F47F /* Pods-GRTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GRTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GRTracker/Pods-GRTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		675B286089734AD5DCAB6F74 /* Pods_GRTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GRTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6BC7F1EAA47C5E2CDDD2B4E5 /* Pods-GRTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GRTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-GRTracker/Pods-GRTracker.release.xcconfig"; sourceTree = "<group>"; };
+		84027305FA48D2A0B30C352A /* Pods-GRTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GRTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GRTracker/Pods-GRTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		B1406FEB1EA6F7E000807323 /* ResetKeyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetKeyViewController.swift; sourceTree = "<group>"; };
 		B1406FF01EA7033E00807323 /* userImage_NameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userImage_NameCell.swift; sourceTree = "<group>"; };
+		B154EBC61EBC06DE00F25E84 /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Base.framework; path = Pods/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
+		B154EBC71EBC06DE00F25E84 /* BaiduMapAPI_Location.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Location.framework; path = Pods/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Location.framework; sourceTree = "<group>"; };
+		B154EBC81EBC06DE00F25E84 /* BaiduMapAPI_Search.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Search.framework; path = Pods/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Search.framework; sourceTree = "<group>"; };
+		B154EBCC1EBC102E00F25E84 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = Pods/BaiduMapKit/BaiduMapKit/thirdlibs/libcrypto.a; sourceTree = "<group>"; };
+		B154EBCD1EBC102E00F25E84 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = Pods/BaiduMapKit/BaiduMapKit/thirdlibs/libssl.a; sourceTree = "<group>"; };
 		B17BD48C1EA04F4F00E6E0B9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B17BD48E1EA0505D00E6E0B9 /* GRTracker-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GRTracker-Bridging-Header.h"; sourceTree = "<group>"; };
 		B17BD4911EA050DA00E6E0B9 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
-		B17BD4931EA0511400E6E0B9 /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Base.framework; path = Pods/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
-		B17BD4941EA0511400E6E0B9 /* BaiduMapAPI_Location.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Location.framework; path = Pods/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Location.framework; sourceTree = "<group>"; };
-		B17BD4951EA0511400E6E0B9 /* BaiduMapAPI_Search.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Search.framework; path = Pods/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Search.framework; sourceTree = "<group>"; };
 		B17BD4991EA0512500E6E0B9 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		B17BD49B1EA0513900E6E0B9 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
 		B17BD49D1EA0514400E6E0B9 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -67,8 +71,6 @@
 		B17BD4A11EA0516000E6E0B9 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		B17BD4A31EA0516B00E6E0B9 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		B17BD4A51EA0517B00E6E0B9 /* libstdc++.6.0.9.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libstdc++.6.0.9.tbd"; path = "usr/lib/libstdc++.6.0.9.tbd"; sourceTree = SDKROOT; };
-		B17BD4A71EA0569800E6E0B9 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = Pods/BaiduMapKit/BaiduMapKit/thirdlibs/libcrypto.a; sourceTree = "<group>"; };
-		B17BD4A81EA0569800E6E0B9 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = Pods/BaiduMapKit/BaiduMapKit/thirdlibs/libssl.a; sourceTree = "<group>"; };
 		B17BD4AB1EA0CCE500E6E0B9 /* config.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
 		B17BD4B01EA0CDCD00E6E0B9 /* MonitorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonitorViewController.swift; sourceTree = "<group>"; };
 		B17BD4B51EA0CE0500E6E0B9 /* MineViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MineViewController.swift; sourceTree = "<group>"; };
@@ -94,9 +96,8 @@
 		B1F5C4171E9E17690065ADA2 /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B1FAA7851EA8B5A700ED3A1F /* topCollectButtomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = topCollectButtomView.swift; sourceTree = "<group>"; };
 		B1FAA7891EA9E9E000ED3A1F /* FooterCollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FooterCollectionReusableView.swift; sourceTree = "<group>"; };
-		B1FAA78B1EAD9A6900ED3A1F /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
 		B1FAA7901EADAEC500ED3A1F /* LXFMenuPageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LXFMenuPageController.swift; sourceTree = "<group>"; };
-		D4F516843278DABDB046284B /* Pods-GRTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GRTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-GRTracker/Pods-GRTracker.release.xcconfig"; sourceTree = "<group>"; };
+		B1FAA7EF1EB0735600ED3A1F /* gps.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = gps.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,8 +105,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B17BD4A91EA0569800E6E0B9 /* libcrypto.a in Frameworks */,
-				B17BD4AA1EA0569800E6E0B9 /* libssl.a in Frameworks */,
+				B154EBCE1EBC102E00F25E84 /* libcrypto.a in Frameworks */,
+				B154EBCF1EBC102E00F25E84 /* libssl.a in Frameworks */,
+				B154EBC91EBC06DE00F25E84 /* BaiduMapAPI_Base.framework in Frameworks */,
+				B154EBCA1EBC06DE00F25E84 /* BaiduMapAPI_Location.framework in Frameworks */,
+				B154EBCB1EBC06DE00F25E84 /* BaiduMapAPI_Search.framework in Frameworks */,
 				B17BD4A61EA0517B00E6E0B9 /* libstdc++.6.0.9.tbd in Frameworks */,
 				B17BD4A41EA0516B00E6E0B9 /* CoreTelephony.framework in Frameworks */,
 				B17BD4A21EA0516000E6E0B9 /* Security.framework in Frameworks */,
@@ -113,9 +117,6 @@
 				B17BD49E1EA0514400E6E0B9 /* SystemConfiguration.framework in Frameworks */,
 				B17BD49C1EA0513900E6E0B9 /* OpenGLES.framework in Frameworks */,
 				B17BD49A1EA0512500E6E0B9 /* QuartzCore.framework in Frameworks */,
-				B17BD4961EA0511400E6E0B9 /* BaiduMapAPI_Base.framework in Frameworks */,
-				B17BD4971EA0511400E6E0B9 /* BaiduMapAPI_Location.framework in Frameworks */,
-				B17BD4981EA0511400E6E0B9 /* BaiduMapAPI_Search.framework in Frameworks */,
 				B17BD4921EA050DA00E6E0B9 /* libsqlite3.0.tbd in Frameworks */,
 				B17BD48D1EA04F4F00E6E0B9 /* CoreLocation.framework in Frameworks */,
 				E695C917FFDC440437C4E06E /* Pods_GRTracker.framework in Frameworks */,
@@ -128,8 +129,8 @@
 		5D3CEBD97D2AA98A1A5F5836 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				450D7CE2A8317AA7A7F2F47F /* Pods-GRTracker.debug.xcconfig */,
-				D4F516843278DABDB046284B /* Pods-GRTracker.release.xcconfig */,
+				84027305FA48D2A0B30C352A /* Pods-GRTracker.debug.xcconfig */,
+				6BC7F1EAA47C5E2CDDD2B4E5 /* Pods-GRTracker.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -286,9 +287,9 @@
 		B1F5C3F91E9E16890065ADA2 = {
 			isa = PBXGroup;
 			children = (
-				B1FAA78B1EAD9A6900ED3A1F /* MyPlayground.playground */,
 				B18117C91EA60493007A13A4 /* 项目心得.rtf */,
 				B1F5C4171E9E17690065ADA2 /* Podfile */,
+				B1FAA7EF1EB0735600ED3A1F /* gps.json */,
 				B17BD48E1EA0505D00E6E0B9 /* GRTracker-Bridging-Header.h */,
 				B1F5C4041E9E16890065ADA2 /* GRTracker */,
 				B1F5C4031E9E16890065ADA2 /* Products */,
@@ -335,8 +336,11 @@
 		E1D5E6E87B7E53955DCEAF74 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B17BD4A71EA0569800E6E0B9 /* libcrypto.a */,
-				B17BD4A81EA0569800E6E0B9 /* libssl.a */,
+				B154EBCC1EBC102E00F25E84 /* libcrypto.a */,
+				B154EBCD1EBC102E00F25E84 /* libssl.a */,
+				B154EBC61EBC06DE00F25E84 /* BaiduMapAPI_Base.framework */,
+				B154EBC71EBC06DE00F25E84 /* BaiduMapAPI_Location.framework */,
+				B154EBC81EBC06DE00F25E84 /* BaiduMapAPI_Search.framework */,
 				B17BD4A51EA0517B00E6E0B9 /* libstdc++.6.0.9.tbd */,
 				B17BD4A31EA0516B00E6E0B9 /* CoreTelephony.framework */,
 				B17BD4A11EA0516000E6E0B9 /* Security.framework */,
@@ -344,9 +348,6 @@
 				B17BD49D1EA0514400E6E0B9 /* SystemConfiguration.framework */,
 				B17BD49B1EA0513900E6E0B9 /* OpenGLES.framework */,
 				B17BD4991EA0512500E6E0B9 /* QuartzCore.framework */,
-				B17BD4931EA0511400E6E0B9 /* BaiduMapAPI_Base.framework */,
-				B17BD4941EA0511400E6E0B9 /* BaiduMapAPI_Location.framework */,
-				B17BD4951EA0511400E6E0B9 /* BaiduMapAPI_Search.framework */,
 				B17BD4911EA050DA00E6E0B9 /* libsqlite3.0.tbd */,
 				B17BD48C1EA04F4F00E6E0B9 /* CoreLocation.framework */,
 				675B286089734AD5DCAB6F74 /* Pods_GRTracker.framework */,
@@ -420,6 +421,7 @@
 			files = (
 				B1F5C4101E9E16890065ADA2 /* LaunchScreen.storyboard in Resources */,
 				B1F5C40D1E9E16890065ADA2 /* Assets.xcassets in Resources */,
+				B1FAA7F01EB0735700ED3A1F /* gps.json in Resources */,
 				B1F5C4181E9E17690065ADA2 /* Podfile in Resources */,
 				B18117C01EA5E7EB007A13A4 /* Login.storyboard in Resources */,
 				B18117CA1EA60494007A13A4 /* 项目心得.rtf in Resources */,
@@ -619,7 +621,7 @@
 		};
 		B1F5C4151E9E16890065ADA2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 450D7CE2A8317AA7A7F2F47F /* Pods-GRTracker.debug.xcconfig */;
+			baseConfigurationReference = 84027305FA48D2A0B30C352A /* Pods-GRTracker.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -630,11 +632,13 @@
 				);
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				INFOPLIST_FILE = GRTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/BaiduMapKit/BaiduMapKit/thirdlibs",
 				);
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = Grandre.GRTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "GRTracker-Bridging-Header.h";
@@ -645,7 +649,7 @@
 		};
 		B1F5C4161E9E16890065ADA2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D4F516843278DABDB046284B /* Pods-GRTracker.release.xcconfig */;
+			baseConfigurationReference = 6BC7F1EAA47C5E2CDDD2B4E5 /* Pods-GRTracker.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -656,11 +660,13 @@
 				);
 				GCC_INPUT_FILETYPE = sourcecode.cpp.objcpp;
 				INFOPLIST_FILE = GRTracker/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Pods/BaiduMapKit/BaiduMapKit/thirdlibs",
 				);
+				OTHER_SWIFT_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = Grandre.GRTracker;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "GRTracker-Bridging-Header.h";

@@ -12,7 +12,7 @@ class HeaderReusableView: UICollectionReusableView {
     
     var label:UILabel!
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
-//        print("------header----color")
+
         
     }
     func initUI(){
