@@ -23,7 +23,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,BMKGeneralDelegate{
             NSLog("manager start success!")
         }
 
-        self.window = UIWindow(frame: CGRect(x: 0, y: 0, width: SCREEN_WIDTH, height: SCREEN_HEIGHT))
+        self.window = UIWindow(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: ScreenHeight))
         
         self.tabbarController = UITabBarController()
         

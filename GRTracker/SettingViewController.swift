@@ -36,8 +36,8 @@ class SettingViewController: UIViewController {
   
         self.topHeight = (self.navigationController?.navigationBar.frame.height)! + UIApplication.shared.statusBarFrame.height
     
-        let oneController = oneViewController()
-        let twoController = twoViewController(Bounds: SCREEN_HEIGHT - topHeight! - (self.tabBarController?.tabBar.bounds.height)! - 40)
+        let oneController = oneViewController(Bounds: ScreenHeight - topHeight! - (self.tabBarController?.tabBar.bounds.height)! - 40)
+        let twoController = twoViewController(Bounds: ScreenHeight - topHeight! - (self.tabBarController?.tabBar.bounds.height)! - 40)
         let threeController = threeViewController()
 
     
@@ -49,7 +49,7 @@ class SettingViewController: UIViewController {
         
     
        
-        lxfMenuVc.view.frame = CGRect(x: 0, y: topHeight, width: SCREEN_WIDTH, height: SCREEN_HEIGHT - topHeight - (self.tabBarController?.tabBar.bounds.height)!)
+        lxfMenuVc.view.frame = CGRect(x: 0, y: topHeight, width: ScreenWidth, height: ScreenHeight - topHeight - (self.tabBarController?.tabBar.bounds.height)!)
         
         lxfMenuVc.sliderColor = MAIN_RED
         lxfMenuVc.tipBtnNormalColor = UIColor.black

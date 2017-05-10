@@ -99,11 +99,11 @@ class topCollectButtomView: UIView,UICollectionViewDelegate,UICollectionViewData
         UIView.animate(withDuration: 0.3) {
 //            print("-----\(self.height1)----")
             if self.topCollectBtnFlag{
-                self.frame = CGRect(x: 0, y:self.height1, width: SCREEN_WIDTH, height: 150)
+                self.frame = CGRect(x: 0, y:self.height1, width: ScreenWidth, height: 150)
                 
                 
             }else{
-                self.frame = CGRect(x: 0, y: self.height1, width: SCREEN_WIDTH, height: 75)
+                self.frame = CGRect(x: 0, y: self.height1, width: ScreenWidth, height: 75)
                 
             }
             
@@ -156,12 +156,12 @@ class topCollectButtomView: UIView,UICollectionViewDelegate,UICollectionViewData
     }
     //设置header的宽高
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        return CGSize(width: SCREEN_WIDTH, height: 20)
+        return CGSize(width: ScreenWidth, height: 20)
     }
     
     //设置footer的宽高
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForFooterInSection section: Int) -> CGSize {
-        return CGSize(width: SCREEN_WIDTH, height: 5)
+        return CGSize(width: ScreenWidth, height: 5)
     }
     //自定义header和footer
     
@@ -202,7 +202,7 @@ class topCollectButtomView: UIView,UICollectionViewDelegate,UICollectionViewData
     
     //可以为某一个cell设置大小
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: (SCREEN_WIDTH-10)*0.5, height: 25)
+        return CGSize(width: (ScreenWidth-10)*0.5, height: 25)
     }
     //设置元素内容
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {

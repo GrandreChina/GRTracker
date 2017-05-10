@@ -82,9 +82,7 @@ class twoViewController: UIViewController,BMKMapViewDelegate {
             
             if let lang: NSArray = (json as! NSDictionary).object(forKey: "root") as! NSArray?{
                
-                _ = (lang.firstObject as! NSDictionary).value(forKey: "id")
-   
-                
+               
                 self.pointArr = Array(repeating:CLLocationCoordinate2D(latitude: 0, longitude: 0), count: lang.count)
           
                 for i in 0..<lang.count{
@@ -99,13 +97,7 @@ class twoViewController: UIViewController,BMKMapViewDelegate {
                     self.pointArr[i] = baiduCoor
                 }
                
-
-//                    print(lang.count)
-//                    print(lang.firstObject!)
-//                    print("------GRDEBUG_____")
-//    
-
-//              
+             
               
             }
         }catch{

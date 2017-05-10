@@ -8,6 +8,8 @@
 
 import UIKit
 import SVProgressHUD
+import Alamofire
+import SwiftyJSON
 extension UIScrollView{
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.next?.touchesBegan(touches, with: event)
@@ -28,6 +30,8 @@ class LoginViewController: UIViewController,KeyBoardDlegate{
     
     @IBOutlet weak var passKey: UITextField!
     
+    
+    var alamofireManager:SessionManager!
     override func viewWillAppear(_ animated: Bool) {
       self.navigationController?.isNavigationBarHidden = true
     }
@@ -60,18 +64,92 @@ class LoginViewController: UIViewController,KeyBoardDlegate{
 
     
     @IBAction func loginBtnPressed(_ sender: UIButton) {
-        
-       SVProgressHUD.setMinimumDismissTimeInterval(2)
-        SVProgressHUD.showSuccess(withStatus: "登录成功")
+
+        self.alamofireLogin()
+    }
     
-        UserDefaults.standard.set("Grandre", forKey: "user")
-            UserDefaults.standard.synchronize()
-        self.dismiss(animated: true) { 
-            
+    func alamofireLogin(){
+        SVProgressHUD.setDefaultMaskType(.black)
+        SVProgressHUD.show(withStatus: "Login ...")
+        
+        let parameters: Parameters = [
+            "username": userName.text!,
+            "password": passKey.text!
+        ]
+//
+//        Alamofire.request("http://210.75.20.143:5080/web/loginApp", method: .post, parameters: parameters, encoding: JSONEncoding.default).responseJSON { (response) in
+//            print(response.data!)
+//            SVProgressHUD.dismiss()
+//            if let JSON1 = response.result.value {
+//                print(JSON1)
+//                let loginSuccess = JSON(JSON1)["success"].boolValue
+//                print(loginSuccess)
+//                if loginSuccess {
+//                    print("登录成功")
+//                    SVProgressHUD.dismiss()
+//                    SVProgressHUD.setMinimumDismissTimeInterval(2)
+//                    SVProgressHUD.showSuccess(withStatus: "登录成功")
+//                    userNameGlobal = self.userName.text!
+//                    UserDefaults.standard.set(userNameGlobal, forKey: "username")
+//                        UserDefaults.standard.synchronize()
+//                    self.dismiss(animated: true) {
+//                        
+//                    }
+//                    
+//                
+//                }else{
+//                    SVProgressHUD.dismiss()
+//                    SVProgressHUD.setMinimumDismissTimeInterval(2)
+//                    SVProgressHUD.showError(withStatus: "登录失败")
+//                    print("登录失败")
+//                }
+//               
+//                
+//            }
+//            
+//        }
+//        
+//        
+        
+        let config = URLSessionConfiguration.default
+        config.timeoutIntervalForRequest = 8
+        self.alamofireManager = SessionManager(configuration:config)
+        self.alamofireManager.request("http://210.75.20.143:5080/web/loginApp", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+//
+            SVProgressHUD.dismiss()
+            print(JSON(response.result.value!))
+            if let data = response.result.value{
+                let jsonData = JSON(data)
+                let loginSuccess = jsonData["success"].boolValue
+                if loginSuccess{
+                    print("----success---")
+                    SVProgressHUD.dismiss()
+                    SVProgressHUD.setMinimumDismissTimeInterval(1)
+                    SVProgressHUD.showSuccess(withStatus: "登录成功")
+                    userNameGlobal = self.userName.text!
+                    
+                    tokenGlobal = (jsonData["entity"].dictionary!)["token"]?.string
+                    
+                    UserDefaults.standard.set(userNameGlobal, forKey: "username")
+                    UserDefaults.standard.set(tokenGlobal, forKey: "token")
+                    UserDefaults.standard.synchronize()
+                    self.dismiss(animated: true) {
+                        
+                    }
+                    
+                }else{
+                    let jsonData = JSON(data)
+                    let message =  jsonData["message"].stringValue
+                    SVProgressHUD.dismiss()
+                    SVProgressHUD.setMinimumDismissTimeInterval(1)
+                    SVProgressHUD.showError(withStatus: message)
+                    print("登录失败")
+                }
+            }
         }
     }
     
-   
+    
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.passKey.resignFirstResponder()
        self.userName.resignFirstResponder()

@@ -37,12 +37,12 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,BMKDistrictSear
         self.view.addSubview(topCollectBottomView)
     }
     func checkLogin(){
-        let user =  UserDefaults.standard.object(forKey: "user")
+        let user =  UserDefaults.standard.object(forKey: "username")
  
         
         if user == nil{
             let storyBoard = UIStoryboard(name: "Login", bundle: nil)
-            let loginVC = storyBoard.instantiateViewController(withIdentifier: "nav")
+            let loginVC = storyBoard.instantiateViewController(withIdentifier: "navlogin")
            
             self.present(loginVC, animated: true, completion: { 
                 

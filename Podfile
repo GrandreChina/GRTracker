@@ -16,8 +16,8 @@ target 'GRTracker' do
     pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
     
     pod 'Alamofire'
-    
-    
-    
     pod 'SwiftyJSON'
+    
+    pod 'MJRefresh'
+  
 end

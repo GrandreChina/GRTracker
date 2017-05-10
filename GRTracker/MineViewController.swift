@@ -7,7 +7,9 @@
 //
 
 import UIKit
-
+import Alamofire
+import SwiftyJSON
+import SVProgressHUD
 class MineViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     var tableView:UITableView!
@@ -80,11 +82,7 @@ class MineViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         var cell:UITableViewCell!
         
         let cellPosition = (row:indexPath.row,section:indexPath.section)
-        /**
-         *  @author 革码者, 16-05-27 09:05:51
-         *
-         *  (0,0)即是第一个cell，这个cell使用自定义的userImage_NameCell类
-         */
+ 
         switch cellPosition {
         case (0,0):
             
@@ -188,10 +186,7 @@ class MineViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         }
     }
     
-    
-    
-   
-    
+
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
 
         switch section {
@@ -211,23 +206,63 @@ class MineViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         }
     }
     
+    func alamofireLogout(){
+        
+        if tokenGlobal == nil{
+            tokenGlobal = UserDefaults.standard.value(forKey: "token") as! String
+        }
+        let headers: HTTPHeaders = [
+            "x-auth-token": tokenGlobal
+            
+        ]
+        print(tokenGlobal)
+        SVProgressHUD.show(withStatus: "Logout ...")
+//        UserDefaults.standard.removeObject(forKey: "username")
+//        UserDefaults.standard.removeObject(forKey: "token")
+//        UserDefaults.standard.synchronize()
+        
+        Alamofire.request("http://210.75.20.143:5080/web/logoutApp", method: .post, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+
+            if let JSON1 = response.result.value {
+                print(JSON(JSON1))
+                let logoutSuccess = JSON(JSON1)["success"].boolValue
+                if logoutSuccess{
+                    SVProgressHUD.dismiss()
+                    SVProgressHUD.setMinimumDismissTimeInterval(1)
+                    SVProgressHUD.showSuccess(withStatus: "退出成功")
+                    
+                    UserDefaults.standard.removeObject(forKey: "username")
+                    UserDefaults.standard.removeObject(forKey: "token")
+                    UserDefaults.standard.synchronize()
+                    
+                    if UserDefaults.standard.object(forKey: "username") == nil
+                    && UserDefaults.standard.object(forKey: "token") == nil{
+                        let storyBoard = UIStoryboard(name: "Login", bundle: nil)
+                        let loginVC = storyBoard.instantiateViewController(withIdentifier: "navlogin")
+                        self.present(loginVC, animated: true, completion: { () -> Void in
+                            let rootVC = UIApplication.shared.keyWindow?.rootViewController as! UITabBarController
+                            rootVC.selectedIndex = 0
+                        })
+                    }
+                    
+                }else{
+                    SVProgressHUD.dismiss()
+                    SVProgressHUD.setMinimumDismissTimeInterval(2)
+                    SVProgressHUD.showError(withStatus: "退出失败")
+                }
+            
+                
+            }
+        }
+    }
     func logoutBtnTapped(){
         
         let alertVC = UIAlertController(title: "客官", message: "真的要注销退出用户吗", preferredStyle: .alert)
         
         let alertAc1 = UIAlertAction(title: "确定", style: .default) { (_) in
-            UserDefaults.standard.removeObject(forKey: "user")
-            UserDefaults.standard.synchronize()
+            self.alamofireLogout()
             
-            if UserDefaults.standard.object(forKey: "user") == nil{
-                let storyBoard = UIStoryboard(name: "Login", bundle: nil)
-                let loginVC = storyBoard.instantiateViewController(withIdentifier: "nav")
-                self.present(loginVC, animated: true, completion: { () -> Void in
-                    let rootVC = UIApplication.shared.keyWindow?.rootViewController as! UITabBarController
-                    rootVC.selectedIndex = 0
-                })
-            }
-        }
+        }       
         
         let alertAc2 = UIAlertAction(title: "取消", style: .default) { (_) in
             self.dismiss(animated: true, completion: {

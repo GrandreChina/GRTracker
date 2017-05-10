@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>MJRefresh.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-GRTracker.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -32,7 +37,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>14215AFBD7C57B6C0464D635A1A88616</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>2A4448146C785C426971111F117D773C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>2EBB2867B54BDB5470ABA7F308A05249</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -42,17 +57,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9881D3BD325654DD1819ACB184885038</key>
+		<key>A6B0C9709AB08187123404362D5E6145</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CD5C77C2CF715BA525514708B651786B</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>F596A3C3D24F8C9F07929833463CD6A5</key>
+		<key>E14A62900910444707A5504D25EC98DC</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -8,31 +8,178 @@
 
 import UIKit
 import Alamofire
-class oneViewController: UITableViewController {
+import SwiftyJSON
+import SVProgressHUD
+import MJRefresh
+class oneViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,BMKGeoCodeSearchDelegate{
 
     var _index:NSInteger = 0
+    var tableView:UITableView!
+    var _bounds:CGFloat!
+    var deviceArr:[JSON]! = []{
+        didSet{
+            
+        }
+    }
+    var addressNameArr:[String] = []{
+        didSet{           
+            if addressNameArr.count == self.deviceArr.count{
+                self.tableView.reloadData()
+                print("addressNameArr.count == self.deviceArr.count")
+            }
+            
+        }
+    }
+    init(Bounds bounds:CGFloat = 400){
+        self._bounds = bounds
+        super.init(nibName: nil, bundle: nil)
+        
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.alamofireGetData()
+        self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: _bounds))
         self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "cell")
-
-    }
-
-    func alamofireGetData(){
-        Alamofire.request("http://localhost:8080/web/gstracker/loadAll/1/25").responseJSON { response in
-//            print(response.request!)  // original URL request
-//            print(response.response!) // HTTP URL response
-//            print(response.data!)     // server data
-            print(response.result)   // result of response serialization
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        self.tableView.register( UINib(nibName: "deviceInfoCell", bundle: Bundle.main), forCellReuseIdentifier: "deviceInfoCell")
+       
+        self.tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: { 
+            print("---GR---")
+            self.alamofireGetData()
             
-            if let JSON = response.result.value {
-                print("JSON: \(JSON)")
-            }
-        }
+        })
         
-     
+        self.tableView.mj_footer = MJRefreshBackNormalFooter(refreshingBlock: { 
+            self.alamofireAddData()
+        })
+        self.automaticallyAdjustsScrollViewInsets = true
+        self.view.addSubview(self.tableView)
+        
+
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        self.tableView.mj_header.beginRefreshing()
+        
+    }
+    
+    func alamofireAddData(){
+        if tokenGlobal == nil{
+            tokenGlobal = UserDefaults.standard.value(forKey: "token") as! String
+        }
+        let headers: HTTPHeaders = [
+            "x-auth-token": tokenGlobal
+        ]
+ 
+        let currentIndex = self.deviceArr.count
+        Alamofire.request("http://210.75.20.143:5080/web/gstracker/app/loadAll/\(currentIndex)/3", method: .get, parameters: nil, encoding:JSONEncoding.default, headers: headers).responseJSON(completionHandler: { (response) in
+      
+            self.tableView.mj_footer.endRefreshing()
+            if let JSON2 = response.result.value{
+                let flag = JSON(JSON2)["success"].boolValue
+                if flag{
+        
+//批量添加元素 ：将一个数组的元素添加到另一个元素
+                    self.deviceArr.insert(contentsOf: JSON(JSON2)["list"].array!, at: self.deviceArr.count)
+                    
+                    for i in 0..<JSON(JSON2)["list"].array!.count{
+                        
+                        let lng = JSON(JSON2)["list"].array![i]["lng"].doubleValue
+                        let lat = JSON(JSON2)["list"].array![i]["lat"].doubleValue
+                        GeoFanCode.getAddressFromLngLat(lng: lng, lat: lat,vc: self)
+                    }
+                    
+                    
+                }
+                
+            }
+        })
+        
+    }
+    
+    
+    func alamofireGetData(){
+        print("获取数据")
+        if tokenGlobal == nil{
+            tokenGlobal = UserDefaults.standard.value(forKey: "token") as! String
+        }
+        let headers: HTTPHeaders = [
+            "x-auth-token": tokenGlobal
+        ]
+
+        Alamofire.request("http://210.75.20.143:5080/web/gstracker/app/loadAll/0/2", method: .get, parameters: nil, encoding:JSONEncoding.default, headers: headers).responseJSON(completionHandler: { (response) in
+
+            self.tableView.mj_header.endRefreshing()
+            if let JSON2 = response.result.value{
+                let flag = JSON(JSON2)["success"].boolValue
+                if flag{
+              
+                  self.deviceArr = JSON(JSON2)["list"].array
+                  self.addressNameArr = []
+
+                    for i in 0..<self.deviceArr.count{
+                        
+                        let lng = self.deviceArr[i]["lng"].doubleValue
+                        let lat = self.deviceArr[i]["lat"].doubleValue
+                        GeoFanCode.getAddressFromLngLat(lng: lng, lat: lat,vc: self)
+                    }
+                    
+
+                }
+                            
+            }
+        })
+        
+
+    
+    }
+
+//    func alamofireLogout(){
+//        SVProgressHUD.show(withStatus: "Logout ...")
+//        
+//        Alamofire.request("http://210.75.20.143:5080/web/logoutApp", method: .post, encoding: JSONEncoding.default).responseJSON { (response) in
+//            
+//            if let JSON1 = response.result.value {
+//                let logoutSuccess = JSON(JSON1)["success"].boolValue
+//                if logoutSuccess{
+//                    SVProgressHUD.dismiss()
+//                    SVProgressHUD.setMinimumDismissTimeInterval(1)
+//                    SVProgressHUD.showSuccess(withStatus: "退出成功")
+//                    
+//                    UserDefaults.standard.removeObject(forKey: "username")
+//                    UserDefaults.standard.synchronize()
+//                    
+//                    if UserDefaults.standard.object(forKey: "username") == nil{
+//                        let storyBoard = UIStoryboard(name: "Login", bundle: nil)
+//                        let loginVC = storyBoard.instantiateViewController(withIdentifier: "navlogin")
+//                        self.present(loginVC, animated: true, completion: { () -> Void in
+//                            let rootVC = UIApplication.shared.keyWindow?.rootViewController as! UITabBarController
+//                            rootVC.selectedIndex = 0
+//                        })
+//                    }
+//                    
+//                }else{
+//                    SVProgressHUD.dismiss()
+//                    SVProgressHUD.setMinimumDismissTimeInterval(2)
+//                    SVProgressHUD.showError(withStatus: "退出失败")
+//                }
+//                
+//                
+//            }
+//        }
+//    }
+//    
+//   
+//        
+    
+  
+
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -40,70 +187,58 @@ class oneViewController: UITableViewController {
 
     // MARK: - Table view data source
 
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
+     func numberOfSections(in tableView: UITableView) -> Int {
+       
         return 1
     }
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 20
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 245
+    }
+     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.deviceArr.count
     }
 
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "deviceInfoCell", for: indexPath) as! deviceInfoCell
         
-        cell.textLabel?.text = String(self._index)
-        cell.detailTextLabel?.text = "hello"
-
+        cell.selectionStyle = .none
+        let data = deviceArr[indexPath.row]
+        cell.deviceName.text = data["deviceName"].string
+        cell.deviceID.text   = data["id"].stringValue
+        cell.groupName.text  = data["groupName"].string
+        cell.batteryCapcity.text  = data["batteryCapcity"].string
+        cell.lng.text        = data["lng"].stringValue
+        cell.lat.text        = data["lat"].stringValue
+        
+        cell.address.text = addressNameArr[indexPath.row]
+        print("-----cell for row\(cell.address.text)")
         return cell
     }
     
+    //MARK: - GEO Delegate
+    /**
+     *返回反地理编码搜索结果
+     *@param searcher 搜索对象
+     *@param result 搜索结果
+     *@param error 错误号，@see BMKSearchErrorCode
+     */
+    func onGetReverseGeoCodeResult(_ searcher: BMKGeoCodeSearch!, result: BMKReverseGeoCodeResult!, errorCode error: BMKSearchErrorCode) {
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+        
+        if error == BMK_SEARCH_NO_ERROR {
+            if let address1 = result.address{
+              
+                self.addressNameArr.append(address1)
+            
+        print("----Geo delegate--\(self.addressNameArr)")
+
+            }
+            
+            
+        }
     }
-    */
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+ 
 }

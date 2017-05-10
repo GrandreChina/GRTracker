@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		B1406FEC1EA6F7E000807323 /* ResetKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1406FEB1EA6F7E000807323 /* ResetKeyViewController.swift */; };
 		B1406FF11EA7033E00807323 /* userImage_NameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1406FF01EA7033E00807323 /* userImage_NameCell.swift */; };
+		B14C97D91EC16EA6005FF910 /* deviceInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14C97D71EC16EA6005FF910 /* deviceInfoCell.swift */; };
+		B14C97DA1EC16EA6005FF910 /* deviceInfoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B14C97D81EC16EA6005FF910 /* deviceInfoCell.xib */; };
 		B154EBC91EBC06DE00F25E84 /* BaiduMapAPI_Base.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B154EBC61EBC06DE00F25E84 /* BaiduMapAPI_Base.framework */; };
 		B154EBCA1EBC06DE00F25E84 /* BaiduMapAPI_Location.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B154EBC71EBC06DE00F25E84 /* BaiduMapAPI_Location.framework */; };
 		B154EBCB1EBC06DE00F25E84 /* BaiduMapAPI_Search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B154EBC81EBC06DE00F25E84 /* BaiduMapAPI_Search.framework */; };
@@ -38,6 +40,7 @@
 		B18117C81EA5F2C5007A13A4 /* login1.png in Resources */ = {isa = PBXBuildFile; fileRef = B18117C71EA5F2C5007A13A4 /* login1.png */; };
 		B18117CA1EA60494007A13A4 /* 项目心得.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B18117C91EA60493007A13A4 /* 项目心得.rtf */; };
 		B18117CE1EA60B73007A13A4 /* XKeyBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = B18117CD1EA60B73007A13A4 /* XKeyBoard.m */; };
+		B19510331EC29FB600C6BA2D /* GeoFanCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19510321EC29FB600C6BA2D /* GeoFanCode.swift */; };
 		B1F5C4061E9E16890065ADA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5C4051E9E16890065ADA2 /* AppDelegate.swift */; };
 		B1F5C40B1E9E16890065ADA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1F5C4091E9E16890065ADA2 /* Main.storyboard */; };
 		B1F5C40D1E9E16890065ADA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1F5C40C1E9E16890065ADA2 /* Assets.xcassets */; };
@@ -56,6 +59,8 @@
 		84027305FA48D2A0B30C352A /* Pods-GRTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GRTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GRTracker/Pods-GRTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		B1406FEB1EA6F7E000807323 /* ResetKeyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetKeyViewController.swift; sourceTree = "<group>"; };
 		B1406FF01EA7033E00807323 /* userImage_NameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userImage_NameCell.swift; sourceTree = "<group>"; };
+		B14C97D71EC16EA6005FF910 /* deviceInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = deviceInfoCell.swift; sourceTree = "<group>"; };
+		B14C97D81EC16EA6005FF910 /* deviceInfoCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = deviceInfoCell.xib; sourceTree = "<group>"; };
 		B154EBC61EBC06DE00F25E84 /* BaiduMapAPI_Base.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Base.framework; path = Pods/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Base.framework; sourceTree = "<group>"; };
 		B154EBC71EBC06DE00F25E84 /* BaiduMapAPI_Location.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Location.framework; path = Pods/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Location.framework; sourceTree = "<group>"; };
 		B154EBC81EBC06DE00F25E84 /* BaiduMapAPI_Search.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Search.framework; path = Pods/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Search.framework; sourceTree = "<group>"; };
@@ -87,6 +92,7 @@
 		B18117C91EA60493007A13A4 /* 项目心得.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "项目心得.rtf"; sourceTree = "<group>"; };
 		B18117CC1EA60B73007A13A4 /* XKeyBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XKeyBoard.h; sourceTree = "<group>"; };
 		B18117CD1EA60B73007A13A4 /* XKeyBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XKeyBoard.m; sourceTree = "<group>"; };
+		B19510321EC29FB600C6BA2D /* GeoFanCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoFanCode.swift; sourceTree = "<group>"; };
 		B1F5C4021E9E16890065ADA2 /* GRTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GRTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1F5C4051E9E16890065ADA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1F5C40A1E9E16890065ADA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -217,6 +223,8 @@
 		B17EF5DA1EA8782100BE2CF4 /* V */ = {
 			isa = PBXGroup;
 			children = (
+				B14C97D71EC16EA6005FF910 /* deviceInfoCell.swift */,
+				B14C97D81EC16EA6005FF910 /* deviceInfoCell.xib */,
 			);
 			name = V;
 			sourceTree = "<group>";
@@ -224,6 +232,7 @@
 		B17EF5DD1EA8783C00BE2CF4 /* M */ = {
 			isa = PBXGroup;
 			children = (
+				B19510321EC29FB600C6BA2D /* GeoFanCode.swift */,
 			);
 			name = M;
 			sourceTree = "<group>";
@@ -423,6 +432,7 @@
 				B1F5C40D1E9E16890065ADA2 /* Assets.xcassets in Resources */,
 				B1FAA7F01EB0735700ED3A1F /* gps.json in Resources */,
 				B1F5C4181E9E17690065ADA2 /* Podfile in Resources */,
+				B14C97DA1EC16EA6005FF910 /* deviceInfoCell.xib in Resources */,
 				B18117C01EA5E7EB007A13A4 /* Login.storyboard in Resources */,
 				B18117CA1EA60494007A13A4 /* 项目心得.rtf in Resources */,
 				B1F5C40B1E9E16890065ADA2 /* Main.storyboard in Resources */,
@@ -492,6 +502,7 @@
 				B18117B71EA5E325007A13A4 /* twoViewController.swift in Sources */,
 				B17BD4B11EA0CDCD00E6E0B9 /* MonitorViewController.swift in Sources */,
 				B18117BE1EA5E7BE007A13A4 /* RegisterViewController.swift in Sources */,
+				B14C97D91EC16EA6005FF910 /* deviceInfoCell.swift in Sources */,
 				B1406FEC1EA6F7E000807323 /* ResetKeyViewController.swift in Sources */,
 				B17EF5DC1EA8782E00BE2CF4 /* HeaderReusableView.swift in Sources */,
 				B1FAA7911EADAEC500ED3A1F /* LXFMenuPageController.swift in Sources */,
@@ -502,6 +513,7 @@
 				B17EF5E01EA8948000BE2CF4 /* My1CollectionViewCell.swift in Sources */,
 				B17BD4B61EA0CE0500E6E0B9 /* MineViewController.swift in Sources */,
 				B17BD4B81EA0CE1A00E6E0B9 /* SettingViewController.swift in Sources */,
+				B19510331EC29FB600C6BA2D /* GeoFanCode.swift in Sources */,
 				B18117CE1EA60B73007A13A4 /* XKeyBoard.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CD5C77C2CF715BA525514708B651786B"
+               BlueprintIdentifier = "14215AFBD7C57B6C0464D635A1A88616"
                BuildableName = "Pods_GRTracker.framework"
                BlueprintName = "Pods-GRTracker"
                ReferencedContainer = "container:Pods.xcodeproj">
@@ -45,7 +45,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CD5C77C2CF715BA525514708B651786B"
+            BlueprintIdentifier = "14215AFBD7C57B6C0464D635A1A88616"
             BuildableName = "Pods_GRTracker.framework"
             BlueprintName = "Pods-GRTracker"
             ReferencedContainer = "container:Pods.xcodeproj">
