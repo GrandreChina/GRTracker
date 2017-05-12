@@ -216,12 +216,13 @@ class MineViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
             
         ]
         print(tokenGlobal)
+        SVProgressHUD.setDefaultStyle(.dark)
         SVProgressHUD.show(withStatus: "Logout ...")
 //        UserDefaults.standard.removeObject(forKey: "username")
 //        UserDefaults.standard.removeObject(forKey: "token")
 //        UserDefaults.standard.synchronize()
         
-        Alamofire.request("http://210.75.20.143:5080/web/logoutApp", method: .post, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+        Alamofire.request("http://192.168.13.81:8080/web/logoutApp", method: .post, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
 
             if let JSON1 = response.result.value {
                 print(JSON(JSON1))

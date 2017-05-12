@@ -11,25 +11,18 @@ import Alamofire
 import SwiftyJSON
 import SVProgressHUD
 import MJRefresh
-class oneViewController: UIViewController,UITableViewDelegate,UITableViewDataSource,BMKGeoCodeSearchDelegate{
+class oneViewController: UIViewController,UITableViewDelegate,UITableViewDataSource{
 
     var _index:NSInteger = 0
     var tableView:UITableView!
     var _bounds:CGFloat!
     var deviceArr:[JSON]! = []{
         didSet{
+            self.tableView.reloadData()
             
         }
     }
-    var addressNameArr:[String] = []{
-        didSet{           
-            if addressNameArr.count == self.deviceArr.count{
-                self.tableView.reloadData()
-                print("addressNameArr.count == self.deviceArr.count")
-            }
-            
-        }
-    }
+
     init(Bounds bounds:CGFloat = 400){
         self._bounds = bounds
         super.init(nibName: nil, bundle: nil)
@@ -44,10 +37,9 @@ class oneViewController: UIViewController,UITableViewDelegate,UITableViewDataSou
 
         self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: _bounds))
         self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "cell")
+        self.tableView.register( UINib(nibName: "deviceInfoCell", bundle: Bundle.main), forCellReuseIdentifier: "deviceInfoCell")
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        self.tableView.register( UINib(nibName: "deviceInfoCell", bundle: Bundle.main), forCellReuseIdentifier: "deviceInfoCell")
-       
         self.tableView.mj_header = MJRefreshNormalHeader(refreshingBlock: { 
             print("---GR---")
             self.alamofireGetData()
@@ -68,6 +60,8 @@ class oneViewController: UIViewController,UITableViewDelegate,UITableViewDataSou
         
     }
     
+    
+    //MARK: - Alamofire Add Data
     func alamofireAddData(){
         if tokenGlobal == nil{
             tokenGlobal = UserDefaults.standard.value(forKey: "token") as! String
@@ -77,23 +71,17 @@ class oneViewController: UIViewController,UITableViewDelegate,UITableViewDataSou
         ]
  
         let currentIndex = self.deviceArr.count
-        Alamofire.request("http://210.75.20.143:5080/web/gstracker/app/loadAll/\(currentIndex)/3", method: .get, parameters: nil, encoding:JSONEncoding.default, headers: headers).responseJSON(completionHandler: { (response) in
+        Alamofire.request("http://192.168.13.81:8080/web/gstracker/app/loadAll/\(currentIndex)/3", method: .get, parameters: nil, encoding:JSONEncoding.default, headers: headers).responseJSON(completionHandler: { (response) in
       
             self.tableView.mj_footer.endRefreshing()
             if let JSON2 = response.result.value{
                 let flag = JSON(JSON2)["success"].boolValue
                 if flag{
-        
+//                   print(JSON(JSON2)["list"].array)
 //批量添加元素 ：将一个数组的元素添加到另一个元素
                     self.deviceArr.insert(contentsOf: JSON(JSON2)["list"].array!, at: self.deviceArr.count)
                     
-                    for i in 0..<JSON(JSON2)["list"].array!.count{
-                        
-                        let lng = JSON(JSON2)["list"].array![i]["lng"].doubleValue
-                        let lat = JSON(JSON2)["list"].array![i]["lat"].doubleValue
-                        GeoFanCode.getAddressFromLngLat(lng: lng, lat: lat,vc: self)
-                    }
-                    
+
                     
                 }
                 
@@ -102,7 +90,7 @@ class oneViewController: UIViewController,UITableViewDelegate,UITableViewDataSou
         
     }
     
-    
+    //MARK: - Alamofire Get Data
     func alamofireGetData(){
         print("获取数据")
         if tokenGlobal == nil{
@@ -112,7 +100,7 @@ class oneViewController: UIViewController,UITableViewDelegate,UITableViewDataSou
             "x-auth-token": tokenGlobal
         ]
 
-        Alamofire.request("http://210.75.20.143:5080/web/gstracker/app/loadAll/0/2", method: .get, parameters: nil, encoding:JSONEncoding.default, headers: headers).responseJSON(completionHandler: { (response) in
+        Alamofire.request("http://192.168.13.81:8080/web/gstracker/app/loadAll/0/3", method: .get, parameters: nil, encoding:JSONEncoding.default, headers: headers).responseJSON(completionHandler: { (response) in
 
             self.tableView.mj_header.endRefreshing()
             if let JSON2 = response.result.value{
@@ -120,18 +108,8 @@ class oneViewController: UIViewController,UITableViewDelegate,UITableViewDataSou
                 if flag{
               
                   self.deviceArr = JSON(JSON2)["list"].array
-                  self.addressNameArr = []
-
-                    for i in 0..<self.deviceArr.count{
-                        
-                        let lng = self.deviceArr[i]["lng"].doubleValue
-                        let lat = self.deviceArr[i]["lat"].doubleValue
-                        GeoFanCode.getAddressFromLngLat(lng: lng, lat: lat,vc: self)
-                    }
-                    
-
-                }
-                            
+                    print(self.deviceArr)
+                 }
             }
         })
         
@@ -212,33 +190,9 @@ class oneViewController: UIViewController,UITableViewDelegate,UITableViewDataSou
         cell.lng.text        = data["lng"].stringValue
         cell.lat.text        = data["lat"].stringValue
         
-        cell.address.text = addressNameArr[indexPath.row]
-        print("-----cell for row\(cell.address.text)")
         return cell
     }
     
-    //MARK: - GEO Delegate
-    /**
-     *返回反地理编码搜索结果
-     *@param searcher 搜索对象
-     *@param result 搜索结果
-     *@param error 错误号，@see BMKSearchErrorCode
-     */
-    func onGetReverseGeoCodeResult(_ searcher: BMKGeoCodeSearch!, result: BMKReverseGeoCodeResult!, errorCode error: BMKSearchErrorCode) {
-
-        
-        if error == BMK_SEARCH_NO_ERROR {
-            if let address1 = result.address{
-              
-                self.addressNameArr.append(address1)
-            
-        print("----Geo delegate--\(self.addressNameArr)")
-
-            }
-            
-            
-        }
-    }
-
+    
  
 }

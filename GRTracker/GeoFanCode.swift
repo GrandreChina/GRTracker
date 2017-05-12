@@ -13,7 +13,7 @@ class GeoFanCode: NSObject,BMKGeoCodeSearchDelegate {
     
    static var geocodeSearch: BMKGeoCodeSearch!
     
-   static func getAddressFromLngLat(lng:Double,lat:Double,vc:oneViewController){
+   static func getAddressFromLngLat(lng:Double,lat:Double,vc:BMKGeoCodeSearchDelegate){
     geocodeSearch = BMKGeoCodeSearch()
     geocodeSearch.delegate = vc
   

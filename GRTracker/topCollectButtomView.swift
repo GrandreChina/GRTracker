@@ -29,7 +29,6 @@ class topCollectButtomView: UIView,UICollectionViewDelegate,UICollectionViewData
         
         self.btn = UIButton(frame: CGRect(x:(self.bounds.width-30)*0.5,y:self.bounds.height-30,width:30,height:30))
         btn.backgroundColor = UIColor.clear
-        btn.setImage(UIImage(named: "jiantou.png"), for: UIControlState.normal)
         btn.addTarget(self, action: #selector(self.btnPressed), for: .touchUpInside)
         btn.setImage(UIImage(named:"arrow1.png"), for: .normal)
         self.addSubview(btn)
@@ -64,7 +63,7 @@ class topCollectButtomView: UIView,UICollectionViewDelegate,UICollectionViewData
         self.addGestureRecognizer(swipeDownGesture)
         
     }
-    
+
     //划动手势
     func handleSwipeGesture(sender: UISwipeGestureRecognizer){
         //划动的方向
@@ -252,21 +251,4 @@ class topCollectButtomView: UIView,UICollectionViewDelegate,UICollectionViewData
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-
-
 }
