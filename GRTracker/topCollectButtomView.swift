@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import SnapKit
 class topCollectButtomView: UIView,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
 
     var colletionView:UICollectionView!
@@ -15,6 +15,8 @@ class topCollectButtomView: UIView,UICollectionViewDelegate,UICollectionViewData
     var topCollectBtnFlag:Bool = true
     var btn:UIButton!
     var height1: CGFloat!
+    var netTranslation : CGPoint = CGPoint(x: 0, y: 0)//平移
+    var lastHeight:CGFloat = 100
     override func layoutIfNeeded() {
         
     }
@@ -27,18 +29,52 @@ class topCollectButtomView: UIView,UICollectionViewDelegate,UICollectionViewData
         super.init(frame: frame)
         self.backgroundColor = UIColor.white.withAlphaComponent(0.6)
         
-        self.btn = UIButton(frame: CGRect(x:(self.bounds.width-30)*0.5,y:self.bounds.height-30,width:30,height:30))
+        self.initBtn()
+        self.initCollectionView()
+        
+        self.initGesture()
+        
+        
+//        let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipeGesture(sender:)))
+//        swipeUpGesture.direction = UISwipeGestureRecognizerDirection.up //不设置是右
+//        self.addGestureRecognizer(swipeUpGesture)
+//        
+//        let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipeGesture(sender:)))
+//        swipeDownGesture.direction = UISwipeGestureRecognizerDirection.down //不设置是右
+//        self.addGestureRecognizer(swipeDownGesture)
+//        
+        
+       
+    }
+
+    func initGesture(){
+        let panGesture = UIPanGestureRecognizer(target: self, action: #selector(self.handlePanGesture))
+        
+        self.addGestureRecognizer(panGesture)
+    }
+    func initBtn(){
+
+        self.btn = UIButton()
         btn.backgroundColor = UIColor.clear
         btn.addTarget(self, action: #selector(self.btnPressed), for: .touchUpInside)
         btn.setImage(UIImage(named:"arrow1.png"), for: .normal)
         self.addSubview(btn)
         
+        self.btn.snp.makeConstraints { (make) in
+            make.width.height.equalTo(30)
+            make.centerX.equalTo(self)
+            make.bottom.equalTo(self)
+            
+        }
+    }
+    func initCollectionView(){
         let layout = UICollectionViewFlowLayout()
         //滚动方向
-        layout.scrollDirection = .vertical
+        layout.scrollDirection = .vertical   
         
+//        self.colletionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height - 30), collectionViewLayout: layout)
         
-        self.colletionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height - 30), collectionViewLayout: layout)
+        self.colletionView = UICollectionView(frame: CGRect(), collectionViewLayout: layout)
         
         //注册一个cell
         self.colletionView.register(My1CollectionViewCell.classForCoder(), forCellWithReuseIdentifier: "cell")
@@ -46,24 +82,50 @@ class topCollectButtomView: UIView,UICollectionViewDelegate,UICollectionViewData
         self.colletionView?.register(HeaderReusableView.self, forSupplementaryViewOfKind:UICollectionElementKindSectionHeader, withReuseIdentifier: "headView")
         //注册一个footView
         self.colletionView.register(FooterCollectionReusableView.self, forSupplementaryViewOfKind:UICollectionElementKindSectionFooter , withReuseIdentifier: "footView")
-        
-        
+   
         self.colletionView?.delegate = self;
         self.colletionView?.dataSource = self;
         self.colletionView?.backgroundColor = UIColor.clear
         self.addSubview(self.colletionView!)
         self.bringSubview(toFront: btn)
         
-        let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipeGesture(sender:)))
-        swipeUpGesture.direction = UISwipeGestureRecognizerDirection.up //不设置是右
-        self.addGestureRecognizer(swipeUpGesture)
-        
-        let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipeGesture(sender:)))
-        swipeDownGesture.direction = UISwipeGestureRecognizerDirection.down //不设置是右
-        self.addGestureRecognizer(swipeDownGesture)
-        
+        self.colletionView.snp.makeConstraints { (make) in
+            make.left.top.right.equalTo(self)
+            make.bottom.equalTo(self.btn.snp.top)
+        }
     }
+    
+    func handlePanGesture(sender:UIPanGestureRecognizer){
 
+        let  translation  = sender.translation(in: sender.view)
+        
+        if self.lastHeight + translation.y > 300{
+
+            self.frame.size.height = 300
+            self.lastHeight = 300
+            sender.setTranslation(CGPoint(x:0,y:0), in: self)
+//            print(translation.y)
+            return
+        }
+        if self.lastHeight + translation.y < 100{
+            self.frame = CGRect(x: 0, y: self.height1, width: ScreenWidth, height: 100)
+            self.lastHeight = 100
+            sender.setTranslation(CGPoint(x:0,y:0), in: self)
+
+            return
+        }
+
+        self.frame = CGRect(x: 0, y: self.height1, width: ScreenWidth, height: self.lastHeight + translation.y)
+        if sender.state == .ended{
+            self.lastHeight += translation.y
+            print("end")
+            
+        }
+
+//        print(translation.y)
+//        print(self.lastHeight)
+      
+    }
     //划动手势
     func handleSwipeGesture(sender: UISwipeGestureRecognizer){
         //划动的方向
@@ -149,7 +211,7 @@ class topCollectButtomView: UIView,UICollectionViewDelegate,UICollectionViewData
     //设置每个分区元素个数
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if section == 1{
-            return 6
+            return 60
         }
         return  2
     }

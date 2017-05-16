@@ -10,6 +10,7 @@ import UIKit
 import SVProgressHUD
 import Alamofire
 import SwiftyJSON
+
 extension UIScrollView{
     override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.next?.touchesBegan(touches, with: event)
@@ -35,10 +36,10 @@ class LoginViewController: UIViewController,KeyBoardDlegate{
     override func viewWillAppear(_ animated: Bool) {
       self.navigationController?.isNavigationBarHidden = true
     }
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    
         self.scrollView.showsVerticalScrollIndicator = false
         self.automaticallyAdjustsScrollViewInsets = false
         self.passKey.layer.borderWidth = 1
@@ -115,9 +116,8 @@ class LoginViewController: UIViewController,KeyBoardDlegate{
         config.timeoutIntervalForRequest = 8
         self.alamofireManager = SessionManager(configuration:config)
         self.alamofireManager.request("http://192.168.13.81:8080/web/loginApp", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
-//
             SVProgressHUD.dismiss()
-//            print(JSON(response.result.value!))
+
             if let data = response.result.value{
                 let jsonData = JSON(data)
                 let loginSuccess = jsonData["success"].boolValue

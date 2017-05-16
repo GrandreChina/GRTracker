@@ -20,17 +20,14 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,BMKDistrictSear
         self.initUI()
         self.initMapView()
         self.initTopButtomView()
-        
-       
-        
-        
+
     }
 
 
 
    
     func initTopButtomView(){
-        self.topCollectBottomView = topCollectButtomView(frame: CGRect(x: 0, y:((self.navigationController?.navigationBar.bounds.height)!+UIApplication.shared.statusBarFrame.height), width: self.view.bounds.width, height: 75))
+        self.topCollectBottomView = topCollectButtomView(frame: CGRect(x: 0, y:((self.navigationController?.navigationBar.bounds.height)!+UIApplication.shared.statusBarFrame.height), width: self.view.bounds.width, height: 100))
 
         self.topCollectBottomView.height1 = (self.navigationController?.navigationBar.bounds.height)!+UIApplication.shared.statusBarFrame.height
         

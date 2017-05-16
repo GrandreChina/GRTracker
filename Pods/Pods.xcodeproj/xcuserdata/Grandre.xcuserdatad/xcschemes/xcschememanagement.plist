@@ -19,12 +19,27 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Masonry.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-GRTracker.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
 		</dict>
 		<key>SVProgressHUD.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SnapKit.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Starscream.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -37,17 +52,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>14215AFBD7C57B6C0464D635A1A88616</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>2A4448146C785C426971111F117D773C</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>2EBB2867B54BDB5470ABA7F308A05249</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -57,7 +62,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A6B0C9709AB08187123404362D5E6145</key>
+		<key>8A2C87BF8105D1FDB6CB156A642E9F9A</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>903DD62C269AB4EC46A5746EFA3268E3</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C044F1D5477532E64C3BC55CD90ADEB0</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D52144DE9D7255DE912490FF5A806573</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DF81AE472AC5CAEECF6F5DCEAF89AD05</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>DFE08BE5A5BF5A668302110698B036A1</key>
 		<dict>
 			<key>primary</key>
 			<true/>

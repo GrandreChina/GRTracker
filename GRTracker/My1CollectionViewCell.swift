@@ -7,7 +7,8 @@
 //
 
 import UIKit
-//import Shimmer
+
+
 class My1CollectionViewCell: UICollectionViewCell {
     
     var keyLable:UILabel!

@@ -19,5 +19,9 @@ target 'GRTracker' do
     pod 'SwiftyJSON'
     
     pod 'MJRefresh'
+    pod 'Starscream', '~> 2.0.3'
+    
+    pod 'Masonry'
+    pod 'SnapKit', '~> 3.2.0'
   
 end
