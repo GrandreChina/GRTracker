@@ -240,12 +240,10 @@ class MineViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
                     
                     if UserDefaults.standard.object(forKey: "username") == nil
                     && UserDefaults.standard.object(forKey: "token") == nil{
-                        let storyBoard = UIStoryboard(name: "Login", bundle: nil)
-                        let loginVC = storyBoard.instantiateViewController(withIdentifier: "navlogin")
-                        self.present(loginVC, animated: true, completion: { () -> Void in
-                            let rootVC = UIApplication.shared.keyWindow?.rootViewController as! UITabBarController
-                            rootVC.selectedIndex = 0
-                        })
+           
+                            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                            appDelegate.checkLogin()
+
                     }
                     
                 }else{

@@ -18,7 +18,7 @@ import SwiftyJSON
 //    }
 //    
 //}
-typealias Block = ()->Void
+
 class LoginViewController: UIViewController{
 
     @IBOutlet weak var loginBtn: UIButton!
@@ -31,7 +31,7 @@ class LoginViewController: UIViewController{
     
     @IBOutlet weak var passKey: UITextField!
     
-    var callBlock:Block!
+
     var alamofireManager:SessionManager!
     override func viewWillAppear(_ animated: Bool) {
       self.navigationController?.isNavigationBarHidden = true
@@ -132,9 +132,10 @@ class LoginViewController: UIViewController{
                     
                     print(tokenGlobal)
                     UserDefaults.standard.synchronize()
-                    self.dismiss(animated: true) {
-                        
-                    }
+                    
+                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                    appDelegate.checkLogin()
+                    
                     
                 }else{
                     let jsonData = JSON(data)

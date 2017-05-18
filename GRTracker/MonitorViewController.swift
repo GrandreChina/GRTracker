@@ -16,26 +16,22 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate{
     var topCollectBottomV:topCollectButtomView!
     var socket:WebSocket!
     var deviceArr:[JSON]!
-    
-    func callBack(){
-        self.alamofireGetData()
-    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         print("----GR---viewDidLoad---")
-        self.checkLogin()
         self.initWebSoctket()
+        self.alamofireGetData()
         self.initUI()
         self.initMapView()
         self.initTopButtomView()
-
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         _mapView.viewWillAppear()
         print(" ----GR-----viewwill Appear")
         _mapView.delegate = self
-        socket.connect()
+//        socket.connect()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -76,26 +72,11 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate{
 //        socket.connect()
         
     }
-
-   
     func initTopButtomView(){
         self.topCollectBottomV = topCollectButtomView(frame: CGRect(x: 0, y:((self.navigationController?.navigationBar.bounds.height)!+UIApplication.shared.statusBarFrame.height), width: self.view.bounds.width, height: 100))
 
         self.view.addSubview(topCollectBottomV)
  
-    }
-    func checkLogin(){
-        let user =  UserDefaults.standard.object(forKey: "username")
-   
-        if user == nil{
-            let storyBoard = UIStoryboard(name: "Login", bundle: nil)
-            let loginVC = storyBoard.instantiateViewController(withIdentifier: "navlogin")
-    
-            self.present(loginVC, animated: true, completion: { 
-                self.socket.disconnect()
-            })
-          
-        }
     }
     func initUI(){
         self.title = "监控与跟踪"
@@ -110,6 +91,12 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate{
             make.top.equalTo(self.view)
             
         }
+        let center = CLLocationCoordinate2D(latitude: 22.5496810319308, longitude: 113.947821886454)
+
+        self._mapView?.setCenter(center, animated: true)
+        self._mapView?.zoomLevel = 15
+
+    
 
     }
     //MARK: - Alamofire Get Data
@@ -133,9 +120,7 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate{
                 }
             }
         })
-        
-        
-        
+  
     }
 
       override func didReceiveMemoryWarning() {
