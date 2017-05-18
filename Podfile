@@ -23,5 +23,6 @@ target 'GRTracker' do
     
     pod 'Masonry'
     pod 'SnapKit', '~> 3.2.0'
+    pod 'IQKeyboardManagerSwift'
   
 end

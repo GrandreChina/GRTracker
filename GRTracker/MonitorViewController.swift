@@ -7,16 +7,19 @@
 //
 
 import UIKit
-
+import Starscream
 class MonitorViewController: UIViewController,BMKMapViewDelegate,BMKDistrictSearchDelegate {
 
     var _mapView:BMKMapView!
     var districtSearch: BMKDistrictSearch!
     var topCollectBottomView:topCollectButtomView!
+    var socket:WebSocket!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.checkLogin()
+        self.initWebSoctket()
         self.initUI()
         self.initMapView()
         self.initTopButtomView()
@@ -24,6 +27,28 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,BMKDistrictSear
     }
 
 
+    func initWebSoctket(){
+        socket = WebSocket(url: URL(string: "ws://192.168.13.81:8090/ugV9X6BQdSk4tR8CiC+/eEVhjx+n99F7bh+RyXsGZPp9ht3hX6cMos/As1grIThE")!)
+        //websocketDidConnect
+        socket.onConnect = {
+            print("--GR--websocket is connected")
+        }
+        //websocketDidDisconnect
+        socket.onDisconnect = { (error: NSError?) in
+            print("--GR--websocket is disconnected: \(String(describing: error?.localizedDescription))")
+        }
+        //websocketDidReceiveMessage
+        socket.onText = { (text: String) in
+            print("--GR--got some text: \(text)")
+        }
+        //websocketDidReceiveData
+        socket.onData = { (data: Data) in
+            print("--GR--got some data: \(data.count)")
+        }
+        //you could do onPong as well.
+//        socket.connect()
+        
+    }
 
    
     func initTopButtomView(){
@@ -53,12 +78,17 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,BMKDistrictSear
     }
     func initMapView(){
         //添加地图视图
-        let topHeight = (self.navigationController?.navigationBar.frame.height)! + UIApplication.shared.statusBarFrame.height
-        _mapView = BMKMapView(frame: CGRect(x: 0, y: topHeight, width: self.view.frame.width, height: self.view.frame.height - topHeight - (self.tabBarController?.tabBar.frame.height)!))
-        //        _mapView?.isScrollEnabled = false
-        
+//        let topHeight = (self.navigationController?.navigationBar.frame.height)! + UIApplication.shared.statusBarFrame.height
+//        _mapView = BMKMapView(frame: CGRect(x: 0, y: topHeight, width: self.view.frame.width, height: self.view.frame.height - topHeight - (self.tabBarController?.tabBar.frame.height)!))
+       
+        _mapView = BMKMapView()
         self.view.addSubview(_mapView!)
         
+        self._mapView.snp.makeConstraints { (make) in
+            make.left.right.bottom.equalTo(self.view)
+            make.top.equalTo(self.view)
+            
+        }
         // 初始化搜索服务
         districtSearch = BMKDistrictSearch()
        
@@ -72,6 +102,8 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,BMKDistrictSear
         _mapView.delegate = self
         districtSearch.delegate = self
         requestDistrictSearch()
+        
+        socket.connect()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -79,6 +111,8 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,BMKDistrictSear
         _mapView.viewWillDisappear()
         _mapView.delegate = nil
         districtSearch.delegate = nil
+        
+        socket.disconnect()
     }
     //发起请求
     func requestDistrictSearch() {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ResetKeyViewController: UIViewController,KeyBoardDlegate {
+class ResetKeyViewController: UIViewController {
 
     @IBOutlet weak var topLayout: NSLayoutConstraint!
     
@@ -22,8 +22,6 @@ class ResetKeyViewController: UIViewController,KeyBoardDlegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        XKeyBoard.registerShow(self)
-        XKeyBoard.registerHide(self)
 
             }
 
@@ -38,21 +36,6 @@ class ResetKeyViewController: UIViewController,KeyBoardDlegate {
         _ = self.navigationController?.popViewController(animated: true)
     }
     
-    
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        phoneNum.resignFirstResponder()
-        newKey.resignFirstResponder()
-        checkKey.resignFirstResponder()
-    }
-    func keyboardWillShow(_ notification: Notification!) {
-        UIView.animate(withDuration: 0.3) { 
-            self.topLayout.constant = -150
-            self.view.layoutIfNeeded()
-        }
-    }
+ 
 
-    func keyboardWillHide(_ notification: Notification!) {
-        self.topLayout.constant = 10
-        self.view.layoutIfNeeded()
-    }
 }

@@ -7,15 +7,30 @@
 //
 
 import UIKit
-
+import IQKeyboardManagerSwift
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate,BMKGeneralDelegate{
 
     var window: UIWindow?
     var bmkManager:BMKMapManager?
+    var KeyBoardManager:IQKeyboardManager!
     var tabbarController:UITabBarController!
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+       
+        IQKeyboardManager.sharedManager().enable = true
+        
+        
+        KeyBoardManager = IQKeyboardManager.sharedManager()
+        KeyBoardManager.enable = true
+        KeyBoardManager.shouldResignOnTouchOutside = true
+//        KeyBoardManager.enableAutoToolbar = false
+        KeyBoardManager.keyboardDistanceFromTextField = 30
+        KeyBoardManager.shouldToolbarUsesTextFieldTintColor = true
+        KeyBoardManager.toolbarTintColor = MAIN_RED
+        
+        
+        
         
         bmkManager = BMKMapManager()
         let ret:Bool = (bmkManager?.start("mz7LIgdjbz94yon7LdzcZUHweVb7DtZi", generalDelegate: self))!

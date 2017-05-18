@@ -15,7 +15,6 @@ class topCollectButtomView: UIView,UICollectionViewDelegate,UICollectionViewData
     var topCollectBtnFlag:Bool = true
     var btn:UIButton!
     var height1: CGFloat!
-    var netTranslation : CGPoint = CGPoint(x: 0, y: 0)//平移
     var lastHeight:CGFloat = 100
     override func layoutIfNeeded() {
         
@@ -31,20 +30,8 @@ class topCollectButtomView: UIView,UICollectionViewDelegate,UICollectionViewData
         
         self.initBtn()
         self.initCollectionView()
-        
         self.initGesture()
         
-        
-//        let swipeUpGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipeGesture(sender:)))
-//        swipeUpGesture.direction = UISwipeGestureRecognizerDirection.up //不设置是右
-//        self.addGestureRecognizer(swipeUpGesture)
-//        
-//        let swipeDownGesture = UISwipeGestureRecognizer(target: self, action: #selector(self.handleSwipeGesture(sender:)))
-//        swipeDownGesture.direction = UISwipeGestureRecognizerDirection.down //不设置是右
-//        self.addGestureRecognizer(swipeDownGesture)
-//        
-        
-       
     }
 
     func initGesture(){
@@ -56,10 +43,8 @@ class topCollectButtomView: UIView,UICollectionViewDelegate,UICollectionViewData
 
         self.btn = UIButton()
         btn.backgroundColor = UIColor.clear
-        btn.addTarget(self, action: #selector(self.btnPressed), for: .touchUpInside)
         btn.setImage(UIImage(named:"arrow1.png"), for: .normal)
         self.addSubview(btn)
-        
         self.btn.snp.makeConstraints { (make) in
             make.width.height.equalTo(30)
             make.centerX.equalTo(self)
@@ -71,8 +56,6 @@ class topCollectButtomView: UIView,UICollectionViewDelegate,UICollectionViewData
         let layout = UICollectionViewFlowLayout()
         //滚动方向
         layout.scrollDirection = .vertical   
-        
-//        self.colletionView = UICollectionView(frame: CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height - 30), collectionViewLayout: layout)
         
         self.colletionView = UICollectionView(frame: CGRect(), collectionViewLayout: layout)
         
@@ -122,61 +105,10 @@ class topCollectButtomView: UIView,UICollectionViewDelegate,UICollectionViewData
             
         }
 
-//        print(translation.y)
-//        print(self.lastHeight)
       
     }
-    //划动手势
-    func handleSwipeGesture(sender: UISwipeGestureRecognizer){
-        //划动的方向
-        let direction = sender.direction
-        //判断是上下左右
-        switch (direction){
-        case UISwipeGestureRecognizerDirection.left:
-            print("Left")
-          
-            break
-        case UISwipeGestureRecognizerDirection.right:
-            print("Right")
-            break
-        case UISwipeGestureRecognizerDirection.up:
-            print("Up")
-            if !self.topCollectBtnFlag{
-                btnPressed()
-            }
-            break
-        case UISwipeGestureRecognizerDirection.down:
-            print("Down")
-            if self.topCollectBtnFlag{
-                btnPressed()
-            }
-            break
-        default:
-            break;
-        }
-      
-    }
-    func btnPressed(){
-        UIView.animate(withDuration: 0.3) {
-//            print("-----\(self.height1)----")
-            if self.topCollectBtnFlag{
-                self.frame = CGRect(x: 0, y:self.height1, width: ScreenWidth, height: 150)
-                
-                
-            }else{
-                self.frame = CGRect(x: 0, y: self.height1, width: ScreenWidth, height: 75)
-                
-            }
-            
-            self.btn.frame =  CGRect(x:(self.bounds.width-30)*0.5,y:self.bounds.height-30,width:30,height:30)
-            self.colletionView.frame = CGRect(x: 0, y: 0, width: self.bounds.width, height: self.bounds.height - 30)
-        }
-        
-        
-        topCollectBtnFlag = !topCollectBtnFlag
-    }
-    
-    
+
+ 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -210,10 +142,16 @@ class topCollectButtomView: UIView,UICollectionViewDelegate,UICollectionViewData
     }
     //设置每个分区元素个数
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 1{
+        switch section{
+        case 0 :
+            return 6
+        case 1 :
             return 60
+        default:
+            return 0
+
         }
-        return  2
+      
     }
     //设置header的宽高
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
@@ -271,15 +209,27 @@ class topCollectButtomView: UIView,UICollectionViewDelegate,UICollectionViewData
         
         let cell = colletionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! My1CollectionViewCell
         
-        for view in cell.contentView.subviews{
-            view.removeFromSuperview()
-        }
         cell.backgroundColor = MAIN_RED.withAlphaComponent(0.4)
         cell.layer.cornerRadius = 5
         cell.layer.masksToBounds = true
         
-        cell.valueLable.text = "\(indexPath.row+1)台"
-        
+
+        switch (indexPath.section,indexPath.row) {
+        case (0,0):
+            cell.keyLable.text = "在线:"
+            cell.valueLable.text = "10"+"台"
+        case (0,1):
+            cell.keyLable.text = "离线:"
+            cell.valueLable.text = "5"+"台"
+        case (0,2):
+            cell.keyLable.text = "告警:"
+            cell.valueLable.text = "3"+"台"
+        case (0,3):
+            cell.keyLable.text = "失联:"
+            cell.valueLable.text = "8"+"台"
+        default: break
+            
+        }
         
         return cell
     }

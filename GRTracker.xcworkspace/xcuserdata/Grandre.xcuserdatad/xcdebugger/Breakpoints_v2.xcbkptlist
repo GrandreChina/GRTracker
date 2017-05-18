@@ -9,29 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GRTracker/ViewController.swift"
-            timestampString = "514188036.944642"
+            filePath = "GRTracker/topCollectButtomView.swift"
+            timestampString = "516674471.259796"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "44"
-            endingLineNumber = "44"
-            landmarkName = "tableView(_:cellForRowAt:)"
-            landmarkType = "9">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "GRTracker/oneViewController.swift"
-            timestampString = "516182085.117901"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "110"
-            endingLineNumber = "110"
-            landmarkName = "alamofireGetData()"
+            startingLineNumber = "210"
+            endingLineNumber = "210"
+            landmarkName = "collectionView(_:cellForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -41,14 +25,14 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GRTracker/oneViewController.swift"
-            timestampString = "516182085.117901"
+            filePath = "GRTracker/topCollectButtomView.swift"
+            timestampString = "516674479.61581"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "alamofireAddData()"
-            landmarkType = "7">
+            startingLineNumber = "202"
+            endingLineNumber = "202"
+            landmarkName = "topCollectButtomView"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -57,13 +41,91 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GRTracker/oneViewController.swift"
-            timestampString = "516182085.117901"
+            filePath = "GRTracker/My1CollectionViewCell.swift"
+            timestampString = "516674485.840636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "alamofireAddData()"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "My1CollectionViewCell"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GRTracker.My1CollectionViewCell.valueLable.getter : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UILabel&gt;"
+                  moduleName = "GRTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Grandre/Desktop/GRTracker/GRTracker/My1CollectionViewCell.swift"
+                  timestampString = "516674486.268635"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "35">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GRTracker.My1CollectionViewCell.valueLable.setter : Swift.ImplicitlyUnwrappedOptional&lt;__ObjC.UILabel&gt;"
+                  moduleName = "GRTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Grandre/Desktop/GRTracker/GRTracker/My1CollectionViewCell.swift"
+                  timestampString = "516674486.271837"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "65">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GRTracker.My1CollectionViewCell.init (frame : __C.CGRect) -&gt; GRTracker.My1CollectionViewCell"
+                  moduleName = "GRTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Grandre/Desktop/GRTracker/GRTracker/My1CollectionViewCell.swift"
+                  timestampString = "516674486.28102"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "89">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GRTracker.My1CollectionViewCell.init (coder : __ObjC.NSCoder) -&gt; Swift.Optional&lt;GRTracker.My1CollectionViewCell&gt;"
+                  moduleName = "GRTracker"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Grandre/Desktop/GRTracker/GRTracker/My1CollectionViewCell.swift"
+                  timestampString = "516674486.284863"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "57">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GRTracker/My1CollectionViewCell.swift"
+            timestampString = "516674490.416513"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
+            landmarkName = "init(frame:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

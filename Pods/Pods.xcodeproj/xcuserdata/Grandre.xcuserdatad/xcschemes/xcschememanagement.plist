@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>IQKeyboardManagerSwift.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>JVFloatLabeledTextField.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -57,37 +62,42 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>4DC059E04CBA98AEDDB5C34E02D551E9</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8A2C87BF8105D1FDB6CB156A642E9F9A</key>
+		<key>9452A51CE4DAFD6A85BB49FD7878BC14</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>903DD62C269AB4EC46A5746EFA3268E3</key>
+		<key>9D93BA7B997E9FC362DA44D8253F14E3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C044F1D5477532E64C3BC55CD90ADEB0</key>
+		<key>A51AF256D447EACC141565A22893330D</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BF199EC5BBEC4EEEAF292ABD6F402C25</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D30A5AF096EC44895438C8F1BD7EC4EF</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>D52144DE9D7255DE912490FF5A806573</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DF81AE472AC5CAEECF6F5DCEAF89AD05</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>DFE08BE5A5BF5A668302110698B036A1</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -11,15 +11,15 @@ import SVProgressHUD
 import Alamofire
 import SwiftyJSON
 
-extension UIScrollView{
-    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.next?.touchesBegan(touches, with: event)
- 
-    }
-    
-}
+//extension UIScrollView{
+//    override open func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        self.next?.touchesBegan(touches, with: event)
+// 
+//    }
+//    
+//}
 
-class LoginViewController: UIViewController,KeyBoardDlegate{
+class LoginViewController: UIViewController{
 
     @IBOutlet weak var loginBtn: UIButton!
     @IBOutlet weak var scrollView: UIScrollView!
@@ -46,21 +46,18 @@ class LoginViewController: UIViewController,KeyBoardDlegate{
         self.passKey.layer.borderColor = MAIN_RED.cgColor
         self.passKey.layer.cornerRadius = 3
         self.passKey.layer.masksToBounds = true
-        
+        self.passKey.isSecureTextEntry = true
         
                 
         self.userName.layer.borderWidth = 1
         self.userName.layer.borderColor = MAIN_RED.cgColor
         self.userName.layer.cornerRadius = 3
         self.userName.layer.masksToBounds = true
-        
+        self.userName.clearButtonMode = .always
         
         self.loginBtn.layer.cornerRadius = 3
         self.loginBtn.layer.masksToBounds = true
-        
-        XKeyBoard.registerHide(self)
-        XKeyBoard.registerShow(self)
-      
+
     }
 
     
@@ -149,31 +146,11 @@ class LoginViewController: UIViewController,KeyBoardDlegate{
         }
     }
     
+
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.passKey.resignFirstResponder()
-       self.userName.resignFirstResponder()
-    }
- 
-    func keyboardWillHide(_ notification: Notification!) {
-        UIView.animate(withDuration:0.3) { () -> Void in
-            self.topLayout.constant = 10
-            self.view.layoutIfNeeded()
-        }
-       
-    }
-    
-    func keyboardWillShow(_ notification: Notification!) {
-        UIView.animate(withDuration:0.3) { () -> Void in
-            
-          
-            self.topLayout.constant = -150
-            self.view.layoutIfNeeded()
-        }
-    }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+     
     }
     deinit{
         print("--LoginViewController deinit--")
