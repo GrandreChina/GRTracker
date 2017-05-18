@@ -18,7 +18,7 @@ import SwiftyJSON
 //    }
 //    
 //}
-
+typealias Block = ()->Void
 class LoginViewController: UIViewController{
 
     @IBOutlet weak var loginBtn: UIButton!
@@ -31,7 +31,7 @@ class LoginViewController: UIViewController{
     
     @IBOutlet weak var passKey: UITextField!
     
-    
+    var callBlock:Block!
     var alamofireManager:SessionManager!
     override func viewWillAppear(_ animated: Bool) {
       self.navigationController?.isNavigationBarHidden = true
@@ -112,7 +112,7 @@ class LoginViewController: UIViewController{
         let config = URLSessionConfiguration.default
         config.timeoutIntervalForRequest = 8
         self.alamofireManager = SessionManager(configuration:config)
-        self.alamofireManager.request("http://192.168.13.81:8080/web/loginApp", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
+        self.alamofireManager.request("http://210.75.20.143:5080/web/loginApp", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
             SVProgressHUD.dismiss()
 
             if let data = response.result.value{
@@ -129,6 +129,8 @@ class LoginViewController: UIViewController{
                     
                     UserDefaults.standard.set(userNameGlobal, forKey: "username")
                     UserDefaults.standard.set(tokenGlobal, forKey: "token")
+                    
+                    print(tokenGlobal)
                     UserDefaults.standard.synchronize()
                     self.dismiss(animated: true) {
                         

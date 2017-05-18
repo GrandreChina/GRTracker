@@ -14,7 +14,7 @@ class topCollectButtomView: UIView,UICollectionViewDelegate,UICollectionViewData
     var inset:CGFloat!
     var topCollectBtnFlag:Bool = true
     var btn:UIButton!
-    var height1: CGFloat!
+//    var height1: CGFloat!
     var lastHeight:CGFloat = 100
     override func layoutIfNeeded() {
         
@@ -23,7 +23,7 @@ class topCollectButtomView: UIView,UICollectionViewDelegate,UICollectionViewData
     override func layoutSubviews() {
         
     }
-    
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = UIColor.white.withAlphaComponent(0.6)
@@ -87,18 +87,21 @@ class topCollectButtomView: UIView,UICollectionViewDelegate,UICollectionViewData
             self.frame.size.height = 300
             self.lastHeight = 300
             sender.setTranslation(CGPoint(x:0,y:0), in: self)
-//            print(translation.y)
+
             return
         }
         if self.lastHeight + translation.y < 100{
-            self.frame = CGRect(x: 0, y: self.height1, width: ScreenWidth, height: 100)
+//            self.frame = CGRect(x: 0, y: self.height1, width: ScreenWidth, height: 100)
+            self.frame.size.height = 100
             self.lastHeight = 100
             sender.setTranslation(CGPoint(x:0,y:0), in: self)
 
             return
         }
 
-        self.frame = CGRect(x: 0, y: self.height1, width: ScreenWidth, height: self.lastHeight + translation.y)
+//        self.frame = CGRect(x: 0, y: self.height1, width: ScreenWidth, height: self.lastHeight + translation.y)
+        self.frame.size.height = self.lastHeight + translation.y
+        
         if sender.state == .ended{
             self.lastHeight += translation.y
             print("end")

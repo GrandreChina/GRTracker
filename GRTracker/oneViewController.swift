@@ -71,7 +71,7 @@ class oneViewController: UIViewController,UITableViewDelegate,UITableViewDataSou
         ]
  
         let currentIndex = self.deviceArr.count
-        Alamofire.request("http://192.168.13.81:8080/web/gstracker/app/loadAll/\(currentIndex)/3", method: .get, parameters: nil, encoding:JSONEncoding.default, headers: headers).responseJSON(completionHandler: { (response) in
+        Alamofire.request("http://210.75.20.143:5080/web/gstracker/app/loadAll/\(currentIndex)/3", method: .get, parameters: nil, encoding:JSONEncoding.default, headers: headers).responseJSON(completionHandler: { (response) in
       
             self.tableView.mj_footer.endRefreshing()
             if let JSON2 = response.result.value{
@@ -100,7 +100,7 @@ class oneViewController: UIViewController,UITableViewDelegate,UITableViewDataSou
             "x-auth-token": tokenGlobal
         ]
 
-        Alamofire.request("http://192.168.13.81:8080/web/gstracker/app/loadAll/0/3", method: .get, parameters: nil, encoding:JSONEncoding.default, headers: headers).responseJSON(completionHandler: { (response) in
+        Alamofire.request("http://210.75.20.143:5080/web/gstracker/app/loadAll/0/3", method: .get, parameters: nil, encoding:JSONEncoding.default, headers: headers).responseJSON(completionHandler: { (response) in
 
             self.tableView.mj_header.endRefreshing()
             if let JSON2 = response.result.value{
