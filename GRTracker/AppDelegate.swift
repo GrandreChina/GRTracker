@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,BMKGeneralDelegate{
         return true
     }
 
-    
+    ///这种方式会自动销毁原来的视图控制器
     func checkLogin(){
         let user =  UserDefaults.standard.object(forKey: "username")
         

@@ -34,4 +34,7 @@ class My1CollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        print("---My1CollectionViewCell deinit ------")
+    }
 }

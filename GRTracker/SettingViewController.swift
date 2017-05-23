@@ -83,5 +83,8 @@ class SettingViewController: UIViewController {
         
     }
     
+    deinit {
+        print("----GR----SettingViewVC 退出了---")
+    }
 
 }

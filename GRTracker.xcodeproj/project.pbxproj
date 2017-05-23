@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B1348FDC1ECF352A004229DF /* NetWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1348FDB1ECF352A004229DF /* NetWork.swift */; };
 		B1406FEC1EA6F7E000807323 /* ResetKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1406FEB1EA6F7E000807323 /* ResetKeyViewController.swift */; };
 		B1406FF11EA7033E00807323 /* userImage_NameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1406FF01EA7033E00807323 /* userImage_NameCell.swift */; };
 		B14C97D91EC16EA6005FF910 /* deviceInfoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B14C97D71EC16EA6005FF910 /* deviceInfoCell.swift */; };
@@ -57,6 +58,7 @@
 		675B286089734AD5DCAB6F74 /* Pods_GRTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GRTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BC7F1EAA47C5E2CDDD2B4E5 /* Pods-GRTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GRTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-GRTracker/Pods-GRTracker.release.xcconfig"; sourceTree = "<group>"; };
 		84027305FA48D2A0B30C352A /* Pods-GRTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GRTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GRTracker/Pods-GRTracker.debug.xcconfig"; sourceTree = "<group>"; };
+		B1348FDB1ECF352A004229DF /* NetWork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWork.swift; sourceTree = "<group>"; };
 		B1406FEB1EA6F7E000807323 /* ResetKeyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetKeyViewController.swift; sourceTree = "<group>"; };
 		B1406FF01EA7033E00807323 /* userImage_NameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userImage_NameCell.swift; sourceTree = "<group>"; };
 		B14C97D71EC16EA6005FF910 /* deviceInfoCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = deviceInfoCell.swift; sourceTree = "<group>"; };
@@ -139,6 +141,14 @@
 				6BC7F1EAA47C5E2CDDD2B4E5 /* Pods-GRTracker.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		B1348FDA1ECF34B7004229DF /* NetWork */ = {
+			isa = PBXGroup;
+			children = (
+				B1348FDB1ECF352A004229DF /* NetWork.swift */,
+			);
+			name = NetWork;
 			sourceTree = "<group>";
 		};
 		B1406FED1EA7031600807323 /* C */ = {
@@ -318,6 +328,7 @@
 		B1F5C4041E9E16890065ADA2 /* GRTracker */ = {
 			isa = PBXGroup;
 			children = (
+				B1348FDA1ECF34B7004229DF /* NetWork */,
 				B18117C11EA5EB24007A13A4 /* 资源库 */,
 				B18117BA1EA5E754007A13A4 /* 登录页 */,
 				B18117A01EA5A1FE007A13A4 /* 3d Source */,
@@ -515,6 +526,7 @@
 				B17BD4B81EA0CE1A00E6E0B9 /* SettingViewController.swift in Sources */,
 				B19510331EC29FB600C6BA2D /* GeoFanCode.swift in Sources */,
 				B18117CE1EA60B73007A13A4 /* XKeyBoard.m in Sources */,
+				B1348FDC1ECF352A004229DF /* NetWork.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

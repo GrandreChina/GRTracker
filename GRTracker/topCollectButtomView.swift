@@ -264,6 +264,8 @@ class topCollectButtomView: UIView,UICollectionViewDelegate,UICollectionViewData
         print("点击了第\(indexPath.section) 分区 ,第\(indexPath.row) 个元素")
     }
     
-    
+    deinit {
+        print("--GR--topCollectionBottomView deinit----")
+    }
     
 }

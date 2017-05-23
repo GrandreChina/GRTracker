@@ -26,3 +26,12 @@ extension UIViewController{
         }
     }
 }
+
+
+let IP_API = "192.168.13.81:8080"//////内网
+//let IP_API = "210.75.20.143:5080"/////外网
+
+let IPWS_API = "192.168.13.81:8090"
+//let IPWS_API = "210.75.20.143:5090"
+
+

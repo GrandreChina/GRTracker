@@ -7,13 +7,10 @@
 //
 
 import UIKit
-import Alamofire
-import SwiftyJSON
-import SVProgressHUD
 class MineViewController: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     var tableView:UITableView!
-    
+//    var alamofireManager:SessionManager!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -208,53 +205,59 @@ class MineViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
     
     func alamofireLogout(){
         
-        if tokenGlobal == nil{
-            tokenGlobal = UserDefaults.standard.value(forKey: "token") as! String
-        }
-        let headers: HTTPHeaders = [
-            "x-auth-token": tokenGlobal
-            
-        ]
-        print(tokenGlobal)
-        SVProgressHUD.setDefaultStyle(.dark)
-        SVProgressHUD.show(withStatus: "Logout ...")
+//print(NSHomeDirectory())
 //        UserDefaults.standard.removeObject(forKey: "username")
 //        UserDefaults.standard.removeObject(forKey: "token")
 //        UserDefaults.standard.synchronize()
-//        http://210.75.20.143:5080
         
-//        192.168.13.81:8080  内网
-        Alamofire.request("http://210.75.20.143:5080/web/logoutApp", method: .post, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+        NetWork.logout()
+//        SVProgressHUD.setDefaultMaskType(.black)
+//        SVProgressHUD.show(withStatus: "Logout ...")
+//        
+//        if tokenGlobal == nil{
+//            tokenGlobal = UserDefaults.standard.value(forKey: "token") as! String
+//        }
+//        let headers: HTTPHeaders = [
+//            "x-auth-token": tokenGlobal
+//            
+//        ]
+//        let config = URLSessionConfiguration.default
+//        config.timeoutIntervalForRequest = 4
+//        self.alamofireManager = SessionManager(configuration:config)
+//       self.alamofireManager.request("http://\(IP_API)/web/logoutApp", method: .post, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+//            
+//            if let JSON1 = response.result.value {
+//                print(JSON(JSON1))
+//                let logoutSuccess = JSON(JSON1)["success"].boolValue
+//                if logoutSuccess{
+//                    SVProgressHUD.dismiss()
+//                    SVProgressHUD.setMinimumDismissTimeInterval(1)
+//                    SVProgressHUD.showSuccess(withStatus: "退出成功")
+//                    
+//                    UserDefaults.standard.removeObject(forKey: "username")
+//                    UserDefaults.standard.removeObject(forKey: "token")
+//                    UserDefaults.standard.synchronize()
+//                    
+//                    if UserDefaults.standard.object(forKey: "username") == nil
+//                        && UserDefaults.standard.object(forKey: "token") == nil{
+//                        
+//       
+//                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//                    appDelegate.checkLogin()
+//                  
+//       
+//                    }
+//                    
+//                }else{
+//                    SVProgressHUD.dismiss()
+//                    SVProgressHUD.setMinimumDismissTimeInterval(2)
+//                    SVProgressHUD.showError(withStatus: "退出失败")
+//                }
+//            }
+//        }
+//
 
-            if let JSON1 = response.result.value {
-                print(JSON(JSON1))
-                let logoutSuccess = JSON(JSON1)["success"].boolValue
-                if logoutSuccess{
-                    SVProgressHUD.dismiss()
-                    SVProgressHUD.setMinimumDismissTimeInterval(1)
-                    SVProgressHUD.showSuccess(withStatus: "退出成功")
-                    
-                    UserDefaults.standard.removeObject(forKey: "username")
-                    UserDefaults.standard.removeObject(forKey: "token")
-                    UserDefaults.standard.synchronize()
-                    
-                    if UserDefaults.standard.object(forKey: "username") == nil
-                    && UserDefaults.standard.object(forKey: "token") == nil{
-           
-                            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                            appDelegate.checkLogin()
 
-                    }
-                    
-                }else{
-                    SVProgressHUD.dismiss()
-                    SVProgressHUD.setMinimumDismissTimeInterval(2)
-                    SVProgressHUD.showError(withStatus: "退出失败")
-                }
-            
-                
-            }
-        }
     }
     func logoutBtnTapped(){
         
@@ -286,5 +289,8 @@ class MineViewController: UIViewController,UITableViewDelegate,UITableViewDataSo
         
     }
 
+    deinit{
+        print("---GR---mineVC 退出了----")
+    }
 
 }
