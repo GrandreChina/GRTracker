@@ -7,13 +7,14 @@
 //
 
 import UIKit
+import SVProgressHUD
 //import Starscream//webSocket
 import SwiftyJSON
 //import Alamofire
-class MonitorViewController: UIViewController,BMKMapViewDelegate{
+class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectViewDelegate{
 
     var _mapView:BMKMapView!
-    var topCollectBottomV:topCollectButtomView!
+    var topBtnCollectV:topBtnCollectView!
 //    var socket:WebSocket! 
     var deviceArr:[JSON]! = []{//原始数据
         didSet{
@@ -21,45 +22,93 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate{
         }
     }
     //一定要给字典设置一个初始值，才能添加或者更新元素！
-    var deviceDictionary:[String:(Double,Double)]! = [:]//未用
-    var deviceDictionary2:[String:BMKPointAnnotation]! = [:]
+//    var deviceDictionary:[String:(Double,Double)]! = [:]//未用
+    var deviceDictionary2:[String:GRDeviceData]! = [:]
     
-    
+    var afterFliterYuanZu:[(String,GRDeviceData)] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         print("----GR---viewDidLoad---")
         
         self.initUI()
         self.initMapView()
-        
-        self.alamofireGetData()//获取到原始数据之后，在deviceArr的属性观察者里面显示annotations。
+        self.initLeftBarItem()
+
         self.initWebSoctket()
         
-        
-        self.initTopButtomView()
+        self.initTopBtnCollectV()
         
         
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+                print(" ----GR-----viewwill Appear")
         _mapView.viewWillAppear()
-        print(" ----GR-----viewwill Appear")
         _mapView.delegate = self
+        
+        showingMonitorVC = true
 //        socket.connect()
+       
+        //获取到原始数据之后，在deviceArr的属性观察者里面显示annotations。
+        self.alamofireGetData()
+       
+        NotificationCenter.default.addObserver(self, selector: #selector(self.webSocketGetText(notification:)), name: NSNotification.Name(rawValue: "WebSocketGetText"), object: nil)
         NetWork.socket.connect()
+        self.tabBarController?.tabBar.isHidden = false
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         _mapView.viewWillDisappear()
         _mapView.delegate = nil
+        showingMonitorVC = false
         print(" ----GR-----viewwill disAppear")
 //        socket.disconnect()
         NetWork.socket.disconnect()
         
+        NotificationCenter.default.removeObserver(self)
+        
     }
+    /*---{
+    "Lat" : "22.54663733",
+    "SatSysName" : "GPS",
+    "Diff" : "0",
+    "Lng" : "113.93645717",
+    "Alt" : "15.0",
+    "ProductSN" : "32363938323651800320040",
+    "wsMsgType" : "gps",
+    "RunningNumber" : "547",
+    "TimeStamp" : "2017-05-25T09:58:17",
+    "BatteryCapacity" : "0.75",
+    "Speed" : "100.5",
+    "Direction" : "0.45"
+    }---*/
     
-    
+    //MARK: - NSNOTIFICATION
+    func webSocketGetText(notification: NSNotification){
+        print("----GR----从webSocket获取到数据----")
+        let text = notification.userInfo?["data"] as! JSON
+        print("---\(text)---")
+//        如果有新数据增加，则重新刷新最上层数据源，再重新显示
+        if  deviceDictionary2[text["ProductSN"].stringValue] == nil{
+            print("----GR----有新数据增加---")
+            SVProgressHUD.setMaximumDismissTimeInterval(0.8)
+            SVProgressHUD.setDefaultStyle(.dark)
+            SVProgressHUD.show(nil, status: "有新设备添加")
+            self.alamofireGetData()
+        }
+        
+        
+       deviceDictionary2[text["ProductSN"].stringValue]?.annotation.coordinate = CLLocationCoordinate2D(latitude: text["Lat"].doubleValue , longitude: text["Lng"].doubleValue)
+    }
+    //MARK: -
+    func initLeftBarItem(){
+        let btn = UIBarButtonItem(title: "全部", style: .plain, target: self, action: #selector(self.alamofireGetData))
+        self.navigationItem.setLeftBarButton(btn, animated: true)
+        self.navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.white,NSFontAttributeName: UIFont(name: "Chalkduster", size: 17)!], for: UIControlState())
+        
+        
+    }
 
     func initWebSoctket(){
 //        socket = WebSocket(url: URL(string: "ws://\(IPWS_API)/ugV9X6BQdSk4tR8CiC+/eEVhjx+n99F7bh+RyXsGZPp9ht3hX6cMos/As1grIThE")!)
@@ -89,11 +138,10 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate{
         NetWork.initWS()
         
     }
-    func initTopButtomView(){
-        self.topCollectBottomV = topCollectButtomView(frame: CGRect(x: 0, y:((self.navigationController?.navigationBar.bounds.height)!+UIApplication.shared.statusBarFrame.height), width: self.view.bounds.width, height: 100))
-
-        self.view.addSubview(topCollectBottomV)
- 
+    func initTopBtnCollectV(){
+        topBtnCollectV = topBtnCollectView(frame: CGRect(x: 0, y:75 , width: ScreenWidth, height: 40))
+        topBtnCollectV.delegate = self
+        self.view.addSubview(topBtnCollectV)
     }
     func initUI(){
         self.title = "监控与跟踪"
@@ -122,38 +170,62 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate{
         }
   
     }
+    func convertArrToDic(){
+        for d in self.deviceArr{
+            let coor = CLLocationCoordinate2DMake(d["lat"].double!, d["lng"].double!);//原始坐标
+            //转换非WGS84坐标至百度坐标(加密后的坐标)
+            let testdic = BMKConvertBaiduCoorFrom(coor,BMK_COORDTYPE_GPS);
+            let baiduCoor:CLLocationCoordinate2D = BMKCoorDictionaryDecode(testdic);//转换后的百度坐标
+            let tempAnnotation = BMKPointAnnotation()
+            tempAnnotation.coordinate = baiduCoor
+            tempAnnotation.title = "点击查看/设置"
+            
+            var deviceInfoStruct:GRDeviceData = GRDeviceData()
+            deviceInfoStruct.annotation = tempAnnotation
+            deviceInfoStruct.alarmState = d["state"].int == nil ? 0 :  d["state"].int
+            deviceInfoStruct.speed = d["speed"].double
+            deviceInfoStruct.ID = d["id"].int64
 
+            //        self.deviceDictionary.updateValue((d["lng"].double!,d["lat"].double!), forKey: d["serialNumber"].stringValue)
+            
+            self.deviceDictionary2.updateValue(deviceInfoStruct, forKey: d["serialNumber"].stringValue)
+            
+        }
+        
+        print(self.deviceDictionary2)
+    }
     
     func showAnnotation(){
-        for d in self.deviceArr{             
-        let coor = CLLocationCoordinate2DMake(d["lat"].double!, d["lng"].double!);//原始坐标
-        //转换非WGS84坐标至百度坐标(加密后的坐标)
-        let testdic = BMKConvertBaiduCoorFrom(coor,BMK_COORDTYPE_GPS);
-        let baiduCoor:CLLocationCoordinate2D = BMKCoorDictionaryDecode(testdic);//转换后的百度坐标
         
-            let tempCoordinate = BMKPointAnnotation()
-            tempCoordinate.coordinate = baiduCoor
-            tempCoordinate.title = "GR"
-            
-            
-        self.deviceDictionary.updateValue((d["lng"].double!,d["lat"].double!), forKey: d["serialNumber"].stringValue)
-            
-            
-        self.deviceDictionary2.updateValue(tempCoordinate, forKey: d["serialNumber"].stringValue)
-
-        }
-//            print(self.deviceDictionary)
-            print(self.deviceDictionary2)
+        self.convertArrToDic()
+     
         //字典values值的提取方法！
-        let d = [BMKPointAnnotation](self.deviceDictionary2.values)
+        let d = [GRDeviceData](self.deviceDictionary2.values)
+     let annotations = d.map { (datastruct) -> BMKPointAnnotation in
+//            datastruct.annotation.coordinate.latitude += 1
+//            datastruct.annotation.coordinate.longitude += 1
+        return datastruct.annotation
+        }
         
-        self._mapView.addAnnotations(d)
+        self._mapView.removeAnnotations(_mapView.annotations)
+        self._mapView.addAnnotations(annotations)
         
-        self.mapViewFitAnnotations(d)
+        self.mapViewFitAnnotations(annotations)
+        
+//    统计筛选，更新四个btn的值
+        fliterOnLine()
         
     }
     
-    
+    func fliterOnLine(){
+//        这里fliter之后数据结构变成元组类型的数组，更方便！
+        self.afterFliterYuanZu = self.deviceDictionary2.filter { (d:(key: String, value: GRDeviceData)) -> Bool in
+            d.value.ID == 9
+        }
+        
+        self.topBtnCollectV.onLineBtn.setTitle("\(self.afterFliterYuanZu.count)", for: .normal)
+        
+    }
     
     // MARK: - BMKMapViewDelegate
     
@@ -184,6 +256,9 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate{
 //        self.perform(#selector(self.moveToCenter(_:)), with: center, afterDelay: 0.5)
         self._mapView?.setCenter(center, animated: true)
         
+        let p = self._mapView.convert(center, toPointTo: self.view)
+        print("---GR--\(p)----")
+        
     }
     
 //    func moveToCenter(_ center:CLLocationCoordinate2D){
@@ -213,6 +288,9 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate{
         ///后期要关闭拖动annotation功能
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        
+    }
     /**
      *当点击annotation view弹出的泡泡时，调用此接口
      *@param mapView 地图View
@@ -220,6 +298,8 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate{
      */
     func mapView(_ mapView: BMKMapView!, annotationViewForBubble view: BMKAnnotationView!) {
         NSLog("点击了泡泡")
+        let vc = InfoAndSettingViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func mapView(_ mapView: BMKMapView!, viewFor annotation: BMKAnnotation!) -> BMKAnnotationView! {
@@ -235,15 +315,15 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate{
                 annotationView?.isDraggable = true
                 annotationView?.bounds = CGRect(x: 0, y: 0, width: 60, height: 60)
                 annotationView?.contentMode = .scaleAspectFill
-//
+
             }
             annotationView?.annotation = annotation
         
-        
+     
         let bundlePath = (Bundle.main.resourcePath)! + "/mapapi.bundle/"
         let bundle = Bundle(path: bundlePath)
         var tmpBundle : String?
-        tmpBundle = (bundle?.resourcePath)! + "/images/icon_nav_bus.png"
+        tmpBundle = (bundle?.resourcePath)! + "/images/pin_green.png"
         if let imagePath =  tmpBundle{
             if let image = UIImage(contentsOfFile: imagePath){
                 annotationView?.image = image
@@ -252,6 +332,7 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate{
         }else{
             print("---GR---not found image---")
         }
+    
             return annotationView
    
     }
@@ -314,8 +395,36 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate{
         _mapView.visibleMapRect = rect
         _mapView.zoomLevel = _mapView.zoomLevel - 0.3
     }
+    //MARK: - btn Delegate
+    func topBtnCollectViewTouch(_ sender:UIButton){
+        print(sender.tag)
+        switch sender.tag {
+        case 1:
+            self._mapView.removeAnnotations(_mapView.annotations)
+            let arr = self.afterFliterYuanZu.map({ (d:(str:String,structdata:GRDeviceData)) -> BMKPointAnnotation in
+                d.1.annotation
+            })
+            self._mapView.addAnnotations(arr)
+            self.mapViewFitAnnotations(arr)
+        case 2:
+            
+            self.deviceDictionary2["32363938323651800320040"]?.annotation.coordinate.latitude += 1
+            self.deviceDictionary2["32363938323651800320040"]?.annotation.coordinate.longitude += 1
+            
+            break
+        case 3:
+            
+            let vc = InfoAndSettingViewController()
+            self.navigationController?.pushViewController(vc, animated: true)
+            break
+        default:
+            break
+        }
+        
+        
+    }
     
-
+    //MARK:
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.

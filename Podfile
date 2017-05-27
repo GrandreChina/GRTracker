@@ -21,8 +21,9 @@ target 'GRTracker' do
     pod 'MJRefresh'
     pod 'Starscream', '~> 2.0.3'
     
-    pod 'Masonry'
+    #pod 'Masonry'
     pod 'SnapKit', '~> 3.2.0'
     pod 'IQKeyboardManagerSwift'
+    pod 'DGRunkeeperSwitch', '~> 1.1.4'
   
 end

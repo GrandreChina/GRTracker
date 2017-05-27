@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B110756F1ED3D8F400BF91A6 /* topBtnCollectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B110756E1ED3D8F400BF91A6 /* topBtnCollectView.swift */; };
+		B11075721ED51E7000BF91A6 /* GRDeviceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11075711ED51E7000BF91A6 /* GRDeviceData.swift */; };
 		B1348FDC1ECF352A004229DF /* NetWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1348FDB1ECF352A004229DF /* NetWork.swift */; };
 		B1406FEC1EA6F7E000807323 /* ResetKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1406FEB1EA6F7E000807323 /* ResetKeyViewController.swift */; };
 		B1406FF11EA7033E00807323 /* userImage_NameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1406FF01EA7033E00807323 /* userImage_NameCell.swift */; };
@@ -41,7 +43,12 @@
 		B18117C81EA5F2C5007A13A4 /* login1.png in Resources */ = {isa = PBXBuildFile; fileRef = B18117C71EA5F2C5007A13A4 /* login1.png */; };
 		B18117CA1EA60494007A13A4 /* 项目心得.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B18117C91EA60493007A13A4 /* 项目心得.rtf */; };
 		B18117CE1EA60B73007A13A4 /* XKeyBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = B18117CD1EA60B73007A13A4 /* XKeyBoard.m */; };
+		B18F14971ED7C605002D6240 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18F14961ED7C605002D6240 /* InfoViewController.swift */; };
+		B18F14991ED7C660002D6240 /* SettingDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18F14981ED7C660002D6240 /* SettingDeviceViewController.swift */; };
+		B18F149B1ED9151E002D6240 /* Three3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18F149A1ED9151E002D6240 /* Three3ViewController.swift */; };
 		B19510331EC29FB600C6BA2D /* GeoFanCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19510321EC29FB600C6BA2D /* GeoFanCode.swift */; };
+		B1BF9F2F1ED7BA6C00423C23 /* DYSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BF9F2E1ED7BA6C00423C23 /* DYSegmentView.m */; };
+		B1BF9F331ED7BB3F00423C23 /* InfoAndSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BF9F311ED7BB3F00423C23 /* InfoAndSettingViewController.swift */; };
 		B1F5C4061E9E16890065ADA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5C4051E9E16890065ADA2 /* AppDelegate.swift */; };
 		B1F5C40B1E9E16890065ADA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1F5C4091E9E16890065ADA2 /* Main.storyboard */; };
 		B1F5C40D1E9E16890065ADA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1F5C40C1E9E16890065ADA2 /* Assets.xcassets */; };
@@ -58,6 +65,8 @@
 		675B286089734AD5DCAB6F74 /* Pods_GRTracker.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GRTracker.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6BC7F1EAA47C5E2CDDD2B4E5 /* Pods-GRTracker.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GRTracker.release.xcconfig"; path = "Pods/Target Support Files/Pods-GRTracker/Pods-GRTracker.release.xcconfig"; sourceTree = "<group>"; };
 		84027305FA48D2A0B30C352A /* Pods-GRTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GRTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GRTracker/Pods-GRTracker.debug.xcconfig"; sourceTree = "<group>"; };
+		B110756E1ED3D8F400BF91A6 /* topBtnCollectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = topBtnCollectView.swift; sourceTree = "<group>"; };
+		B11075711ED51E7000BF91A6 /* GRDeviceData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRDeviceData.swift; sourceTree = "<group>"; };
 		B1348FDB1ECF352A004229DF /* NetWork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWork.swift; sourceTree = "<group>"; };
 		B1406FEB1EA6F7E000807323 /* ResetKeyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetKeyViewController.swift; sourceTree = "<group>"; };
 		B1406FF01EA7033E00807323 /* userImage_NameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userImage_NameCell.swift; sourceTree = "<group>"; };
@@ -94,7 +103,13 @@
 		B18117C91EA60493007A13A4 /* 项目心得.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "项目心得.rtf"; sourceTree = "<group>"; };
 		B18117CC1EA60B73007A13A4 /* XKeyBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XKeyBoard.h; sourceTree = "<group>"; };
 		B18117CD1EA60B73007A13A4 /* XKeyBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XKeyBoard.m; sourceTree = "<group>"; };
+		B18F14961ED7C605002D6240 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
+		B18F14981ED7C660002D6240 /* SettingDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingDeviceViewController.swift; sourceTree = "<group>"; };
+		B18F149A1ED9151E002D6240 /* Three3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Three3ViewController.swift; sourceTree = "<group>"; };
 		B19510321EC29FB600C6BA2D /* GeoFanCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoFanCode.swift; sourceTree = "<group>"; };
+		B1BF9F2D1ED7BA6C00423C23 /* DYSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYSegmentView.h; sourceTree = "<group>"; };
+		B1BF9F2E1ED7BA6C00423C23 /* DYSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYSegmentView.m; sourceTree = "<group>"; };
+		B1BF9F311ED7BB3F00423C23 /* InfoAndSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoAndSettingViewController.swift; sourceTree = "<group>"; };
 		B1F5C4021E9E16890065ADA2 /* GRTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GRTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1F5C4051E9E16890065ADA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1F5C40A1E9E16890065ADA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -141,6 +156,17 @@
 				6BC7F1EAA47C5E2CDDD2B4E5 /* Pods-GRTracker.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		B11075701ED5149700BF91A6 /* not use */ = {
+			isa = PBXGroup;
+			children = (
+				B1FAA7851EA8B5A700ED3A1F /* topCollectButtomView.swift */,
+				B17EF5DF1EA8948000BE2CF4 /* My1CollectionViewCell.swift */,
+				B17EF5DB1EA8782E00BE2CF4 /* HeaderReusableView.swift */,
+				B1FAA7891EA9E9E000ED3A1F /* FooterCollectionReusableView.swift */,
+			);
+			name = "not use";
 			sourceTree = "<group>";
 		};
 		B1348FDA1ECF34B7004229DF /* NetWork */ = {
@@ -207,6 +233,7 @@
 		B17BD4B21EA0CDDA00E6E0B9 /* M */ = {
 			isa = PBXGroup;
 			children = (
+				B11075711ED51E7000BF91A6 /* GRDeviceData.swift */,
 			);
 			name = M;
 			sourceTree = "<group>";
@@ -214,10 +241,8 @@
 		B17BD4B31EA0CDE400E6E0B9 /* V */ = {
 			isa = PBXGroup;
 			children = (
-				B1FAA7851EA8B5A700ED3A1F /* topCollectButtomView.swift */,
-				B17EF5DF1EA8948000BE2CF4 /* My1CollectionViewCell.swift */,
-				B17EF5DB1EA8782E00BE2CF4 /* HeaderReusableView.swift */,
-				B1FAA7891EA9E9E000ED3A1F /* FooterCollectionReusableView.swift */,
+				B11075701ED5149700BF91A6 /* not use */,
+				B110756E1ED3D8F400BF91A6 /* topBtnCollectView.swift */,
 			);
 			name = V;
 			sourceTree = "<group>";
@@ -226,6 +251,10 @@
 			isa = PBXGroup;
 			children = (
 				B17BD4B01EA0CDCD00E6E0B9 /* MonitorViewController.swift */,
+				B1BF9F311ED7BB3F00423C23 /* InfoAndSettingViewController.swift */,
+				B18F14961ED7C605002D6240 /* InfoViewController.swift */,
+				B18F14981ED7C660002D6240 /* SettingDeviceViewController.swift */,
+				B18F149A1ED9151E002D6240 /* Three3ViewController.swift */,
 			);
 			name = C;
 			sourceTree = "<group>";
@@ -261,6 +290,7 @@
 		B18117A01EA5A1FE007A13A4 /* 3d Source */ = {
 			isa = PBXGroup;
 			children = (
+				B1BF9F301ED7BA8D00423C23 /* DYSegmentView */,
 				B1FAA78F1EADAEC500ED3A1F /* LXFMenuPageController */,
 				B18117CB1EA60B73007A13A4 /* XKeyBoard */,
 			);
@@ -301,6 +331,15 @@
 				B18117CD1EA60B73007A13A4 /* XKeyBoard.m */,
 			);
 			path = XKeyBoard;
+			sourceTree = "<group>";
+		};
+		B1BF9F301ED7BA8D00423C23 /* DYSegmentView */ = {
+			isa = PBXGroup;
+			children = (
+				B1BF9F2D1ED7BA6C00423C23 /* DYSegmentView.h */,
+				B1BF9F2E1ED7BA6C00423C23 /* DYSegmentView.m */,
+			);
+			name = DYSegmentView;
 			sourceTree = "<group>";
 		};
 		B1F5C3F91E9E16890065ADA2 = {
@@ -508,22 +547,29 @@
 			files = (
 				B18117BC1EA5E786007A13A4 /* LoginViewController.swift in Sources */,
 				B1406FF11EA7033E00807323 /* userImage_NameCell.swift in Sources */,
+				B11075721ED51E7000BF91A6 /* GRDeviceData.swift in Sources */,
 				B18117B91EA5E44A007A13A4 /* threeViewController.swift in Sources */,
 				B17BD4AC1EA0CCE500E6E0B9 /* config.swift in Sources */,
 				B18117B71EA5E325007A13A4 /* twoViewController.swift in Sources */,
 				B17BD4B11EA0CDCD00E6E0B9 /* MonitorViewController.swift in Sources */,
 				B18117BE1EA5E7BE007A13A4 /* RegisterViewController.swift in Sources */,
 				B14C97D91EC16EA6005FF910 /* deviceInfoCell.swift in Sources */,
+				B110756F1ED3D8F400BF91A6 /* topBtnCollectView.swift in Sources */,
 				B1406FEC1EA6F7E000807323 /* ResetKeyViewController.swift in Sources */,
+				B18F14991ED7C660002D6240 /* SettingDeviceViewController.swift in Sources */,
 				B17EF5DC1EA8782E00BE2CF4 /* HeaderReusableView.swift in Sources */,
 				B1FAA7911EADAEC500ED3A1F /* LXFMenuPageController.swift in Sources */,
+				B1BF9F331ED7BB3F00423C23 /* InfoAndSettingViewController.swift in Sources */,
+				B1BF9F2F1ED7BA6C00423C23 /* DYSegmentView.m in Sources */,
 				B18117B51EA5B4EC007A13A4 /* oneViewController.swift in Sources */,
 				B1F5C4061E9E16890065ADA2 /* AppDelegate.swift in Sources */,
 				B1FAA78A1EA9E9E000ED3A1F /* FooterCollectionReusableView.swift in Sources */,
+				B18F149B1ED9151E002D6240 /* Three3ViewController.swift in Sources */,
 				B1FAA7861EA8B5A700ED3A1F /* topCollectButtomView.swift in Sources */,
 				B17EF5E01EA8948000BE2CF4 /* My1CollectionViewCell.swift in Sources */,
 				B17BD4B61EA0CE0500E6E0B9 /* MineViewController.swift in Sources */,
 				B17BD4B81EA0CE1A00E6E0B9 /* SettingViewController.swift in Sources */,
+				B18F14971ED7C605002D6240 /* InfoViewController.swift in Sources */,
 				B19510331EC29FB600C6BA2D /* GeoFanCode.swift in Sources */,
 				B18117CE1EA60B73007A13A4 /* XKeyBoard.m in Sources */,
 				B1348FDC1ECF352A004229DF /* NetWork.swift in Sources */,

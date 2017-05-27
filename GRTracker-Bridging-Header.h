@@ -26,3 +26,5 @@
 
 #import "XKeyBoard.h"
 
+#import "DYSegmentView.h"
+

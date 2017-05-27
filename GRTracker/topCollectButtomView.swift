@@ -91,7 +91,7 @@ class topCollectButtomView: UIView,UICollectionViewDelegate,UICollectionViewData
             return
         }
         if self.lastHeight + translation.y < 100{
-//            self.frame = CGRect(x: 0, y: self.height1, width: ScreenWidth, height: 100)
+
             self.frame.size.height = 100
             self.lastHeight = 100
             sender.setTranslation(CGPoint(x:0,y:0), in: self)
@@ -185,7 +185,7 @@ class topCollectButtomView: UIView,UICollectionViewDelegate,UICollectionViewData
             case 0:
                 v.label.text = "总览"
             default:
-                v.label.text = "国人监控"
+                v.label.text = "监控"
             }
             
           

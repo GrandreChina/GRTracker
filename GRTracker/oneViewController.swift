@@ -60,7 +60,7 @@ class oneViewController: UIViewController,UITableViewDelegate,UITableViewDataSou
         
     }
     
-    
+
     //MARK: - Alamofire Add Data
     func alamofireAddData(){
         if tokenGlobal == nil{
@@ -93,69 +93,14 @@ class oneViewController: UIViewController,UITableViewDelegate,UITableViewDataSou
     //MARK: - Alamofire Get Data
     func alamofireGetData(){
         print("获取数据")
-        if tokenGlobal == nil{
-            tokenGlobal = UserDefaults.standard.value(forKey: "token") as! String
+        NetWork.getAllDeviceData { (jsonArr) in
+             self.tableView.mj_header.endRefreshing()
+            self.deviceArr = jsonArr
         }
-        let headers: HTTPHeaders = [
-            "x-auth-token": tokenGlobal
-        ]
-
-        Alamofire.request("http://\(IP_API)/web/gstracker/app/loadAll/0/3", method: .get, parameters: nil, encoding:JSONEncoding.default, headers: headers).responseJSON(completionHandler: { (response) in
-
-            self.tableView.mj_header.endRefreshing()
-            if let JSON2 = response.result.value{
-                let flag = JSON(JSON2)["success"].boolValue
-                if flag{
-              
-                  self.deviceArr = JSON(JSON2)["list"].array
-                    print(self.deviceArr)
-                 }
-            }
-        })
-        
 
     
     }
-
-//    func alamofireLogout(){
-//        SVProgressHUD.show(withStatus: "Logout ...")
-//        
-//        Alamofire.request("http://210.75.20.143:5080/web/logoutApp", method: .post, encoding: JSONEncoding.default).responseJSON { (response) in
-//            
-//            if let JSON1 = response.result.value {
-//                let logoutSuccess = JSON(JSON1)["success"].boolValue
-//                if logoutSuccess{
-//                    SVProgressHUD.dismiss()
-//                    SVProgressHUD.setMinimumDismissTimeInterval(1)
-//                    SVProgressHUD.showSuccess(withStatus: "退出成功")
-//                    
-//                    UserDefaults.standard.removeObject(forKey: "username")
-//                    UserDefaults.standard.synchronize()
-//                    
-//                    if UserDefaults.standard.object(forKey: "username") == nil{
-//                        let storyBoard = UIStoryboard(name: "Login", bundle: nil)
-//                        let loginVC = storyBoard.instantiateViewController(withIdentifier: "navlogin")
-//                        self.present(loginVC, animated: true, completion: { () -> Void in
-//                            let rootVC = UIApplication.shared.keyWindow?.rootViewController as! UITabBarController
-//                            rootVC.selectedIndex = 0
-//                        })
-//                    }
-//                    
-//                }else{
-//                    SVProgressHUD.dismiss()
-//                    SVProgressHUD.setMinimumDismissTimeInterval(2)
-//                    SVProgressHUD.showError(withStatus: "退出失败")
-//                }
-//                
-//                
-//            }
-//        }
-//    }
-//    
-//   
-//        
-    
-  
+   
 
     
     override func didReceiveMemoryWarning() {

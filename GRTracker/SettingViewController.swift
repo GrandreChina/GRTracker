@@ -48,7 +48,7 @@ class SettingViewController: UIViewController {
         self.lxfMenuVc.delegate = self
         
     
-       
+    
         lxfMenuVc.view.frame = CGRect(x: 0, y: topHeight, width: ScreenWidth, height: ScreenHeight - topHeight - (self.tabBarController?.tabBar.bounds.height)!)
         
         lxfMenuVc.sliderColor = MAIN_RED

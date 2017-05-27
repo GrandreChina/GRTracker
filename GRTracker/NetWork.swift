@@ -84,7 +84,13 @@ class NetWork: NSObject {
             //            print("--GR--got some text: \(text)")
             //将string格式转换成json格式
             let object =  JSON(parseJSON: text)
-            print(object)
+//            print(object)
+            
+        
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "WebSocketGetText"), object: self, userInfo: ["data":object])
+            
+            
+            
         }
         //websocketDidReceiveData
         socket.onData = { (data: Data) in
