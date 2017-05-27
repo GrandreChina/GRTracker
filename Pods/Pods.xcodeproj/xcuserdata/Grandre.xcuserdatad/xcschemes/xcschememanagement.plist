@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>DGRunkeeperSwitch.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>IQKeyboardManagerSwift.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -20,11 +25,6 @@
 			<false/>
 		</dict>
 		<key>MJRefresh.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
-		<key>Masonry.xcscheme</key>
 		<dict>
 			<key>isShown</key>
 			<false/>
@@ -57,7 +57,27 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>056BF200E18B7F2854B5E48D054BD4BF</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>0D6930CABDE17D67C5DE06DAF4421A64</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>1C582B24076C2BC46C21AE7B9CBB2647</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>2A4448146C785C426971111F117D773C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>3A7844B85B12148EB93FF466BD50D802</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,42 +87,22 @@
 			<key>primary</key>
 			<true/>
 		</dict>
+		<key>68636CDEACE77AC70C0E44B7D76407DA</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>88E9EC28B8B46C3631E6B242B50F4442</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>9452A51CE4DAFD6A85BB49FD7878BC14</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>9D93BA7B997E9FC362DA44D8253F14E3</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>A51AF256D447EACC141565A22893330D</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>BF199EC5BBEC4EEEAF292ABD6F402C25</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D30A5AF096EC44895438C8F1BD7EC4EF</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D52144DE9D7255DE912490FF5A806573</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
 		<key>E14A62900910444707A5504D25EC98DC</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>E6201897E03F1CF81B18D371B6BEA2CB</key>
 		<dict>
 			<key>primary</key>
 			<true/>
