@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'E6201897E03F1CF81B18D371B6BEA2CB'
-               BlueprintName = 'DGRunkeeperSwitch'
+               BlueprintIdentifier = 'D52144DE9D7255DE912490FF5A806573'
+               BlueprintName = 'Masonry'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'DGRunkeeperSwitch.framework'>
+               BuildableName = 'Masonry.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
