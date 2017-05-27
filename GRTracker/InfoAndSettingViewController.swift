@@ -38,7 +38,7 @@ class InfoAndSettingViewController: UIViewController,DYSegmentDelegate,UIScrollV
         _segMentView.titleNormalColor = UIColor.darkGray
         _segMentView.titleSelectColor = UIColor.black
         _segMentView.titleFont        = UIFont.systemFont(ofSize: 15)
-        _segMentView.titleArray       = ["信息","设置"]
+        _segMentView.titleArray       = ["信息","设置","dag"]
         (_segMentView.value(forKey: "bottomLine") as! UIView).backgroundColor = UIColor.white
         self.navigationItem.titleView = _segMentView
        
