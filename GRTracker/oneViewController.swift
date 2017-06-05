@@ -95,6 +95,7 @@ class oneViewController: UIViewController,UITableViewDelegate,UITableViewDataSou
         print("获取数据")
         NetWork.getAllDeviceData { (jsonArr) in
              self.tableView.mj_header.endRefreshing()
+            print(jsonArr)
             self.deviceArr = jsonArr
         }
 

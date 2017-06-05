@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		B110756F1ED3D8F400BF91A6 /* topBtnCollectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B110756E1ED3D8F400BF91A6 /* topBtnCollectView.swift */; };
 		B11075721ED51E7000BF91A6 /* GRDeviceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11075711ED51E7000BF91A6 /* GRDeviceData.swift */; };
+		B130CF921EE049620092DD9C /* UserDefineModeDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B130CF911EE049620092DD9C /* UserDefineModeDetailVC.swift */; };
 		B1348FDC1ECF352A004229DF /* NetWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1348FDB1ECF352A004229DF /* NetWork.swift */; };
 		B1406FEC1EA6F7E000807323 /* ResetKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1406FEB1EA6F7E000807323 /* ResetKeyViewController.swift */; };
 		B1406FF11EA7033E00807323 /* userImage_NameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1406FF01EA7033E00807323 /* userImage_NameCell.swift */; };
@@ -19,6 +20,9 @@
 		B154EBCB1EBC06DE00F25E84 /* BaiduMapAPI_Search.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B154EBC81EBC06DE00F25E84 /* BaiduMapAPI_Search.framework */; };
 		B154EBCE1EBC102E00F25E84 /* libcrypto.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B154EBCC1EBC102E00F25E84 /* libcrypto.a */; };
 		B154EBCF1EBC102E00F25E84 /* libssl.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B154EBCD1EBC102E00F25E84 /* libssl.a */; };
+		B163F9501ED96C64007B0B88 /* InfoDetailView.xib in Resources */ = {isa = PBXBuildFile; fileRef = B163F94F1ED96C64007B0B88 /* InfoDetailView.xib */; };
+		B163F9521ED96C8F007B0B88 /* InfoDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B163F9511ED96C8F007B0B88 /* InfoDetailView.swift */; };
+		B163F9541ED9743D007B0B88 /* car.png in Resources */ = {isa = PBXBuildFile; fileRef = B163F9531ED9743C007B0B88 /* car.png */; };
 		B17BD48D1EA04F4F00E6E0B9 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BD48C1EA04F4F00E6E0B9 /* CoreLocation.framework */; };
 		B17BD4921EA050DA00E6E0B9 /* libsqlite3.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BD4911EA050DA00E6E0B9 /* libsqlite3.0.tbd */; };
 		B17BD49A1EA0512500E6E0B9 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B17BD4991EA0512500E6E0B9 /* QuartzCore.framework */; };
@@ -45,10 +49,13 @@
 		B18117CE1EA60B73007A13A4 /* XKeyBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = B18117CD1EA60B73007A13A4 /* XKeyBoard.m */; };
 		B18F14971ED7C605002D6240 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18F14961ED7C605002D6240 /* InfoViewController.swift */; };
 		B18F14991ED7C660002D6240 /* SettingDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18F14981ED7C660002D6240 /* SettingDeviceViewController.swift */; };
-		B18F149B1ED9151E002D6240 /* Three3ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18F149A1ED9151E002D6240 /* Three3ViewController.swift */; };
+		B18F149B1ED9151E002D6240 /* SettingDeviceTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18F149A1ED9151E002D6240 /* SettingDeviceTableVC.swift */; };
 		B19510331EC29FB600C6BA2D /* GeoFanCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = B19510321EC29FB600C6BA2D /* GeoFanCode.swift */; };
 		B1BF9F2F1ED7BA6C00423C23 /* DYSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = B1BF9F2E1ED7BA6C00423C23 /* DYSegmentView.m */; };
 		B1BF9F331ED7BB3F00423C23 /* InfoAndSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1BF9F311ED7BB3F00423C23 /* InfoAndSettingViewController.swift */; };
+		B1D141BD1ED9B383008FC3B0 /* Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D141BC1ED9B383008FC3B0 /* Extension.swift */; };
+		B1D141BF1ED9B916008FC3B0 /* 渐变.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B1D141BE1ED9B915008FC3B0 /* 渐变.jpg */; };
+		B1D141C11ED9D488008FC3B0 /* blue.jpg in Resources */ = {isa = PBXBuildFile; fileRef = B1D141C01ED9D488008FC3B0 /* blue.jpg */; };
 		B1F5C4061E9E16890065ADA2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1F5C4051E9E16890065ADA2 /* AppDelegate.swift */; };
 		B1F5C40B1E9E16890065ADA2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B1F5C4091E9E16890065ADA2 /* Main.storyboard */; };
 		B1F5C40D1E9E16890065ADA2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B1F5C40C1E9E16890065ADA2 /* Assets.xcassets */; };
@@ -67,6 +74,7 @@
 		84027305FA48D2A0B30C352A /* Pods-GRTracker.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GRTracker.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GRTracker/Pods-GRTracker.debug.xcconfig"; sourceTree = "<group>"; };
 		B110756E1ED3D8F400BF91A6 /* topBtnCollectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = topBtnCollectView.swift; sourceTree = "<group>"; };
 		B11075711ED51E7000BF91A6 /* GRDeviceData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRDeviceData.swift; sourceTree = "<group>"; };
+		B130CF911EE049620092DD9C /* UserDefineModeDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefineModeDetailVC.swift; sourceTree = "<group>"; };
 		B1348FDB1ECF352A004229DF /* NetWork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWork.swift; sourceTree = "<group>"; };
 		B1406FEB1EA6F7E000807323 /* ResetKeyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetKeyViewController.swift; sourceTree = "<group>"; };
 		B1406FF01EA7033E00807323 /* userImage_NameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userImage_NameCell.swift; sourceTree = "<group>"; };
@@ -77,6 +85,9 @@
 		B154EBC81EBC06DE00F25E84 /* BaiduMapAPI_Search.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BaiduMapAPI_Search.framework; path = Pods/BaiduMapKit/BaiduMapKit/BaiduMapAPI_Search.framework; sourceTree = "<group>"; };
 		B154EBCC1EBC102E00F25E84 /* libcrypto.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libcrypto.a; path = Pods/BaiduMapKit/BaiduMapKit/thirdlibs/libcrypto.a; sourceTree = "<group>"; };
 		B154EBCD1EBC102E00F25E84 /* libssl.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libssl.a; path = Pods/BaiduMapKit/BaiduMapKit/thirdlibs/libssl.a; sourceTree = "<group>"; };
+		B163F94F1ED96C64007B0B88 /* InfoDetailView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InfoDetailView.xib; sourceTree = "<group>"; };
+		B163F9511ED96C8F007B0B88 /* InfoDetailView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoDetailView.swift; sourceTree = "<group>"; };
+		B163F9531ED9743C007B0B88 /* car.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = car.png; sourceTree = "<group>"; };
 		B17BD48C1EA04F4F00E6E0B9 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		B17BD48E1EA0505D00E6E0B9 /* GRTracker-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "GRTracker-Bridging-Header.h"; sourceTree = "<group>"; };
 		B17BD4911EA050DA00E6E0B9 /* libsqlite3.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.0.tbd; path = usr/lib/libsqlite3.0.tbd; sourceTree = SDKROOT; };
@@ -105,11 +116,14 @@
 		B18117CD1EA60B73007A13A4 /* XKeyBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XKeyBoard.m; sourceTree = "<group>"; };
 		B18F14961ED7C605002D6240 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		B18F14981ED7C660002D6240 /* SettingDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingDeviceViewController.swift; sourceTree = "<group>"; };
-		B18F149A1ED9151E002D6240 /* Three3ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Three3ViewController.swift; sourceTree = "<group>"; };
+		B18F149A1ED9151E002D6240 /* SettingDeviceTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingDeviceTableVC.swift; sourceTree = "<group>"; };
 		B19510321EC29FB600C6BA2D /* GeoFanCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GeoFanCode.swift; sourceTree = "<group>"; };
 		B1BF9F2D1ED7BA6C00423C23 /* DYSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DYSegmentView.h; sourceTree = "<group>"; };
 		B1BF9F2E1ED7BA6C00423C23 /* DYSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DYSegmentView.m; sourceTree = "<group>"; };
 		B1BF9F311ED7BB3F00423C23 /* InfoAndSettingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoAndSettingViewController.swift; sourceTree = "<group>"; };
+		B1D141BC1ED9B383008FC3B0 /* Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extension.swift; sourceTree = "<group>"; };
+		B1D141BE1ED9B915008FC3B0 /* 渐变.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "渐变.jpg"; sourceTree = "<group>"; };
+		B1D141C01ED9D488008FC3B0 /* blue.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blue.jpg; sourceTree = "<group>"; };
 		B1F5C4021E9E16890065ADA2 /* GRTracker.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GRTracker.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B1F5C4051E9E16890065ADA2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		B1F5C40A1E9E16890065ADA2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -241,8 +255,10 @@
 		B17BD4B31EA0CDE400E6E0B9 /* V */ = {
 			isa = PBXGroup;
 			children = (
-				B11075701ED5149700BF91A6 /* not use */,
 				B110756E1ED3D8F400BF91A6 /* topBtnCollectView.swift */,
+				B163F94F1ED96C64007B0B88 /* InfoDetailView.xib */,
+				B163F9511ED96C8F007B0B88 /* InfoDetailView.swift */,
+				B11075701ED5149700BF91A6 /* not use */,
 			);
 			name = V;
 			sourceTree = "<group>";
@@ -254,7 +270,8 @@
 				B1BF9F311ED7BB3F00423C23 /* InfoAndSettingViewController.swift */,
 				B18F14961ED7C605002D6240 /* InfoViewController.swift */,
 				B18F14981ED7C660002D6240 /* SettingDeviceViewController.swift */,
-				B18F149A1ED9151E002D6240 /* Three3ViewController.swift */,
+				B18F149A1ED9151E002D6240 /* SettingDeviceTableVC.swift */,
+				B130CF911EE049620092DD9C /* UserDefineModeDetailVC.swift */,
 			);
 			name = C;
 			sourceTree = "<group>";
@@ -319,6 +336,9 @@
 		B18117C21EA5EB36007A13A4 /* image */ = {
 			isa = PBXGroup;
 			children = (
+				B1D141C01ED9D488008FC3B0 /* blue.jpg */,
+				B1D141BE1ED9B915008FC3B0 /* 渐变.jpg */,
+				B163F9531ED9743C007B0B88 /* car.png */,
 				B18117C71EA5F2C5007A13A4 /* login1.png */,
 			);
 			name = image;
@@ -340,6 +360,14 @@
 				B1BF9F2E1ED7BA6C00423C23 /* DYSegmentView.m */,
 			);
 			name = DYSegmentView;
+			sourceTree = "<group>";
+		};
+		B1D141BB1ED9B35D008FC3B0 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				B1D141BC1ED9B383008FC3B0 /* Extension.swift */,
+			);
+			name = Extension;
 			sourceTree = "<group>";
 		};
 		B1F5C3F91E9E16890065ADA2 = {
@@ -367,10 +395,11 @@
 		B1F5C4041E9E16890065ADA2 /* GRTracker */ = {
 			isa = PBXGroup;
 			children = (
+				B1D141BB1ED9B35D008FC3B0 /* Extension */,
+				B18117A01EA5A1FE007A13A4 /* 3d Source */,
 				B1348FDA1ECF34B7004229DF /* NetWork */,
 				B18117C11EA5EB24007A13A4 /* 资源库 */,
 				B18117BA1EA5E754007A13A4 /* 登录页 */,
-				B18117A01EA5A1FE007A13A4 /* 3d Source */,
 				B17BD4AE1EA0CD1500E6E0B9 /* 监控页 */,
 				B17BD4AF1EA0CD5B00E6E0B9 /* 设置页 */,
 				B17BD4AD1EA0CD0700E6E0B9 /* 个人页 */,
@@ -479,12 +508,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				B1F5C4101E9E16890065ADA2 /* LaunchScreen.storyboard in Resources */,
+				B1D141BF1ED9B916008FC3B0 /* 渐变.jpg in Resources */,
 				B1F5C40D1E9E16890065ADA2 /* Assets.xcassets in Resources */,
 				B1FAA7F01EB0735700ED3A1F /* gps.json in Resources */,
+				B1D141C11ED9D488008FC3B0 /* blue.jpg in Resources */,
 				B1F5C4181E9E17690065ADA2 /* Podfile in Resources */,
 				B14C97DA1EC16EA6005FF910 /* deviceInfoCell.xib in Resources */,
 				B18117C01EA5E7EB007A13A4 /* Login.storyboard in Resources */,
+				B163F9501ED96C64007B0B88 /* InfoDetailView.xib in Resources */,
 				B18117CA1EA60494007A13A4 /* 项目心得.rtf in Resources */,
+				B163F9541ED9743D007B0B88 /* car.png in Resources */,
 				B1F5C40B1E9E16890065ADA2 /* Main.storyboard in Resources */,
 				B18117C81EA5F2C5007A13A4 /* login1.png in Resources */,
 			);
@@ -546,6 +579,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B18117BC1EA5E786007A13A4 /* LoginViewController.swift in Sources */,
+				B163F9521ED96C8F007B0B88 /* InfoDetailView.swift in Sources */,
 				B1406FF11EA7033E00807323 /* userImage_NameCell.swift in Sources */,
 				B11075721ED51E7000BF91A6 /* GRDeviceData.swift in Sources */,
 				B18117B91EA5E44A007A13A4 /* threeViewController.swift in Sources */,
@@ -554,17 +588,19 @@
 				B17BD4B11EA0CDCD00E6E0B9 /* MonitorViewController.swift in Sources */,
 				B18117BE1EA5E7BE007A13A4 /* RegisterViewController.swift in Sources */,
 				B14C97D91EC16EA6005FF910 /* deviceInfoCell.swift in Sources */,
+				B130CF921EE049620092DD9C /* UserDefineModeDetailVC.swift in Sources */,
 				B110756F1ED3D8F400BF91A6 /* topBtnCollectView.swift in Sources */,
 				B1406FEC1EA6F7E000807323 /* ResetKeyViewController.swift in Sources */,
 				B18F14991ED7C660002D6240 /* SettingDeviceViewController.swift in Sources */,
 				B17EF5DC1EA8782E00BE2CF4 /* HeaderReusableView.swift in Sources */,
 				B1FAA7911EADAEC500ED3A1F /* LXFMenuPageController.swift in Sources */,
+				B1D141BD1ED9B383008FC3B0 /* Extension.swift in Sources */,
 				B1BF9F331ED7BB3F00423C23 /* InfoAndSettingViewController.swift in Sources */,
 				B1BF9F2F1ED7BA6C00423C23 /* DYSegmentView.m in Sources */,
 				B18117B51EA5B4EC007A13A4 /* oneViewController.swift in Sources */,
 				B1F5C4061E9E16890065ADA2 /* AppDelegate.swift in Sources */,
 				B1FAA78A1EA9E9E000ED3A1F /* FooterCollectionReusableView.swift in Sources */,
-				B18F149B1ED9151E002D6240 /* Three3ViewController.swift in Sources */,
+				B18F149B1ED9151E002D6240 /* SettingDeviceTableVC.swift in Sources */,
 				B1FAA7861EA8B5A700ED3A1F /* topCollectButtomView.swift in Sources */,
 				B17EF5E01EA8948000BE2CF4 /* My1CollectionViewCell.swift in Sources */,
 				B17BD4B61EA0CE0500E6E0B9 /* MineViewController.swift in Sources */,

@@ -15,7 +15,6 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
 
     var _mapView:BMKMapView!
     var topBtnCollectV:topBtnCollectView!
-//    var socket:WebSocket! 
     var deviceArr:[JSON]! = []{//原始数据
         didSet{
             self.showAnnotation()
@@ -33,28 +32,24 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
         self.initUI()
         self.initMapView()
         self.initLeftBarItem()
-
         self.initWebSoctket()
-        
         self.initTopBtnCollectV()
-        
-        
+
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-                print(" ----GR-----viewwill Appear")
+        print(" ----GR-----viewwill Appear")
+        self.tabBarController?.tabBar.isHidden = false
         _mapView.viewWillAppear()
         _mapView.delegate = self
-        
         showingMonitorVC = true
-//        socket.connect()
        
         //获取到原始数据之后，在deviceArr的属性观察者里面显示annotations。
         self.alamofireGetData()
-       
-        NotificationCenter.default.addObserver(self, selector: #selector(self.webSocketGetText(notification:)), name: NSNotification.Name(rawValue: "WebSocketGetText"), object: nil)
+        
+        //可以放到deviceArr的属性观察者里面
         NetWork.socket.connect()
-        self.tabBarController?.tabBar.isHidden = false
+        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -66,7 +61,7 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
 //        socket.disconnect()
         NetWork.socket.disconnect()
         
-        NotificationCenter.default.removeObserver(self)
+        
         
     }
     /*---{
@@ -98,8 +93,27 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
             self.alamofireGetData()
         }
         
+        var GRstruct:GRDeviceData!
+            
+        if let grStruct = deviceDictionary2[text["ProductSN"].stringValue] {
+            GRstruct = grStruct
+        }else{
+            print("---GR---ws数据之前，原始数据还没准备好---")
+            return
+        }
         
-       deviceDictionary2[text["ProductSN"].stringValue]?.annotation.coordinate = CLLocationCoordinate2D(latitude: text["Lat"].doubleValue , longitude: text["Lng"].doubleValue)
+        GRstruct.annotation.coordinate =  CLLocationCoordinate2D(latitude: text["Lat"].doubleValue , longitude: text["Lng"].doubleValue)
+      
+    
+        GRstruct.speed = text["Speed"].doubleValue + Double(arc4random()%4)
+        
+        
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "SpeedRefleshFromWS"), object: nil, userInfo: ["SpeedRefleshFromWS":GRstruct.speed])
+        
+        print("-----GR---获取\(GRstruct.speed)----")
+        
+        
+        
     }
     //MARK: -
     func initLeftBarItem(){
@@ -146,6 +160,9 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
     func initUI(){
         self.title = "监控与跟踪"
         self.navigationController?.navigationBar.barTintColor = MAIN_RED
+        NotificationCenter.default.addObserver(self, selector: #selector(self.webSocketGetText(notification:)), name: NSNotification.Name(rawValue: "WebSocketGetText"), object: nil)
+        
+
     }
     func initMapView(){
         //添加地图视图
@@ -179,12 +196,30 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
             let tempAnnotation = BMKPointAnnotation()
             tempAnnotation.coordinate = baiduCoor
             tempAnnotation.title = "点击查看/设置"
+            tempAnnotation.subtitle = d["serialNumber"].stringValue
+            
             
             var deviceInfoStruct:GRDeviceData = GRDeviceData()
             deviceInfoStruct.annotation = tempAnnotation
             deviceInfoStruct.alarmState = d["state"].int == nil ? 0 :  d["state"].int
-            deviceInfoStruct.speed = d["speed"].double
+            
+            deviceInfoStruct.speed = d["speed"].doubleValue
+
+
+                
+            
             deviceInfoStruct.ID = d["id"].int64
+    
+            deviceInfoStruct.deviceName = d["deviceName"].stringValue
+            deviceInfoStruct.serialNumber = d["serialNumber"].stringValue
+            deviceInfoStruct.batteryCapcity = d["batteryCapcity"].floatValue
+            deviceInfoStruct.groupName = d["groupName"].stringValue
+            deviceInfoStruct.powerConsumperType = d["powerConsumperType"].stringValue
+
+            deviceInfoStruct.gpsWorkModeType = d["gpsWorkModeType"].stringValue
+            deviceInfoStruct.bleWorkModeType = d["bleWorkModeType"].stringValue
+            deviceInfoStruct.wifiWorkMode = d["wifiWorkMode"].stringValue
+            deviceInfoStruct.baseStationScanWorkMode = d["baseStationScanWorkMode"].stringValue
 
             //        self.deviceDictionary.updateValue((d["lng"].double!,d["lat"].double!), forKey: d["serialNumber"].stringValue)
             
@@ -192,7 +227,7 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
             
         }
         
-        print(self.deviceDictionary2)
+//        print(self.deviceDictionary2)
     }
     
     func showAnnotation(){
@@ -201,10 +236,8 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
      
         //字典values值的提取方法！
         let d = [GRDeviceData](self.deviceDictionary2.values)
-     let annotations = d.map { (datastruct) -> BMKPointAnnotation in
-//            datastruct.annotation.coordinate.latitude += 1
-//            datastruct.annotation.coordinate.longitude += 1
-        return datastruct.annotation
+        let annotations = d.map { (datastruct) -> BMKPointAnnotation in
+            return datastruct.annotation
         }
         
         self._mapView.removeAnnotations(_mapView.annotations)
@@ -242,7 +275,7 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
      *@param views 新添加的annotation views
      */
     func mapView(_ mapView: BMKMapView!, didAddAnnotationViews views: [Any]!) {
-        NSLog("didAddAnnotationViews")
+//        NSLog("didAddAnnotationViews")
     }
     /**
      *当选中一个annotation views时，调用此接口
@@ -250,21 +283,17 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
      *@param views 选中的annotation views
      */
     func mapView(_ mapView: BMKMapView!, didSelect view: BMKAnnotationView!) {
-        NSLog("选中了标注")
+        print("选中了标注")
         let center = view.annotation.coordinate
-        //这里一定要延时处理，不然不会同时处理center和scale的动作
-//        self.perform(#selector(self.moveToCenter(_:)), with: center, afterDelay: 0.5)
+
         self._mapView?.setCenter(center, animated: true)
         
-        let p = self._mapView.convert(center, toPointTo: self.view)
-        print("---GR--\(p)----")
+//        let p = self._mapView.convert(center, toPointTo: self.view)
+//        print("---GR--\(p)----")
         
     }
     
-//    func moveToCenter(_ center:CLLocationCoordinate2D){
-//        self._mapView?.zoomLevel = 15
-////        self._mapView?.setCenter(center, animated: true)
-//    }
+
     /**
      *当取消选中一个annotation views时，调用此接口
      *@param mapView 地图View
@@ -288,9 +317,7 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
         ///后期要关闭拖动annotation功能
     }
     
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        
-    }
+
     /**
      *当点击annotation view弹出的泡泡时，调用此接口
      *@param mapView 地图View
@@ -299,12 +326,64 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
     func mapView(_ mapView: BMKMapView!, annotationViewForBubble view: BMKAnnotationView!) {
         NSLog("点击了泡泡")
         let vc = InfoAndSettingViewController()
+        vc.infoVC.annotation = view.annotation as! BMKPointAnnotation
+        vc.infoVC.annotation.title = ""
+        //通过annotation的subtitle去找回原来对应的结构体
+        let tempGRStruct = self.deviceDictionary2[(view.annotation as! BMKPointAnnotation).subtitle]
+        vc.infoVC.infoDetailV.deviceName.setTitle(tempGRStruct?.deviceName, for: .normal)
+        vc.infoVC.infoDetailV.serialNumber.setTitle(tempGRStruct?.serialNumber, for: .normal)
+        vc.infoVC.infoDetailV.batteryCapcity.text = String(describing: Int8((tempGRStruct?.batteryCapcity)! * 100))        
+        vc.infoVC.infoDetailV.groupName.text = tempGRStruct?.groupName
+
+     
+        
+        
+        var str:String = ""
+        switch tempGRStruct!.powerConsumperType{
+        case "0":
+            str = "deepsleep模式"
+        case "1":
+            str = "standby模式"
+        case "2":
+            str = "智能工作模式"
+        case "3":
+            str = "用户自定义模式"
+        default:
+            str = ""
+            
+        }
+        vc.infoVC.infoDetailV.powerConsumperType.text = str
+        
+        
+        if (tempGRStruct!.powerConsumperType != "3"){
+            vc.infoVC.infoDetailV.GPSLabel.setOffline()
+            vc.infoVC.infoDetailV.BlueLabel.setOffline()
+            vc.infoVC.infoDetailV.WIFILabel.setOffline()
+            vc.infoVC.infoDetailV.BaseStationLabel.setOffline()
+        }else{
+        
+            if(tempGRStruct?.gpsWorkModeType! == "0"){
+                vc.infoVC.infoDetailV.GPSLabel.setOffline()
+                
+            }
+            if(tempGRStruct?.bleWorkModeType! == "0"){
+                vc.infoVC.infoDetailV.BlueLabel.setOffline()
+                
+            }
+            if(tempGRStruct?.wifiWorkMode! == "0"){
+                vc.infoVC.infoDetailV.WIFILabel.setOffline()
+            }
+            if(tempGRStruct?.baseStationScanWorkMode! == "0"){
+                vc.infoVC.infoDetailV.BaseStationLabel.setOffline()
+            }
+        
+        }
         self.navigationController?.pushViewController(vc, animated: true)
     }
     
     func mapView(_ mapView: BMKMapView!, viewFor annotation: BMKAnnotation!) -> BMKAnnotationView! {
         //普通标注
-            print("----绘制静态----annotation")
+//            print("----绘制静态----annotation")
             let AnnotationViewID = "renameMark"
             var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: AnnotationViewID)
             if annotationView == nil {
@@ -337,25 +416,7 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
    
     }
     
-//    func mapView(_ mapView: BMKMapView!, viewFor overlay: BMKOverlay!) -> BMKOverlayView! {
-//        if let overlayTemp = overlay as? BMKPolyline {
-//            let polylineView = BMKPolylineView(overlay: overlay)
-//            if overlayTemp == self.polyline {
-//                polylineView?.strokeColor = UIColor(red: 0, green: 1, blue: 0, alpha: 1)
-//                polylineView?.lineWidth = 10
-//                polylineView?.loadStrokeTextureImage(UIImage(named: "texture_arrow.png"))
-//            } else if overlayTemp == self.colorfulPolyline {
-//                polylineView?.lineWidth = 5
-//                /// 使用分段颜色绘制时，必须设置（内容必须为UIColor）
-//                polylineView?.colors = [UIColor(red: 0, green: 1, blue: 0, alpha: 1),
-//                                        UIColor(red: 1, green: 0, blue: 0, alpha: 1),
-//                                        UIColor(red: 1, green: 1, blue: 0, alpha: 1)]
-//                
-//            }
-//            return polylineView
-//        }
-//        return nil
-//    }
+
     // MARK: - GR原创
     //根据annotations设置地图范围
     func mapViewFitAnnotations(_ pointArr: [BMKPointAnnotation]!) {
@@ -366,9 +427,7 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
         let mapPointArr =  pointArr.map { (i) -> BMKMapPoint in
         BMKMapPointForCoordinate(i.coordinate)
         }
-//
-//        let mapPointArr = pointArr.map { BMKMapPointForCoordinate($0.coordinate)
-//        }
+
         let pt = mapPointArr[0]
         var ltX = pt.x
         var rbX = pt.x
@@ -407,10 +466,8 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
             self._mapView.addAnnotations(arr)
             self.mapViewFitAnnotations(arr)
         case 2:
-            
-            self.deviceDictionary2["32363938323651800320040"]?.annotation.coordinate.latitude += 1
-            self.deviceDictionary2["32363938323651800320040"]?.annotation.coordinate.longitude += 1
-            
+            NetWork.socket.disconnect()
+            NetWork.socket.connect()
             break
         case 3:
             
@@ -427,9 +484,10 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
     //MARK:
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+     
     }
     deinit {
+       NotificationCenter.default.removeObserver(self)
         print("---GR--MonitorVc 退出了---")
     }
 

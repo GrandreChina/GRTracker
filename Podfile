@@ -13,8 +13,8 @@ target 'GRTracker' do
     
     #pod 'Shimmer'
 
-    pod 'SVProgressHUD', :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
-    
+    pod 'SVProgressHUD'
+    # , :git => 'https://github.com/SVProgressHUD/SVProgressHUD.git'
     pod 'Alamofire'
     pod 'SwiftyJSON'
     

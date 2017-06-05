@@ -92,7 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate,BMKGeneralDelegate{
     func applicationWillEnterForeground(_ application: UIApplication) {
         print("-----GR---WillEnterForeground")
         
-        if showingMonitorVC {
+        if showingMonitorVC || showingInfoDetailVC {
             NetWork.socket.connect()
         }
     }

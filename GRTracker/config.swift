@@ -35,4 +35,5 @@ let IP_API = "210.75.20.143:5080"/////外网
 let IPWS_API = "210.75.20.143:5090"
 
 var showingMonitorVC = false
+var showingInfoDetailVC = false
 
