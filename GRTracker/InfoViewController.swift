@@ -14,6 +14,7 @@ class InfoViewController: UIViewController,BMKMapViewDelegate,UIGestureRecognize
    
     var _mapView:BMKMapView!
     var annotation:BMKPointAnnotation!
+    var fencePolygon:BMKPolygon!
   
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -46,8 +47,8 @@ class InfoViewController: UIViewController,BMKMapViewDelegate,UIGestureRecognize
     init(){
         super.init(nibName: nil, bundle: nil)
         self.infoDetailV = UINib(nibName: "InfoDetailView", bundle: nil).instantiate(withOwner: self, options: nil).last as! InfoDetailView
-       self.annotation = BMKPointAnnotation()
-  
+        self.annotation = BMKPointAnnotation()
+        self.fencePolygon = BMKPolygon()
     }
     
     required init?(coder aDecoder: NSCoder) {

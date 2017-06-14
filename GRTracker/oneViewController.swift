@@ -34,7 +34,7 @@ class oneViewController: UIViewController,UITableViewDelegate,UITableViewDataSou
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.view.backgroundColor = UIColor.white
         self.tableView = UITableView(frame: CGRect(x: 0, y: 0, width: ScreenWidth, height: _bounds))
         self.tableView.register(UITableViewCell.classForCoder(), forCellReuseIdentifier: "cell")
         self.tableView.register( UINib(nibName: "deviceInfoCell", bundle: Bundle.main), forCellReuseIdentifier: "deviceInfoCell")

@@ -10,6 +10,7 @@
 		B110756F1ED3D8F400BF91A6 /* topBtnCollectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B110756E1ED3D8F400BF91A6 /* topBtnCollectView.swift */; };
 		B11075721ED51E7000BF91A6 /* GRDeviceData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B11075711ED51E7000BF91A6 /* GRDeviceData.swift */; };
 		B130CF921EE049620092DD9C /* UserDefineModeDetailVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B130CF911EE049620092DD9C /* UserDefineModeDetailVC.swift */; };
+		B130CF981EEA7FAE0092DD9C /* FenceTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B130CF971EEA7FAE0092DD9C /* FenceTableView.swift */; };
 		B1348FDC1ECF352A004229DF /* NetWork.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1348FDB1ECF352A004229DF /* NetWork.swift */; };
 		B1406FEC1EA6F7E000807323 /* ResetKeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1406FEB1EA6F7E000807323 /* ResetKeyViewController.swift */; };
 		B1406FF11EA7033E00807323 /* userImage_NameCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1406FF01EA7033E00807323 /* userImage_NameCell.swift */; };
@@ -47,6 +48,8 @@
 		B18117C81EA5F2C5007A13A4 /* login1.png in Resources */ = {isa = PBXBuildFile; fileRef = B18117C71EA5F2C5007A13A4 /* login1.png */; };
 		B18117CA1EA60494007A13A4 /* 项目心得.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B18117C91EA60493007A13A4 /* 项目心得.rtf */; };
 		B18117CE1EA60B73007A13A4 /* XKeyBoard.m in Sources */ = {isa = PBXBuildFile; fileRef = B18117CD1EA60B73007A13A4 /* XKeyBoard.m */; };
+		B1825C8F1EEE31F400BF7FFB /* FenceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1825C8D1EEE31F400BF7FFB /* FenceTableViewCell.swift */; };
+		B1825C901EEE31F400BF7FFB /* FenceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B1825C8E1EEE31F400BF7FFB /* FenceTableViewCell.xib */; };
 		B18F14971ED7C605002D6240 /* InfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18F14961ED7C605002D6240 /* InfoViewController.swift */; };
 		B18F14991ED7C660002D6240 /* SettingDeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18F14981ED7C660002D6240 /* SettingDeviceViewController.swift */; };
 		B18F149B1ED9151E002D6240 /* SettingDeviceTableVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = B18F149A1ED9151E002D6240 /* SettingDeviceTableVC.swift */; };
@@ -75,6 +78,7 @@
 		B110756E1ED3D8F400BF91A6 /* topBtnCollectView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = topBtnCollectView.swift; sourceTree = "<group>"; };
 		B11075711ED51E7000BF91A6 /* GRDeviceData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GRDeviceData.swift; sourceTree = "<group>"; };
 		B130CF911EE049620092DD9C /* UserDefineModeDetailVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserDefineModeDetailVC.swift; sourceTree = "<group>"; };
+		B130CF971EEA7FAE0092DD9C /* FenceTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FenceTableView.swift; sourceTree = "<group>"; };
 		B1348FDB1ECF352A004229DF /* NetWork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetWork.swift; sourceTree = "<group>"; };
 		B1406FEB1EA6F7E000807323 /* ResetKeyViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetKeyViewController.swift; sourceTree = "<group>"; };
 		B1406FF01EA7033E00807323 /* userImage_NameCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = userImage_NameCell.swift; sourceTree = "<group>"; };
@@ -114,6 +118,8 @@
 		B18117C91EA60493007A13A4 /* 项目心得.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = "项目心得.rtf"; sourceTree = "<group>"; };
 		B18117CC1EA60B73007A13A4 /* XKeyBoard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XKeyBoard.h; sourceTree = "<group>"; };
 		B18117CD1EA60B73007A13A4 /* XKeyBoard.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XKeyBoard.m; sourceTree = "<group>"; };
+		B1825C8D1EEE31F400BF7FFB /* FenceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FenceTableViewCell.swift; sourceTree = "<group>"; };
+		B1825C8E1EEE31F400BF7FFB /* FenceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FenceTableViewCell.xib; sourceTree = "<group>"; };
 		B18F14961ED7C605002D6240 /* InfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoViewController.swift; sourceTree = "<group>"; };
 		B18F14981ED7C660002D6240 /* SettingDeviceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingDeviceViewController.swift; sourceTree = "<group>"; };
 		B18F149A1ED9151E002D6240 /* SettingDeviceTableVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingDeviceTableVC.swift; sourceTree = "<group>"; };
@@ -229,6 +235,7 @@
 			children = (
 				B17BD4B41EA0CDEC00E6E0B9 /* C */,
 				B17BD4B31EA0CDE400E6E0B9 /* V */,
+				B11075701ED5149700BF91A6 /* not use */,
 				B17BD4B21EA0CDDA00E6E0B9 /* M */,
 			);
 			name = "监控页";
@@ -258,7 +265,9 @@
 				B110756E1ED3D8F400BF91A6 /* topBtnCollectView.swift */,
 				B163F94F1ED96C64007B0B88 /* InfoDetailView.xib */,
 				B163F9511ED96C8F007B0B88 /* InfoDetailView.swift */,
-				B11075701ED5149700BF91A6 /* not use */,
+				B130CF971EEA7FAE0092DD9C /* FenceTableView.swift */,
+				B1825C8D1EEE31F400BF7FFB /* FenceTableViewCell.swift */,
+				B1825C8E1EEE31F400BF7FFB /* FenceTableViewCell.xib */,
 			);
 			name = V;
 			sourceTree = "<group>";
@@ -518,6 +527,7 @@
 				B163F9501ED96C64007B0B88 /* InfoDetailView.xib in Resources */,
 				B18117CA1EA60494007A13A4 /* 项目心得.rtf in Resources */,
 				B163F9541ED9743D007B0B88 /* car.png in Resources */,
+				B1825C901EEE31F400BF7FFB /* FenceTableViewCell.xib in Resources */,
 				B1F5C40B1E9E16890065ADA2 /* Main.storyboard in Resources */,
 				B18117C81EA5F2C5007A13A4 /* login1.png in Resources */,
 			);
@@ -580,6 +590,7 @@
 			files = (
 				B18117BC1EA5E786007A13A4 /* LoginViewController.swift in Sources */,
 				B163F9521ED96C8F007B0B88 /* InfoDetailView.swift in Sources */,
+				B130CF981EEA7FAE0092DD9C /* FenceTableView.swift in Sources */,
 				B1406FF11EA7033E00807323 /* userImage_NameCell.swift in Sources */,
 				B11075721ED51E7000BF91A6 /* GRDeviceData.swift in Sources */,
 				B18117B91EA5E44A007A13A4 /* threeViewController.swift in Sources */,
@@ -596,6 +607,7 @@
 				B1FAA7911EADAEC500ED3A1F /* LXFMenuPageController.swift in Sources */,
 				B1D141BD1ED9B383008FC3B0 /* Extension.swift in Sources */,
 				B1BF9F331ED7BB3F00423C23 /* InfoAndSettingViewController.swift in Sources */,
+				B1825C8F1EEE31F400BF7FFB /* FenceTableViewCell.swift in Sources */,
 				B1BF9F2F1ED7BA6C00423C23 /* DYSegmentView.m in Sources */,
 				B18117B51EA5B4EC007A13A4 /* oneViewController.swift in Sources */,
 				B1F5C4061E9E16890065ADA2 /* AppDelegate.swift in Sources */,

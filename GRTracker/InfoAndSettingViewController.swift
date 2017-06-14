@@ -23,6 +23,7 @@ class InfoAndSettingViewController: UIViewController,UIScrollViewDelegate
     init() {
         super.init(nibName: nil, bundle: nil)
         self.infoVC = InfoViewController()
+        self.settingDeviceVC = SettingDeviceViewController()
         
     }
     
@@ -77,7 +78,7 @@ class InfoAndSettingViewController: UIViewController,UIScrollViewDelegate
         self.view.addSubview(_scrollView)
         
 //        infoVC = InfoViewController()
-        settingDeviceVC = SettingDeviceViewController()
+//        settingDeviceVC = SettingDeviceViewController()
         
         self.addChildViewController(infoVC)
         self.addChildViewController(settingDeviceVC)

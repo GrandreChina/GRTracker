@@ -14,8 +14,8 @@ import SVProgressHUD
 class NetWork: NSObject {
     
     
-    static var socket:WebSocket!//静态属性的好处是所有实例共用一份拷贝
-    static var alamofireManager:SessionManager!
+     static var socket:WebSocket!//静态属性的好处是所有实例共用一份拷贝
+     static var alamofireManager:SessionManager!
     
     
     
@@ -25,9 +25,8 @@ class NetWork: NSObject {
         }
         let headers: HTTPHeaders = [
             "x-auth-token": tokenGlobal
-//            "x-auth-token": "segsdg.sehe.sejlew"//模拟假token
         ]
-        
+        print(tokenGlobal)
         Alamofire.request("http://\(IP_API)/web/gstracker/app/loadAll/0/25", method: .get, parameters: nil, encoding:JSONEncoding.default, headers: headers).responseJSON(completionHandler: { (response) in
 //            print("----response error \(response.error)---")
 //            print("----response data   \(response.data)---")
@@ -37,6 +36,7 @@ class NetWork: NSObject {
                 let flag = JSON(JSON2)["success"].boolValue
                 if flag{
                     if let arr = JSON(JSON2)["list"].array{
+                        print("---\(arr)--")
                        block(arr)
                     }else{
                         print("获取数据为空")
@@ -68,9 +68,98 @@ class NetWork: NSObject {
         
     }
     
-    static func initWS(){
-  
-        socket = WebSocket(url: URL(string: "ws://\(IPWS_API)/ugV9X6BQdSk4tR8CiC+/eEVhjx+n99F7bh+RyXsGZPp9ht3hX6cMos/As1grIThE")!)
+    static func getAllFence(Block block:@escaping ([JSON])->Void){
+        if tokenGlobal == nil{
+            tokenGlobal = UserDefaults.standard.value(forKey: "token") as! String
+        }
+        let headers: HTTPHeaders = [
+            "x-auth-token": tokenGlobal
+        ]
+        
+
+        Alamofire.request("http://\(IP_API)/web/fence/loadFence", method: .get, parameters: nil, encoding:JSONEncoding.default, headers: headers).responseJSON(completionHandler: { (respon) in
+            print("----response error \(String(describing: respon.error))---")
+        
+            if let JSON2 = respon.result.value{
+                if(JSON(JSON2)["message"] == "token unauthorized."){
+                    print("-----GR--token 失效----")
+                    UserDefaults.standard.removeObject(forKey: "username")
+                    UserDefaults.standard.removeObject(forKey: "token")
+                    UserDefaults.standard.synchronize()
+
+                    if UserDefaults.standard.object(forKey: "username") == nil
+                        && UserDefaults.standard.object(forKey: "token") == nil{
+
+
+                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                        appDelegate.checkLogin()
+                        
+                        return
+                        
+                    }
+                }else{
+
+                    let ddata = JSON(JSON2).array
+                    if ddata?.count == 0{
+                        GRshowInfo(str: "没有围栏信息")
+                    }else{
+                        block(ddata!)
+//                        GRshowInfo(str: "获取到了")
+                    }
+                    
+                }
+                
+
+            }
+        })
+ 
+    }
+   static func getWSurlAndInit(){
+        if tokenGlobal == nil{
+            tokenGlobal = UserDefaults.standard.value(forKey: "token") as! String
+        }
+        let headers: HTTPHeaders = [
+            "x-auth-token": tokenGlobal,
+            "Accept": "text/plain"
+        ]
+        
+        Alamofire.request("http://\(IP_API)/web/getWSUrl", method: .get, parameters: nil, encoding:JSONEncoding.default, headers: headers).responseString(completionHandler: { (respon) in
+            print("----response error \(String(describing: respon.error))---")
+            
+            if let JSON2 = respon.result.value{
+                if(JSON(JSON2)["message"] == "token unauthorized."){
+                    print("-----GR--token 失效----")
+                    UserDefaults.standard.removeObject(forKey: "username")
+                    UserDefaults.standard.removeObject(forKey: "token")
+                    UserDefaults.standard.synchronize()
+                    
+                    if UserDefaults.standard.object(forKey: "username") == nil
+                        && UserDefaults.standard.object(forKey: "token") == nil{
+                        
+                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                        appDelegate.checkLogin()
+                        return
+                        
+                    }
+                }else{
+                    
+                    let ddata = JSON(JSON2).stringValue
+                    print(ddata)
+                    initWS(url: ddata)
+                    socket.connect()
+                    
+                }
+                
+                
+            }
+            
+        })
+        
+    }
+
+    static func initWS(url:String){
+        
+        socket = WebSocket(url: URL(string: url)!)
         //websocketDidConnect
         socket.onConnect = {
             print("--GR--websocket is connected")
@@ -81,7 +170,7 @@ class NetWork: NSObject {
         }
         //websocketDidReceiveMessage
         socket.onText = { (text: String) in
-            //            print("--GR--got some text: \(text)")
+
             //将string格式转换成json格式
             let object =  JSON(parseJSON: text)
 //            print(object)
@@ -112,7 +201,11 @@ class NetWork: NSObject {
         config.timeoutIntervalForRequest = 4
         self.alamofireManager = SessionManager(configuration:config)
         self.alamofireManager.request("http://\(IP_API)/web/loginApp", method: .post, parameters: parameters, encoding: JSONEncoding.default, headers: nil).responseJSON { (response) in
-            SVProgressHUD.dismiss()
+            if (response.error != nil){
+                SVProgressHUD.dismiss()
+                SVProgressHUD.setMinimumDismissTimeInterval(2)
+                SVProgressHUD.showError(withStatus: "服务器出错")
+            }
             
             if let data = response.result.value{
                 let jsonData = JSON(data)
@@ -161,7 +254,13 @@ class NetWork: NSObject {
         config.timeoutIntervalForRequest = 4
         self.alamofireManager = SessionManager(configuration:config)
         self.alamofireManager.request("http://\(IP_API)/web/logoutApp", method: .post, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
-            
+        
+            if (response.error != nil){
+                print(response.error!)
+                SVProgressHUD.dismiss()
+                SVProgressHUD.setMinimumDismissTimeInterval(2)
+                SVProgressHUD.showError(withStatus: "服务器出错")
+            }
             if let JSON1 = response.result.value {
                 print(JSON(JSON1))
                 let logoutSuccess = JSON(JSON1)["success"].boolValue
@@ -193,6 +292,8 @@ class NetWork: NSObject {
         
 
     }
+    
+    
     deinit {
         print("----GR-----NetWorkClass deinit--")
     }

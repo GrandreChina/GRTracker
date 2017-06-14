@@ -8,7 +8,7 @@
 
 import Foundation
 import UIKit
-
+import SVProgressHUD
 let ScreenWidth = UIScreen.main.bounds.width
 let ScreenHeight = UIScreen.main.bounds.height
 
@@ -22,7 +22,7 @@ var tokenGlobal:String!
 extension UIViewController{
     var CommonRect:CGRect{
         get{
-            return  CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.height)! + UIApplication.shared.statusBarFrame.height, width: ScreenWidth, height: ScreenHeight - (self.navigationController?.navigationBar.frame.height)! - UIApplication.shared.statusBarFrame.height - (self.tabBarController?.tabBar.frame.height)!)
+            return  CGRect(x: 0, y: (self.navigationController?.navigationBar.frame.maxY)!, width: ScreenWidth, height: ScreenHeight - (self.navigationController?.navigationBar.frame.maxY)! - (self.tabBarController?.tabBar.frame.height)!)
         }
     }
 }
@@ -37,3 +37,17 @@ let IPWS_API = "210.75.20.143:5090"
 var showingMonitorVC = false
 var showingInfoDetailVC = false
 
+func GRprint(str:String){
+    print("----GR-----\(str)-----")  
+}
+
+
+func GRshowInfo(str:String){
+    SVProgressHUD.setMaximumDismissTimeInterval(0.8)
+    SVProgressHUD.setDefaultStyle(.dark)
+    SVProgressHUD.setDefaultMaskType(.black)
+    SVProgressHUD.show(nil, status: str)
+}
+
+
+//var WSurl:String!

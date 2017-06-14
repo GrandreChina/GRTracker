@@ -19,7 +19,7 @@ class twoViewController: UIViewController,BMKMapViewDelegate {
         self.initReadJsonData()
         self.initMapView()
         self.route()
-        self.view.backgroundColor = UIColor.brown
+        self.view.backgroundColor = UIColor.white
         
     }
 

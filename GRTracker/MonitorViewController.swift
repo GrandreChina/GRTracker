@@ -8,9 +8,7 @@
 
 import UIKit
 import SVProgressHUD
-//import Starscream//webSocket
 import SwiftyJSON
-//import Alamofire
 class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectViewDelegate{
 
     var _mapView:BMKMapView!
@@ -21,17 +19,21 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
         }
     }
     //一定要给字典设置一个初始值，才能添加或者更新元素！
-//    var deviceDictionary:[String:(Double,Double)]! = [:]//未用
     var deviceDictionary2:[String:GRDeviceData]! = [:]
     
     var afterFliterYuanZu:[(String,GRDeviceData)] = []
+    var fenceArray:[JSON]!
+    var fenceTableView:FenceTableView!
+    var showFenceTable:Bool = false
+    var polygon:BMKPolygon!
+    //MARK: -
     override func viewDidLoad() {
         super.viewDidLoad()
         print("----GR---viewDidLoad---")
         
         self.initUI()
         self.initMapView()
-        self.initLeftBarItem()
+        self.initLeftAndRightBarItem()
         self.initWebSoctket()
         self.initTopBtnCollectV()
 
@@ -39,7 +41,11 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         print(" ----GR-----viewwill Appear")
-        self.tabBarController?.tabBar.isHidden = false
+        
+        if(self.navigationItem.rightBarButtonItem?.isEnabled == true){
+            self.tabBarController?.tabBar.isHidden = false
+        }
+        
         _mapView.viewWillAppear()
         _mapView.delegate = self
         showingMonitorVC = true
@@ -48,7 +54,10 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
         self.alamofireGetData()
         
         //可以放到deviceArr的属性观察者里面
-        NetWork.socket.connect()
+        if (NetWork.socket != nil){
+            NetWork.socket.connect()
+        }
+      
         
     }
     
@@ -64,20 +73,7 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
         
         
     }
-    /*---{
-    "Lat" : "22.54663733",
-    "SatSysName" : "GPS",
-    "Diff" : "0",
-    "Lng" : "113.93645717",
-    "Alt" : "15.0",
-    "ProductSN" : "32363938323651800320040",
-    "wsMsgType" : "gps",
-    "RunningNumber" : "547",
-    "TimeStamp" : "2017-05-25T09:58:17",
-    "BatteryCapacity" : "0.75",
-    "Speed" : "100.5",
-    "Direction" : "0.45"
-    }---*/
+
     
     //MARK: - NSNOTIFICATION
     func webSocketGetText(notification: NSNotification){
@@ -90,7 +86,9 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
             SVProgressHUD.setMaximumDismissTimeInterval(0.8)
             SVProgressHUD.setDefaultStyle(.dark)
             SVProgressHUD.show(nil, status: "有新设备添加")
+            NetWork.socket.disconnect()
             self.alamofireGetData()
+            NetWork.socket.connect()
         }
         
         var GRstruct:GRDeviceData!
@@ -116,53 +114,16 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
         
     }
     //MARK: -
-    func initLeftBarItem(){
-        let btn = UIBarButtonItem(title: "全部", style: .plain, target: self, action: #selector(self.alamofireGetData))
-        self.navigationItem.setLeftBarButton(btn, animated: true)
-        self.navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.white,NSFontAttributeName: UIFont(name: "Chalkduster", size: 17)!], for: UIControlState())
-        
-        
-    }
-
-    func initWebSoctket(){
-//        socket = WebSocket(url: URL(string: "ws://\(IPWS_API)/ugV9X6BQdSk4tR8CiC+/eEVhjx+n99F7bh+RyXsGZPp9ht3hX6cMos/As1grIThE")!)
-//        //websocketDidConnect
-//        socket.onConnect = {
-//            print("--GR--websocket is connected")
-//        }
-//        //websocketDidDisconnect
-//        socket.onDisconnect = { (error: NSError?) in
-//            print("--GR--websocket is disconnected: \(String(describing: error?.localizedDescription))")
-//        }
-//        //websocketDidReceiveMessage
-//        socket.onText = { (text: String) in
-////            print("--GR--got some text: \(text)")
-//            //将string格式转换成json格式
-//            let object =  JSON(parseJSON: text)
-//            print(object)
-//        }
-//        //websocketDidReceiveData
-//        socket.onData = { (data: Data) in
-//            print("--GR--got some data: \(data.count)")
-//            print("--GR--got data\(data.description)")
-//        }
-        //you could do onPong as well.
-//        socket.connect()
-        
-        NetWork.initWS()
-        
-    }
-    func initTopBtnCollectV(){
-        topBtnCollectV = topBtnCollectView(frame: CGRect(x: 0, y:75 , width: ScreenWidth, height: 40))
-        topBtnCollectV.delegate = self
-        self.view.addSubview(topBtnCollectV)
-    }
     func initUI(){
         self.title = "监控与跟踪"
         self.navigationController?.navigationBar.barTintColor = MAIN_RED
         NotificationCenter.default.addObserver(self, selector: #selector(self.webSocketGetText(notification:)), name: NSNotification.Name(rawValue: "WebSocketGetText"), object: nil)
         
-
+        self.fenceTableView = FenceTableView(frame: CGRect(x: 0, y: ScreenHeight, width: ScreenWidth, height: 250))
+        self.fenceTableView.delegate = self
+        
+        
+        
     }
     func initMapView(){
         //添加地图视图
@@ -174,20 +135,95 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
             
         }
         let center = CLLocationCoordinate2D(latitude: 22.5496810319308, longitude: 113.947821886454)
-
+        
         self._mapView?.setCenter(center, animated: true)
         self._mapView?.zoomLevel = 15
         
+        
     }
-    //MARK: - Alamofire Get Data
+
+    func initLeftAndRightBarItem(){
+        let btn = UIBarButtonItem(title: "刷新", style: .plain, target: self, action: #selector(self.alamofireGetData))
+        self.navigationItem.setLeftBarButton(btn, animated: true)
+        self.navigationItem.leftBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.white,NSFontAttributeName: UIFont(name: "Chalkduster", size: 17)!], for: UIControlState())
+        
+        
+        let btnR = UIBarButtonItem(title: "围栏", style: .plain, target: self, action: #selector(self.rightBarItemTapped))
+        self.navigationItem.setRightBarButton(btnR, animated: true)
+        self.navigationItem.rightBarButtonItem?.setTitleTextAttributes([NSForegroundColorAttributeName:UIColor.white,NSFontAttributeName: UIFont(name: "Chalkduster", size: 17)!], for: UIControlState())
+    }
+    func initWebSoctket(){
+        
+        NetWork.getWSurlAndInit()
+        
+    }
+    func initTopBtnCollectV(){
+        topBtnCollectV = topBtnCollectView(frame: CGRect(x: 0, y:75 , width: ScreenWidth, height: 40))
+        topBtnCollectV.delegate = self
+        self.view.addSubview(topBtnCollectV)
+    }
+    
+    //MARK: -
+    func rightBarItemTapped(){
+        self.navigationItem.rightBarButtonItem?.isEnabled = false
+        NetWork.getAllFence(Block: { (jsonData) in
+//          获取的原始数据是有转义字符的(其实就是字符串数据)，用JSON(parseJSON:)去处理
+            self.fenceArray = jsonData
+            self.fenceTableView.dataArr = self.fenceArray
+            
+        })
+
+        self.FenceTableViewAnimating()
+    }
+    
+    func FenceTableViewAnimating(){
+        if (self.showFenceTable == false){
+            self.view.addSubview(fenceTableView)
+            self.tabBarController?.tabBar.isHidden = true
+            UIView.animate(withDuration: 0.3, delay: 0.1, options: UIViewAnimationOptions.curveEaseInOut, animations: {
+                self.fenceTableView.frame.origin.y = ScreenHeight - self.fenceTableView.frame.height
+            }) { (finish) in
+                self.showFenceTable = true
+            }
+        }else{
+            self.tabBarController?.tabBar.isHidden = false
+            UIView.animate(withDuration: 0.3, delay: 0.1, options: UIViewAnimationOptions.curveEaseInOut, animations: {
+                self.fenceTableView.frame.origin.y = ScreenHeight
+            }) { (finish) in
+                self.showFenceTable = false
+                self.fenceTableView.removeFromSuperview()
+
+                
+
+            }
+        }
+        
+       
+    }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+//        self.FenceTableViewAnimating()
+    }
+    
+    
+       //MARK: - Alamofire Get Data
     func alamofireGetData(){
         print("获取数据")
      NetWork.getAllDeviceData { (jsonArr) in
-        self.deviceArr = jsonArr
+            self.deviceArr = jsonArr
+        
+        //未测试
+            if self.deviceArr.count == 0{
+                self._mapView.removeAnnotations(self._mapView.annotations)
+                SVProgressHUD.setMaximumDismissTimeInterval(0.8)
+                SVProgressHUD.setDefaultStyle(.dark)
+                SVProgressHUD.show(nil, status: "没有注册的数据")
+                
+            }
         }
   
     }
     func convertArrToDic(){
+        self.deviceDictionary2 = [:]//先清零，不清零的话，当设备数量减少，annotation会仍然显示
         for d in self.deviceArr{
             let coor = CLLocationCoordinate2DMake(d["lat"].double!, d["lng"].double!);//原始坐标
             //转换非WGS84坐标至百度坐标(加密后的坐标)
@@ -221,13 +257,12 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
             deviceInfoStruct.wifiWorkMode = d["wifiWorkMode"].stringValue
             deviceInfoStruct.baseStationScanWorkMode = d["baseStationScanWorkMode"].stringValue
 
-            //        self.deviceDictionary.updateValue((d["lng"].double!,d["lat"].double!), forKey: d["serialNumber"].stringValue)
             
             self.deviceDictionary2.updateValue(deviceInfoStruct, forKey: d["serialNumber"].stringValue)
             
         }
         
-//        print(self.deviceDictionary2)
+
     }
     
     func showAnnotation(){
@@ -241,6 +276,7 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
         }
         
         self._mapView.removeAnnotations(_mapView.annotations)
+        self._mapView.removeOverlays(_mapView.overlays)
         self._mapView.addAnnotations(annotations)
         
         self.mapViewFitAnnotations(annotations)
@@ -335,6 +371,7 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
         vc.infoVC.infoDetailV.batteryCapcity.text = String(describing: Int8((tempGRStruct?.batteryCapcity)! * 100))        
         vc.infoVC.infoDetailV.groupName.text = tempGRStruct?.groupName
 
+        vc.infoVC.infoDetailV.speed.text = String(describing: (tempGRStruct?.speed)!)
      
         
         
@@ -353,7 +390,7 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
             
         }
         vc.infoVC.infoDetailV.powerConsumperType.text = str
-        
+        vc.settingDeviceVC.currentWorkMode = tempGRStruct!.powerConsumperType
         
         if (tempGRStruct!.powerConsumperType != "3"){
             vc.infoVC.infoDetailV.GPSLabel.setOffline()
@@ -423,6 +460,13 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
         if pointArr.count < 1 {
             return
         }
+        //如果只有一个的时候，该point移动到中央，即可。
+        if pointArr.count == 1{
+            GRshowInfo(str: "only one item")
+            let center = pointArr.first!.coordinate
+            self._mapView?.setCenter(center, animated: true)
+            return
+        }
 //      map的酸爽用法
         let mapPointArr =  pointArr.map { (i) -> BMKMapPoint in
         BMKMapPointForCoordinate(i.coordinate)
@@ -470,11 +514,9 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
             NetWork.socket.connect()
             break
         case 3:
-            
-            let vc = InfoAndSettingViewController()
-            self.navigationController?.pushViewController(vc, animated: true)
             break
         default:
+
             break
         }
         
@@ -489,6 +531,90 @@ class MonitorViewController: UIViewController,BMKMapViewDelegate,topBtnCollectVi
     deinit {
        NotificationCenter.default.removeObserver(self)
         print("---GR--MonitorVc 退出了---")
+    }
+
+}
+
+extension MonitorViewController:FenceTableViewBtnTapDelegate{
+    func sureFromFenceTableView() {
+        self.FenceTableViewAnimating()
+        self.navigationItem.rightBarButtonItem?.isEnabled = true
+    }
+    
+    func cancleFromFenceTableView() {
+        self.FenceTableViewAnimating()
+        self._mapView.remove(self.polygon)
+        self.navigationItem.rightBarButtonItem?.isEnabled = true
+    }
+    
+    func fenceTabledidSelectRowForCell(row:Int){
+
+        self._mapView.remove(self.polygon)
+        let dataDic = JSON(parseJSON: self.fenceArray[row]["geometry"].stringValue).dictionaryValue
+
+        let dataArr =  dataDic["geometry"]!["coordinates"].arrayValue.first!.arrayValue
+        var afterTranslateCoorArr =  dataArr.map { (point) -> CLLocationCoordinate2D in
+            let coor = CLLocationCoordinate2DMake((point.array?.last?.doubleValue)!, (point.array?.first?.doubleValue)!)
+        
+//        转换非WGS84坐标至百度坐标(加密后的坐标)
+            let testdic = BMKConvertBaiduCoorFrom(coor,BMK_COORDTYPE_GPS);
+            let baiduCoor:CLLocationCoordinate2D = BMKCoorDictionaryDecode(testdic);//转换后的百度坐标
+            return baiduCoor
+        }
+        
+        self.polygon = BMKPolygon(coordinates: &afterTranslateCoorArr, count: UInt(afterTranslateCoorArr.count))
+        self._mapView.add(self.polygon)
+        self.mapViewFitPolygon(self.polygon)
+
+
+      
+    }
+
+    func mapView(_ mapView: BMKMapView!, viewFor overlay: BMKOverlay!) -> BMKOverlayView! {
+        if (overlay as? BMKPolygon) != nil {
+            let polygonView = BMKPolygonView(overlay: overlay)
+            polygonView?.strokeColor = UIColor(red: 0, green: 0, blue: 0.5, alpha: 1)
+            polygonView?.fillColor = UIColor(red: 0, green: 1, blue: 1, alpha: 0.2)
+             polygonView?.lineWidth = 2
+            polygonView?.lineDash = true
+            return polygonView
+        }
+        return nil
+    }
+    
+    // MARK: -
+    //根据polygon设置地图范围
+    func mapViewFitPolygon(_ polygon: BMKPolygon!) {
+        if polygon.pointCount < 1 {
+            return
+        }
+        
+        let pt = polygon.points[0]
+        var ltX = pt.x
+        var rbX = pt.x
+        var ltY = pt.y
+        var rbY = pt.y
+        
+        for i in 1..<polygon.pointCount {
+            let pt = polygon.points[Int(i)]
+            if pt.x < ltX {
+                ltX = pt.x
+            }
+            if pt.x > rbX {
+                rbX = pt.x
+            }
+            if pt.y > ltY {
+                ltY = pt.y
+            }
+            if pt.y < rbY {
+                rbY = pt.y
+            }
+        }
+        
+        let rect = BMKMapRectMake(ltX, ltY, rbX - ltX, rbY - ltY)
+        _mapView.visibleMapRect = rect
+//        print(rect)
+        _mapView.zoomLevel = _mapView.zoomLevel - 0.3
     }
 
 }

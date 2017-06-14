@@ -12,7 +12,7 @@ class SettingDeviceTableVC: UIViewController,UITableViewDataSource,UITableViewDe
 
     var _tableView:UITableView!
     var workModeArr:Array = ["DeepSleep Mode","StandByMode","智能工作模式","用户自定义模式"]
-    
+    var currentWorkMode:String!
 //    var DataSourceArr:[String]! = []
     var realSeclectionArr:[String]! = []
     override func viewDidLoad() {
@@ -78,7 +78,10 @@ class SettingDeviceTableVC: UIViewController,UITableViewDataSource,UITableViewDe
         if (indexPath.row == 3){
             cell?.accessoryType = .disclosureIndicator
         }else{
-           cell?.accessoryType = .checkmark
+            if indexPath.row == Int(self.currentWorkMode){
+                cell?.accessoryType = .checkmark
+            }
+           
         }
         
         cell?.selectionStyle = .none
@@ -88,6 +91,14 @@ class SettingDeviceTableVC: UIViewController,UITableViewDataSource,UITableViewDe
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 
+        //一定要先进行这样的处理
+        for c in tableView.visibleCells{
+            let i = tableView.indexPath(for: c)
+            if i?.row != 3{
+                c.accessoryType = .none
+            }
+            
+        }
         if (indexPath.row != 3){
             let cell = tableView.cellForRow(at: indexPath)
             if cell?.accessoryType != .checkmark{

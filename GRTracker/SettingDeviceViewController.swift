@@ -12,6 +12,7 @@ class SettingDeviceViewController: UIViewController,UITableViewDelegate,UITableV
 
     
     var _tableView:UITableView!
+    var currentWorkMode:String!//"0","1","2","3"
     override func viewDidLoad() {
         super.viewDidLoad()
         self.initUI()
@@ -48,15 +49,7 @@ class SettingDeviceViewController: UIViewController,UITableViewDelegate,UITableV
         }
     }
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-//        switch section{
-//        case 0:
-//            return 0
-//        case 1:
-//            return 0
-//        default:
-//            return 0
-//            
-//        }
+
         return 0.1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -80,7 +73,21 @@ class SettingDeviceViewController: UIViewController,UITableViewDelegate,UITableV
         switch index{
         case (0,0):
             cell?.textLabel?.text = "工作模式"
-            cell?.detailTextLabel?.text = "请设置"
+
+            switch self.currentWorkMode{
+                case "0":
+                    cell?.detailTextLabel?.text = "deepsleep模式"
+                case "1":
+                    cell?.detailTextLabel?.text = "standby模式"
+                case "2":
+                    cell?.detailTextLabel?.text = "智能工作模式"
+                case "3":
+                    cell?.detailTextLabel?.text = "用户自定义模式"
+            
+            default:
+                break
+            }
+//            cell?.detailTextLabel?.text = self.currentWorkMode
         case (0,1):
 //            cell?.textLabel?.text = "控制模式"
 //            cell?.detailTextLabel?.text = "请设置"
@@ -92,7 +99,7 @@ class SettingDeviceViewController: UIViewController,UITableViewDelegate,UITableV
         
         
         cell?.accessoryType = .disclosureIndicator
-        cell?.imageView?.image = UIImage(named: "car.png")
+        cell?.imageView?.image = UIImage(named: "work.png")
         cell?.imageView?.contentMode = .scaleAspectFill
         
         
@@ -109,6 +116,7 @@ class SettingDeviceViewController: UIViewController,UITableViewDelegate,UITableV
         switch indexPath.row{
         case 0:
             let vc = SettingDeviceTableVC()
+            vc.currentWorkMode = self.currentWorkMode
             self.navigationController?.pushViewController(vc, animated: true)
             
         case 1:
